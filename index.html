@@ -61,6 +61,22 @@
   .country.active { display:block; }
   .country > h2 { margin:0 0 6px; font-size:20px; font-weight:700; letter-spacing:0.5px; }
   .country > p.subtitle { margin:0 0 20px; color:var(--muted); font-size:13px; }
+  .country-subtitle-btn { display:block; width:100%; background:none; border:none; padding:0 0 12px; margin:0 0 20px; border-bottom:1px dashed var(--line); font-family:inherit; font-size:13px; color:var(--muted); cursor:pointer; text-align:left; line-height:1.55; transition:color .15s, border-color .15s; }
+  .country-subtitle-btn:hover { color:var(--fg); border-bottom-color:var(--fg); }
+  .country-subtitle-btn .info-mark { font-family:Georgia, serif; font-style:italic; font-weight:700; opacity:0.65; margin-left:10px; white-space:nowrap; }
+  .country-subtitle-btn:hover .info-mark { opacity:1; }
+  /* Welcome modal (mobile first-visit only) */
+  .welcome-modal { max-width:440px; text-align:left; }
+  .welcome-body { margin:20px 0 24px; }
+  .welcome-intro { font-size:14px; line-height:1.6; color:var(--fg); margin:0 0 20px; }
+  .welcome-tips { list-style:none; padding:0; margin:0; }
+  .welcome-tips li { padding:10px 0 10px 24px; font-size:13px; line-height:1.55; color:var(--fg); border-top:1px solid var(--line); position:relative; }
+  .welcome-tips li:first-child { border-top:none; }
+  .welcome-tips li::before { content:"·"; position:absolute; left:8px; top:8px; font-size:18px; font-weight:700; color:var(--muted); }
+  .welcome-tip-key { font-weight:700; color:var(--fg); }
+  .welcome-gotit { display:block; width:100%; padding:14px 20px; margin:8px 0 0; background:var(--fg); color:var(--bg); border:none; border-radius:6px; font-family:inherit; font-size:14px; font-weight:700; letter-spacing:0.5px; cursor:pointer; transition:opacity .15s; }
+  .welcome-gotit:hover { opacity:0.85; }
+  .welcome-gotit:active { opacity:0.7; }
   .country-preface { max-width:680px; margin:0 0 32px; padding:20px 26px; background:var(--card-bg); border-left:3px solid var(--line); border-radius:4px; font-size:14px; line-height:1.7; color:var(--fg); }
   .country-preface p { margin:0 0 14px; }
   .country-preface p:last-child { margin-bottom:0; }
@@ -78,6 +94,8 @@
   .country-json-btn:hover { color:var(--fg); border-color:var(--fg); }
   .country-share-btn { background:none; border:1px solid var(--line); color:var(--muted); font-family:inherit; font-size:11px; font-weight:700; padding:3px 8px; border-radius:3px; cursor:pointer; vertical-align:middle; margin-left:6px; transition:color .15s, border-color .15s; }
   .country-share-btn:hover { color:var(--fg); border-color:var(--fg); }
+  .country-info-btn { background:none; border:1px solid var(--line); color:var(--muted); font-family:inherit; font-size:11px; font-weight:700; padding:3px 8px; border-radius:3px; cursor:pointer; vertical-align:middle; margin-left:12px; transition:color .15s, border-color .15s; }
+  .country-info-btn:hover { color:var(--fg); border-color:var(--fg); }
   .modal-share { position:absolute; top:14px; right:58px; background:none; border:1px solid var(--line); color:var(--muted); font-family:inherit; font-size:13px; font-weight:700; padding:5px 10px; border-radius:4px; cursor:pointer; line-height:1; transition:color .15s, border-color .15s; }
   .modal-share:hover { color:var(--fg); border-color:var(--fg); }
   .card-name { font-size:14px; font-weight:700; letter-spacing:0.5px; margin:0; padding-right:28px; }
@@ -346,7 +364,27 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="welcome-overlay">
+  <div class="modal welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <h3 class="modal-name" id="welcome-title">Welcome to Rangrez</h3>
+    <p class="modal-feel">रंगरेज़ · a library of 240 culturally-grounded palettes</p>
+    <div class="welcome-body">
+      <p class="welcome-intro">Japanese wabi-sabi, Indian saris, Mexican folk art, Vaporwave, Brutalism, and more. Each palette comes with its cultural story.</p>
+      <ul class="welcome-tips">
+        <li><span class="welcome-tip-key">Tap the section name</span> at the top to browse collections</li>
+        <li><span class="welcome-tip-key">Tap the italic line</span> under it to read about the collection</li>
+        <li><span class="welcome-tip-key">Tap any swatch</span> to copy its hex code</li>
+        <li><span class="welcome-tip-key">Use ← →</span> at the bottom to move between palettes</li>
+      </ul>
+    </div>
+    <button class="welcome-gotit" id="welcome-gotit">Got it</button>
+  </div>
+</div>
+
 <script>
+// Captured before any init code so we can tell whether the user genuinely
+// arrived with a hash (e.g. shared link) vs we wrote one ourselves during init
+const _initialUserHash = location.hash;
 const groups = [
   {
     name: "COUNTRIES",
@@ -1194,8 +1232,10 @@ groups.forEach(group => {
     const section = document.createElement("section");
     section.className = "country" + (c.key === firstKey ? " active" : "");
     section.id = "section-" + c.key;
-    const prefaceHtml = c.preface ? `<div class="country-preface">${c.preface.split("\n\n").map(p => `<p>${p}</p>`).join("")}</div>` : "";
-    section.innerHTML = `<h2>${c.label}<button class="country-json-btn" data-key="${c.key}" title="Click: copy all palettes as JSON · Shift+click: download .json">{}</button><button class="country-share-btn" data-key="${c.key}" title="Share this collection">↗ share</button></h2><p class="subtitle">${c.subtitle}</p>${prefaceHtml}<div class="grid"></div>`;
+    const subtitleHtml = c.preface
+      ? `<button class="country-subtitle-btn" data-key="${c.key}" aria-label="Read about ${c.label}">${c.subtitle}<span class="info-mark">ⓘ about</span></button>`
+      : `<p class="subtitle">${c.subtitle}</p>`;
+    section.innerHTML = `<h2>${c.label}<button class="country-json-btn" data-key="${c.key}" title="Click: copy all palettes as JSON · Shift+click: download .json">{}</button><button class="country-share-btn" data-key="${c.key}" title="Share this collection">↗ share</button></h2>${subtitleHtml}<div class="grid"></div>`;
     mainEl.appendChild(section);
 
     const grid = section.querySelector(".grid");
@@ -1576,6 +1616,23 @@ document.getElementById("help-btn").addEventListener("click", openHelp);
 document.getElementById("help-close").addEventListener("click", closeHelp);
 helpOverlay.addEventListener("click", e => { if (e.target === helpOverlay) closeHelp(); });
 
+// ============ WELCOME MODAL (mobile first-visit) ============
+const welcomeOverlay = document.getElementById("welcome-overlay");
+const WELCOME_KEY = "rangrez_welcome_seen_v1";
+function dismissWelcome() {
+  welcomeOverlay.classList.remove("show");
+  try { localStorage.setItem(WELCOME_KEY, "1"); } catch (e) {}
+}
+function maybeShowWelcome() {
+  if (!isMobile()) return;
+  let seen = null;
+  try { seen = localStorage.getItem(WELCOME_KEY); } catch (e) {}
+  if (seen) return;
+  welcomeOverlay.classList.add("show");
+}
+document.getElementById("welcome-gotit").addEventListener("click", dismissWelcome);
+welcomeOverlay.addEventListener("click", e => { if (e.target === welcomeOverlay) dismissWelcome(); });
+
 // ============ PREFACE MODAL ============
 const prefaceOverlay = document.getElementById("preface-overlay");
 const prefaceName = document.getElementById("preface-name");
@@ -1598,6 +1655,10 @@ prefaceClose.addEventListener("click", closePreface);
 prefaceOverlay.addEventListener("click", e => { if (e.target === prefaceOverlay) closePreface(); });
 
 document.addEventListener("keydown", e => {
+  if (welcomeOverlay.classList.contains("show")) {
+    if (e.key === "Escape") dismissWelcome();
+    return;
+  }
   if (prefaceOverlay.classList.contains("show")) {
     if (e.key === "Escape") closePreface();
     return;
@@ -1745,7 +1806,7 @@ function renderMobileReader() {
   const storyEl = mobileReaderEl.querySelector(".reader-story");
   if (storyEl) storyEl.scrollTop = 0;
 
-  if (typeof updateHash === "function") updateHash(mobileCurrentSection, mobileCurrentIndex);
+  if (typeof updateHash === "function" && isMobile()) updateHash(mobileCurrentSection, mobileCurrentIndex);
 }
 
 function mobileNav(delta) {
@@ -1917,8 +1978,25 @@ document.addEventListener("click", e => {
   shareCollection(btn.dataset.key);
 });
 
+// Desktop: delegate click handler for .country-subtitle-btn → opens preface modal
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".country-subtitle-btn");
+  if (!btn) return;
+  e.stopPropagation();
+  openPrefaceForSection(btn.dataset.key);
+});
+
 // Apply a deep link from the current hash
+let _deepLinkInitialCall = true;
 function applyDeepLink() {
+  // On the very first call (page load), only act if the user actually arrived
+  // with a hash in the URL. Otherwise skip — the hash we're seeing was written
+  // by our own init code (renderMobileReader on mobile) and shouldn't trigger
+  // modals or navigation.
+  if (_deepLinkInitialCall) {
+    _deepLinkInitialCall = false;
+    if (!_initialUserHash) return;
+  }
   const target = parseHash();
   if (!target) return;
   if (isMobile()) {
@@ -1934,6 +2012,7 @@ function applyDeepLink() {
 }
 window.addEventListener("hashchange", applyDeepLink);
 applyDeepLink();
+maybeShowWelcome();
 </script>
 
 </body>
