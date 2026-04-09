@@ -128,6 +128,10 @@
   .preview-row { height:18px; margin-bottom:14px; }
   .preview-text { font-size:16px; font-weight:700; margin-bottom:8px; }
   .preview-line { font-size:12px; margin-bottom:4px; }
+  .preview.has-mark { display:flex; align-items:center; gap:18px; }
+  .preview.has-mark .preview-body { flex:1; min-width:0; }
+  .preview.has-mark .preview-row { margin-bottom:10px; }
+  .card-svg-mark { flex-shrink:0; width:68px; height:68px; }
   .swatches { display:grid; grid-template-columns:repeat(7, 1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); }
   body.dark .swatches { background:var(--frame); border-top-color:var(--frame); }
   .sw { background:var(--card-bg); padding:10px 6px; text-align:center; cursor:pointer; transition:opacity .15s; }
@@ -184,6 +188,10 @@
     .reader-preview-row { height:14px; margin-bottom:10px; }
     .reader-preview-text { font-size:15px; font-weight:700; margin-bottom:6px; }
     .reader-preview-line { font-size:11px; margin-bottom:3px; }
+    .reader-preview.has-mark { display:flex; align-items:center; gap:14px; }
+    .reader-preview.has-mark .reader-preview-body { flex:1; min-width:0; }
+    .reader-preview.has-mark .reader-preview-row { margin-bottom:8px; }
+    .reader-svg-mark { flex-shrink:0; width:60px; height:60px; }
     .reader-swatches { display:grid; grid-template-columns:repeat(7, 1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); }
     body.dark .reader-swatches { background:var(--frame); border-top-color:var(--frame); }
     .reader-sw { background:var(--card-bg); padding:8px 3px; text-align:center; cursor:pointer; }
@@ -447,35 +455,45 @@ const groups = [
 const palettes = {
   japan: [
     { name:"01 · 無印 MUJI [LIGHT role]", feel:"Muji store, Kinokuniya. Cleanest white role.",
-      story:"The cleanest light in the library, named for the brand whose entire identity is the absence of branding. Muji emerged in 1980 as a reaction against Japan's bubble-economy excess: no logos, no decoration, just objects honest about their materials.\n\nThe palette holds the same discipline — near-white body, true white panel, sumi-black ink, and only the bengara accent to suggest that there is, in fact, a Japan behind the page. Use it when you want the page to disappear and the content to do all the work.",
-      colors:{BODY:"#f9f9f8",PANEL:"#ffffff",INK:"#1c1815",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#f1f1ee"} },
+      story:"The cleanest light in the library, named for the brand whose entire identity is the absence of branding. Muji emerged in 1980 as a reaction against Japan's bubble-economy excess: no logos, no decoration, just objects honest about their materials.\n\nThe palette holds the same discipline — near-white body, true white panel, sumi-black ink, and only the bengara accent to suggest that there is, in fact, a Japan behind the page. Use it when you want the page to disappear and the content to do all the work.\n\nThe mark on this card is an enso — the Zen brush circle drawn in a single unbroken breath, left intentionally open. It is the visual form of Muji's founding principle: the absence of decoration is itself the decoration.",
+      colors:{BODY:"#f9f9f8",PANEL:"#ffffff",INK:"#1c1815",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#f1f1ee"},
+      svg:{sw:"5",op:"0.38",body:'<path d="M 75,18 A 38,38 0 1,0 78,78"/>'} },
     { name:"02 · 生成り KINARI [WARM role]", feel:"Edo merchant ledger, washi paper. Warm cream anchor role.",
-      story:"生成り literally means 'raw, becoming' — the natural off-white of cotton or paper before any dye or bleach touches it. Edo merchants kept their account books on washi of exactly this color, because dye was expensive and a clean number was its own form of decoration.\n\nThis is the palette of the ledger, the receipt, the bound notebook in a Tokyo stationer. Reach for it when the content itself needs to feel hand-kept rather than printed.",
-      colors:{BODY:"#f3ecdc",PANEL:"#faf4e6",INK:"#3a2a1a",BRAND:"#9b4a22",ACT:"#2a3a5a",OK:"#5a6b2a",ROW:"#ebe2cf"} },
+      story:"生成り literally means 'raw, becoming' — the natural off-white of cotton or paper before any dye or bleach touches it. Edo merchants kept their account books on washi of exactly this color, because dye was expensive and a clean number was its own form of decoration.\n\nThis is the palette of the ledger, the receipt, the bound notebook in a Tokyo stationer. Reach for it when the content itself needs to feel hand-kept rather than printed.\n\nThe mark on this card is a daifukucho — the stab-bound washi ledger book that Edo merchants kept their accounts in. The thread binding along the spine is watoji, a traditional Japanese technique that predates and survives Western codex binding.",
+      colors:{BODY:"#f3ecdc",PANEL:"#faf4e6",INK:"#3a2a1a",BRAND:"#9b4a22",ACT:"#2a3a5a",OK:"#5a6b2a",ROW:"#ebe2cf"},
+      svg:{sw:"2.3",op:"0.48",body:'<rect x="26" y="12" width="46" height="76" rx="1"/><line x1="62" y1="14" x2="62" y2="86" stroke-width="1.5"/><line x1="58" y1="22" x2="68" y2="22" stroke-width="1.8"/><line x1="58" y1="36" x2="68" y2="36" stroke-width="1.8"/><line x1="58" y1="50" x2="68" y2="50" stroke-width="1.8"/><line x1="58" y1="64" x2="68" y2="64" stroke-width="1.8"/><line x1="58" y1="78" x2="68" y2="78" stroke-width="1.8"/><rect x="32" y="22" width="16" height="26" rx="0.5" stroke-width="1.5"/>'} },
     { name:"03 · 墨 SUMI [MONO role]", feel:"Zen monochrome, calligraphy ink. Mono role.",
-      story:"A solid stick of carbon-bound ink, ground against a wet stone until it yields a black with more depth than any printer can match. Sumi-e painters describe five 'colors' within sumi black — from oil-slick gloss to dry-brushed mist.\n\nThe palette honors that range by using greys for everything except the headline. This is the palette of the gallery wall, the philosophical essay, the work that wants to be quiet and a little severe.",
-      colors:{BODY:"#f5f5f4",PANEL:"#ffffff",INK:"#0d0d0c",BRAND:"#5a5a58",ACT:"#2c2c2a",OK:"#3d4a30",ROW:"#ebebe9"} },
+      story:"A solid stick of carbon-bound ink, ground against a wet stone until it yields a black with more depth than any printer can match. Sumi-e painters describe five 'colors' within sumi black — from oil-slick gloss to dry-brushed mist.\n\nThe palette honors that range by using greys for everything except the headline. This is the palette of the gallery wall, the philosophical essay, the work that wants to be quiet and a little severe.\n\nThe mark on this card is a suzuri — the inkstone on which sumi sticks are ground with water to make ink. The oval hollow at one end is the umi (sea), where the ground ink pools; the flat surface at the other end is where the stick meets the stone. Everything sumi-e requires, in one object.",
+      colors:{BODY:"#f5f5f4",PANEL:"#ffffff",INK:"#0d0d0c",BRAND:"#5a5a58",ACT:"#2c2c2a",OK:"#3d4a30",ROW:"#ebebe9"},
+      svg:{sw:"2.3",op:"0.34",body:'<rect x="10" y="34" width="80" height="38" rx="3"/><ellipse cx="28" cy="53" rx="12" ry="9"/><ellipse cx="28" cy="53" rx="7" ry="5" fill="currentColor" stroke="none"/><rect x="52" y="46" width="28" height="14" rx="1" fill="currentColor" stroke="none"/>'} },
     { name:"04 · 桜 SAKURA", feel:"Hanami picnic, cherry blossom on the breeze.",
-      story:"Hanami — flower viewing — is the only annual ritual in Japan that an entire population organizes around a single color. The blossom lasts roughly a week, and during that week the country reschedules picnics, news broadcasts, and sometimes diplomatic visits.\n\nThe pink in this palette is the wash you see standing under a tree just before petals fall. It's the only 'pink slot' in the entire library that could not be replaced by any other reference without losing the country.",
-      colors:{BODY:"#fdf6f4",PANEL:"#ffffff",INK:"#1c1815",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#f7eeec"} },
+      story:"Hanami — flower viewing — is the only annual ritual in Japan that an entire population organizes around a single color. The blossom lasts roughly a week, and during that week the country reschedules picnics, news broadcasts, and sometimes diplomatic visits.\n\nThe pink in this palette is the wash you see standing under a tree just before petals fall. It's the only 'pink slot' in the entire library that could not be replaced by any other reference without losing the country.\n\nThe mark on this card is a single sakura blossom, five petals with the distinctive V-notch at each tip. The flower Japan reschedules itself around for two weeks every spring.",
+      colors:{BODY:"#fdf6f4",PANEL:"#ffffff",INK:"#1c1815",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#f7eeec"},
+      svg:{sw:"2",op:"0.38",body:'<g transform="translate(50,50)"><g transform="rotate(0)"><path d="M 0,-10 C -12,-14 -14,-32 -4,-38 L 0,-34 L 4,-38 C 14,-32 12,-14 0,-10 Z"/></g><g transform="rotate(72)"><path d="M 0,-10 C -12,-14 -14,-32 -4,-38 L 0,-34 L 4,-38 C 14,-32 12,-14 0,-10 Z"/></g><g transform="rotate(144)"><path d="M 0,-10 C -12,-14 -14,-32 -4,-38 L 0,-34 L 4,-38 C 14,-32 12,-14 0,-10 Z"/></g><g transform="rotate(216)"><path d="M 0,-10 C -12,-14 -14,-32 -4,-38 L 0,-34 L 4,-38 C 14,-32 12,-14 0,-10 Z"/></g><g transform="rotate(288)"><path d="M 0,-10 C -12,-14 -14,-32 -4,-38 L 0,-34 L 4,-38 C 14,-32 12,-14 0,-10 Z"/></g><circle cx="0" cy="0" r="4" fill="currentColor" stroke="none"/><line x1="0" y1="-4" x2="0" y2="-9" stroke-width="1.2"/><line x1="-3" y1="-3" x2="-7" y2="-6" stroke-width="1.2"/><line x1="3" y1="-3" x2="7" y2="-6" stroke-width="1.2"/><line x1="-2" y1="3" x2="-5" y2="7" stroke-width="1.2"/><line x1="2" y1="3" x2="5" y2="7" stroke-width="1.2"/></g>'} },
     { name:"05 · 抹茶 MATCHA", feel:"Whisked tea ceremony matcha, Uji stone-ground.",
-      story:"Powdered green tea ground from shaded leaves, whisked into a froth in a chawan bowl during chanoyu. The color is shockingly saturated because matcha is a powder rather than an infusion — no other tea preparation in the world produces this much pigment per drop of water.\n\nThe Uji region near Kyoto has been growing the leaves for stone-grinding since the 1100s. This is the boldest green ground in the entire library because the actual tea is the boldest green in the world. Best used as a hero or banner palette, not body text.",
-      colors:{BODY:"#cce0a8",PANEL:"#dceabc",INK:"#0e2008",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#b8cc8c"} },
+      story:"Powdered green tea ground from shaded leaves, whisked into a froth in a chawan bowl during chanoyu. The color is shockingly saturated because matcha is a powder rather than an infusion — no other tea preparation in the world produces this much pigment per drop of water.\n\nThe Uji region near Kyoto has been growing the leaves for stone-grinding since the 1100s. This is the boldest green ground in the entire library because the actual tea is the boldest green in the world. Best used as a hero or banner palette, not body text.\n\nThe mark on this card is a chasen — the split-bamboo tea whisk used to froth matcha in a chawan bowl. Unique to Japan; no other tea tradition in the world has this exact tool.",
+      colors:{BODY:"#cce0a8",PANEL:"#dceabc",INK:"#0e2008",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#b8cc8c"},
+      svg:{sw:"2.2",op:"0.58",body:'<rect x="43" y="58" width="14" height="38" fill="currentColor" stroke="none" rx="1"/><ellipse cx="50" cy="56" rx="10" ry="2.5" fill="currentColor" stroke="none"/><path d="M 40,56 Q 22,38 32,12"/><path d="M 60,56 Q 78,38 68,12"/><path d="M 32,12 Q 36,6 42,14"/><path d="M 68,12 Q 64,6 58,14"/><path d="M 45,56 Q 38,36 42,14"/><path d="M 55,56 Q 62,36 58,14"/><path d="M 48,56 Q 46,36 48,12"/><path d="M 52,56 Q 54,36 52,12"/>'} },
     { name:"06 · 紺 KON", feel:"Noren curtain, Edo workwear, sashiko stitching.",
-      story:"紺 is the deep indigo of Edo workwear — happi coats, sashiko-stitched fishermen's jackets, the noren curtain that hangs in a shop doorway. Indigo dye is a living fermentation; the older the vat, the deeper the kon.\n\nTradesmen wore it because dirt didn't show. Today the same color shows up in selvedge denim mills in Okayama that still use Edo-era techniques. Use it when the page should feel made by hand, by someone who works with their hands.",
-      colors:{BODY:"#e3e8f2",PANEL:"#f4f6fb",INK:"#0a1430",BRAND:"#a83018",ACT:"#1a3a78",OK:"#3a5a2a",ROW:"#d5dceb"} },
+      story:"紺 is the deep indigo of Edo workwear — happi coats, sashiko-stitched fishermen's jackets, the noren curtain that hangs in a shop doorway. Indigo dye is a living fermentation; the older the vat, the deeper the kon.\n\nTradesmen wore it because dirt didn't show. Today the same color shows up in selvedge denim mills in Okayama that still use Edo-era techniques. Use it when the page should feel made by hand, by someone who works with their hands.\n\nThe mark on this card is asanoha — the hemp-leaf sashiko pattern, a hexagonal grid with inscribed triangles that forms a six-pointed star. Asanoha has been stitched into Edo indigo workwear for four centuries and is the single most recognized sashiko motif in the world.",
+      colors:{BODY:"#e3e8f2",PANEL:"#f4f6fb",INK:"#0a1430",BRAND:"#a83018",ACT:"#1a3a78",OK:"#3a5a2a",ROW:"#d5dceb"},
+      svg:{sw:"1.8",op:"0.44",body:'<polygon points="50,10 84,30 84,70 50,90 16,70 16,30"/><line x1="50" y1="50" x2="50" y2="10"/><line x1="50" y1="50" x2="84" y2="30"/><line x1="50" y1="50" x2="84" y2="70"/><line x1="50" y1="50" x2="50" y2="90"/><line x1="50" y1="50" x2="16" y2="70"/><line x1="50" y1="50" x2="16" y2="30"/><polygon points="50,10 84,70 16,70"/><polygon points="84,30 50,90 16,30"/>'} },
     { name:"07 · 朽葉 KUCHIBA", feel:"Fallen ginkgo on temple stone, late November.",
-      story:"朽葉 means 'decayed leaf' — specifically the color of a fallen ginkgo blade in the second week of November, on a temple step in Kyoto, when the yellow has begun to brown but hasn't yet turned.\n\nThe palette captures mono no aware, the gentle melancholy of impermanence, which is Japan's most important aesthetic concept and also the hardest to translate. Use it when the content is reflective, retrospective, or seasonal.",
-      colors:{BODY:"#f4e8d4",PANEL:"#fcf3e2",INK:"#3a1f0c",BRAND:"#b84818",ACT:"#2a3a5a",OK:"#5a5a1a",ROW:"#ebdcc1"} },
+      story:"朽葉 means 'decayed leaf' — specifically the color of a fallen ginkgo blade in the second week of November, on a temple step in Kyoto, when the yellow has begun to brown but hasn't yet turned.\n\nThe palette captures mono no aware, the gentle melancholy of impermanence, which is Japan's most important aesthetic concept and also the hardest to translate. Use it when the content is reflective, retrospective, or seasonal.\n\nThe mark on this card is a ginkgo leaf — fan-shaped with the characteristic V-notch at the top that gives the tree its Latin name, biloba. In late November these leaves fall by the thousand onto temple stones across Kyoto, and kuchiba is exactly their color.",
+      colors:{BODY:"#f4e8d4",PANEL:"#fcf3e2",INK:"#3a1f0c",BRAND:"#b84818",ACT:"#2a3a5a",OK:"#5a5a1a",ROW:"#ebdcc1"},
+      svg:{sw:"2",op:"0.48",body:'<line x1="50" y1="90" x2="50" y2="64"/><path d="M 50,64 C 38,62 18,44 16,24 Q 30,14 46,20 L 50,26 L 54,20 Q 70,14 84,24 C 82,44 62,62 50,64 Z"/><line x1="50" y1="64" x2="50" y2="26" stroke-width="1.2"/><line x1="50" y1="64" x2="28" y2="30" stroke-width="1.2"/><line x1="50" y1="64" x2="38" y2="22" stroke-width="1.2"/><line x1="50" y1="64" x2="62" y2="22" stroke-width="1.2"/><line x1="50" y1="64" x2="72" y2="30" stroke-width="1.2"/>'} },
     { name:"08 · 畳 TATAMI", feel:"Fresh igusa rush mat, the floor of every traditional room.",
-      story:"The literal floor of every traditional Japanese room, woven from igusa rush over a rice-straw core. A fresh tatami room has a sweet grass smell that anyone who's ever slept on one remembers; this color is the visual equivalent of that smell.\n\nHouses are still measured in tatami units (jō, ~1.6 m²) because the mat predates and outlasts every floor plan. This palette puts the floor on the page.",
-      colors:{BODY:"#ecdcb0",PANEL:"#f6e8c4",INK:"#3a2812",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#e0cc94"} },
+      story:"The literal floor of every traditional Japanese room, woven from igusa rush over a rice-straw core. A fresh tatami room has a sweet grass smell that anyone who's ever slept on one remembers; this color is the visual equivalent of that smell.\n\nHouses are still measured in tatami units (jō, ~1.6 m²) because the mat predates and outlasts every floor plan. This palette puts the floor on the page.\n\nThe mark on this card is a single tatami mat in plan view — rectangular, with the heri fabric border along its two long edges and the igusa rush weave running between them. Traditional Japanese rooms are still measured in tatami units because the mat predates and outlasts every floor plan.",
+      colors:{BODY:"#ecdcb0",PANEL:"#f6e8c4",INK:"#3a2812",BRAND:"#8b3a1f",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#e0cc94"},
+      svg:{sw:"2.2",op:"0.46",body:'<rect x="10" y="28" width="80" height="44" rx="1"/><line x1="10" y1="36" x2="90" y2="36" stroke-width="1.5"/><line x1="10" y1="64" x2="90" y2="64" stroke-width="1.5"/><line x1="14" y1="42" x2="86" y2="42" stroke-width="0.9"/><line x1="14" y1="46" x2="86" y2="46" stroke-width="0.9"/><line x1="14" y1="50" x2="86" y2="50" stroke-width="0.9"/><line x1="14" y1="54" x2="86" y2="54" stroke-width="0.9"/><line x1="14" y1="58" x2="86" y2="58" stroke-width="0.9"/>'} },
     { name:"09 · 紅 BENI", feel:"Safflower lip pigment, Yamagata distillation, geisha makeup.",
-      story:"紅 is the pigment extracted from safflower petals (benibana) — historically one of the most expensive pigments in Japan because safflower yields almost no usable color per kilogram of flower. Geisha used it for lip color, painting only the inner curve of the lips and leaving the outer pale.\n\nBeni is cool pink, completely distinct from the iron-oxide bengara red that serves as Japan's brand accent. The two colors come from completely different sources and the language has separate words for them. Pulling beni out of the bengara family is the most honest move in this palette set, and the slot uses its own brand color (#c81848) to reflect that.",
-      colors:{BODY:"#f4c4c0",PANEL:"#fcd4d0",INK:"#2a0814",BRAND:"#c81848",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#e8a8a4"} },
+      story:"紅 is the pigment extracted from safflower petals (benibana) — historically one of the most expensive pigments in Japan because safflower yields almost no usable color per kilogram of flower. Geisha used it for lip color, painting only the inner curve of the lips and leaving the outer pale.\n\nBeni is cool pink, completely distinct from the iron-oxide bengara red that serves as Japan's brand accent. The two colors come from completely different sources and the language has separate words for them. Pulling beni out of the bengara family is the most honest move in this palette set, and the slot uses its own brand color (#c81848) to reflect that.\n\nThe mark on this card is a benibana — the safflower, whose petals are the source of the beni pigment. Historically one of the most expensive pigments in Japan because safflower yields almost no usable color per kilogram of flower, which is why geisha only ever wore it on the inner curve of the lip.",
+      colors:{BODY:"#f4c4c0",PANEL:"#fcd4d0",INK:"#2a0814",BRAND:"#c81848",ACT:"#1a2b4a",OK:"#4a6b2a",ROW:"#e8a8a4"},
+      svg:{sw:"2",op:"0.44",body:'<line x1="50" y1="94" x2="50" y2="58"/><ellipse cx="50" cy="52" rx="13" ry="9"/><line x1="50" y1="44" x2="50" y2="14" stroke-width="1.7"/><line x1="46" y1="45" x2="40" y2="16" stroke-width="1.7"/><line x1="54" y1="45" x2="60" y2="16" stroke-width="1.7"/><line x1="42" y1="47" x2="30" y2="22" stroke-width="1.7"/><line x1="58" y1="47" x2="70" y2="22" stroke-width="1.7"/><line x1="48" y1="44" x2="46" y2="12" stroke-width="1.7"/><line x1="52" y1="44" x2="54" y2="12" stroke-width="1.7"/><circle cx="50" cy="14" r="1.2" fill="currentColor"/><circle cx="40" cy="16" r="1.2" fill="currentColor"/><circle cx="60" cy="16" r="1.2" fill="currentColor"/><circle cx="30" cy="22" r="1.2" fill="currentColor"/><circle cx="70" cy="22" r="1.2" fill="currentColor"/><circle cx="46" cy="12" r="1.2" fill="currentColor"/><circle cx="54" cy="12" r="1.2" fill="currentColor"/>'} },
     { name:"10 · 漆 URUSHI [DARK role]", feel:"Wajima lacquerware, kintsugi gold repair. Dark mode role.",
-      story:"Lacquer made from the sap of the urushi tree, applied in dozens of thin layers, each cured at high humidity over weeks. A finished urushi piece is dark, deep, and seems to glow from inside.\n\nThe Wajima region of Ishikawa has been making urushi tableware for 500 years. Pieces are repaired with kintsugi — gold-leaf-mixed lacquer that turns the crack into a feature, not a flaw. The dark mode palette uses kintsugi gold as the ink color. Use it for night, for ceremony, for objects you intend to keep.",
-      colors:{BODY:"#15100c",PANEL:"#1e1813",INK:"#f5e6c8",BRAND:"#c8512a",ACT:"#3a5a8a",OK:"#7a9a3a",ROW:"#221a13"} },
+      story:"Lacquer made from the sap of the urushi tree, applied in dozens of thin layers, each cured at high humidity over weeks. A finished urushi piece is dark, deep, and seems to glow from inside.\n\nThe Wajima region of Ishikawa has been making urushi tableware for 500 years. Pieces are repaired with kintsugi — gold-leaf-mixed lacquer that turns the crack into a feature, not a flaw. The dark mode palette uses kintsugi gold as the ink color. Use it for night, for ceremony, for objects you intend to keep.\n\nThe mark on this card is an urushi lacquer bowl with a kintsugi gold repair — a jagged seam tracing where the bowl was once broken and made whole again with gold-dusted lacquer. In the kintsugi tradition, the crack becomes a feature of the object, not a flaw.",
+      colors:{BODY:"#15100c",PANEL:"#1e1813",INK:"#f5e6c8",BRAND:"#c8512a",ACT:"#3a5a8a",OK:"#7a9a3a",ROW:"#221a13"},
+      svg:{sw:"2.3",op:"0.82",body:'<ellipse cx="50" cy="36" rx="34" ry="6"/><path d="M 16,36 C 16,60 28,78 50,78 C 72,78 84,60 84,36"/><ellipse cx="50" cy="78" rx="10" ry="2"/><path d="M 34,38 L 40,46 L 36,54 L 44,62 L 42,72 L 50,78" stroke-width="2.5"/><path d="M 40,46 L 46,50 L 52,48" stroke-width="1.8"/>'} },
   ],
   china: [
     { name:"01 · 白瓷 BAIZI [LIGHT role]", feel:"Dehua Blanc de Chine, museum porcelain. Light role.",
@@ -1214,6 +1232,15 @@ const palettes = {
 const tabsEl = document.getElementById("tabs");
 const mainEl = document.getElementById("main");
 
+// Render a palette's shadow-art mark as inline SVG. Returns empty string
+// if the palette has no svg field yet (collections are rolled out one at a time).
+function renderPaletteSvg(p, cls) {
+  if (!p.svg) return "";
+  const sw = p.svg.sw || "2";
+  const op = p.svg.op || "0.4";
+  return `<svg class="${cls}" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" style="color:${p.colors.INK};opacity:${op}">${p.svg.body}</svg>`;
+}
+
 let firstKey = null;
 groups.forEach(group => {
   const lbl = document.createElement("span");
@@ -1245,6 +1272,8 @@ groups.forEach(group => {
       const col = p.colors;
       const card = document.createElement("div");
       card.className = "card";
+      const svgMark = renderPaletteSvg(p, "card-svg-mark");
+      const markClass = p.svg ? " has-mark" : "";
       card.innerHTML = `
         <div class="card-header" style="background:${col.BODY};color:${col.INK}">
           <p class="card-name">${p.name}</p>
@@ -1253,12 +1282,15 @@ groups.forEach(group => {
           <button class="json-btn" data-key="${c.key}" data-idx="${idx}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
           <button class="info-btn" data-key="${c.key}" data-idx="${idx}" title="Story" aria-label="Story">i</button>
         </div>
-        <div class="preview" style="background:${col.BODY};color:${col.INK}">
-          <div class="preview-row" style="background:${col.ROW}"></div>
-          <div class="preview-text">Headline</div>
-          <div class="preview-line" style="color:${col.BRAND}">● Brand accent</div>
-          <div class="preview-line" style="color:${col.ACT}">→ Action link</div>
-          <div class="preview-line" style="color:${col.OK}">✓ Confirmation</div>
+        <div class="preview${markClass}" style="background:${col.BODY};color:${col.INK}">
+          ${svgMark}
+          <div class="preview-body">
+            <div class="preview-row" style="background:${col.ROW}"></div>
+            <div class="preview-text">Headline</div>
+            <div class="preview-line" style="color:${col.BRAND}">● Brand accent</div>
+            <div class="preview-line" style="color:${col.ACT}">→ Action link</div>
+            <div class="preview-line" style="color:${col.OK}">✓ Confirmation</div>
+          </div>
         </div>
         <div class="swatches">
           ${["BODY","PANEL","INK","BRAND","ACT","OK","ROW"].map(k => `
@@ -1356,6 +1388,8 @@ function runSearch(rawQuery) {
     const col = p.colors;
     const card = document.createElement("div");
     card.className = "card";
+    const svgMark = renderPaletteSvg(p, "card-svg-mark");
+    const markClass = p.svg ? " has-mark" : "";
     card.innerHTML = `
       <div class="card-header" style="background:${col.BODY};color:${col.INK}">
         <p class="card-name">${p.name}</p>
@@ -1364,12 +1398,15 @@ function runSearch(rawQuery) {
         <button class="json-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
         <button class="info-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Story" aria-label="Story">i</button>
       </div>
-      <div class="preview" style="background:${col.BODY};color:${col.INK}">
-        <div class="preview-row" style="background:${col.ROW}"></div>
-        <div class="preview-text">${item.countryLabel}</div>
-        <div class="preview-line" style="color:${col.BRAND}">● Brand accent</div>
-        <div class="preview-line" style="color:${col.ACT}">→ Action link</div>
-        <div class="preview-line" style="color:${col.OK}">✓ Confirmation</div>
+      <div class="preview${markClass}" style="background:${col.BODY};color:${col.INK}">
+        ${svgMark}
+        <div class="preview-body">
+          <div class="preview-row" style="background:${col.ROW}"></div>
+          <div class="preview-text">${item.countryLabel}</div>
+          <div class="preview-line" style="color:${col.BRAND}">● Brand accent</div>
+          <div class="preview-line" style="color:${col.ACT}">→ Action link</div>
+          <div class="preview-line" style="color:${col.OK}">✓ Confirmation</div>
+        </div>
       </div>
       <div class="swatches">
         ${["BODY","PANEL","INK","BRAND","ACT","OK","ROW"].map(k => `
@@ -1753,6 +1790,9 @@ function renderMobileReader() {
     ? p.story.split("\n\n").map(para => `<p>${para}</p>`).join("")
     : `<p class="modal-no-story">No extended story yet.</p>`;
 
+  const readerSvgMark = renderPaletteSvg(p, "reader-svg-mark");
+  const readerMarkClass = p.svg ? " has-mark" : "";
+
   mobileReaderEl.innerHTML = `
     <div class="reader-palette-wrap">
       <div class="reader-card">
@@ -1764,12 +1804,15 @@ function renderMobileReader() {
             <button class="reader-action-btn reader-json-btn" style="color:${col.INK}" aria-label="Export JSON">{}</button>
           </div>
         </div>
-        <div class="reader-preview" style="background:${col.PANEL}">
-          <div class="reader-preview-row" style="background:${col.ROW}"></div>
-          <div class="reader-preview-text" style="color:${col.INK}">Aa</div>
-          <div class="reader-preview-line" style="color:${col.BRAND}">BRAND</div>
-          <div class="reader-preview-line" style="color:${col.ACT}">ACTION</div>
-          <div class="reader-preview-line" style="color:${col.OK}">OK</div>
+        <div class="reader-preview${readerMarkClass}" style="background:${col.PANEL}">
+          ${readerSvgMark}
+          <div class="reader-preview-body">
+            <div class="reader-preview-row" style="background:${col.ROW}"></div>
+            <div class="reader-preview-text" style="color:${col.INK}">Aa</div>
+            <div class="reader-preview-line" style="color:${col.BRAND}">BRAND</div>
+            <div class="reader-preview-line" style="color:${col.ACT}">ACTION</div>
+            <div class="reader-preview-line" style="color:${col.OK}">OK</div>
+          </div>
         </div>
         <div class="reader-swatches">${swatches}</div>
       </div>
