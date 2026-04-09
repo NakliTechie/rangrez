@@ -245,7 +245,7 @@
 <body>
 
 <header>
-  <h1>Rangrez</h1>
+  <h1><a href="./" style="color:inherit; text-decoration:none;">Rangrez</a></h1>
   <p>A palette library of culturally-grounded color. Sibling project to Kagaz.</p>
   <div class="header-actions">
     <div class="search-wrap">
@@ -263,7 +263,7 @@
 
 <div class="mobile-header" id="mobile-header">
   <div class="mobile-header-top">
-    <h1>Rangrez</h1>
+    <h1><a href="./" style="color:inherit; text-decoration:none;">Rangrez</a></h1>
     <div class="mobile-header-icons">
       <button class="mobile-icon-btn" id="mobile-search-btn" aria-label="Search">⌕</button>
       <button class="mobile-icon-btn" id="mobile-theme-btn" aria-label="Toggle dark mode">◐</button>
@@ -1937,7 +1937,7 @@ function parseHash() {
 }
 
 async function shareLink(title, text, url) {
-  if (navigator.share) {
+  if (navigator.share && isMobile()) {
     try {
       await navigator.share({ title, text, url });
       return;
