@@ -45,7 +45,7 @@ This repo is dual-licensed:
 - **Code / scaffolding** (HTML, CSS, JavaScript) &mdash; [MIT License](LICENSE)
 - **Palette content** (palette names, color selections, prefaces, stories, all curatorial text) &mdash; [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](LICENSE-content)
 
-If you reuse the content (palettes, stories), credit NakliTechie / Chirag Patnaik and share your derivative under the same CC BY-SA 4.0 license. If you reuse just the code scaffolding, MIT terms apply.
+Both copyrights are held by Chirag Patnaik. If you reuse the content (palettes, stories), credit Chirag Patnaik and share your derivative under the same CC BY-SA 4.0 license. If you reuse just the code scaffolding, MIT terms apply.
 
 ## Part of the NakliTechie series
 
