@@ -90,6 +90,8 @@
   .info-btn:hover { opacity:1; background:rgba(255,255,255,0.8); }
   .json-btn { position:absolute; top:14px; right:40px; background:rgba(255,255,255,0.4); border:1px solid currentColor; opacity:0.4; width:20px; height:20px; border-radius:3px; cursor:pointer; font-family:ui-monospace, monospace; font-size:9px; font-weight:700; line-height:1; padding:0; color:inherit; transition:opacity .15s, background .15s; }
   .json-btn:hover { opacity:1; background:rgba(255,255,255,0.8); }
+  .card-share-btn { position:absolute; top:14px; right:66px; background:rgba(255,255,255,0.4); border:1px solid currentColor; opacity:0.4; width:20px; height:20px; border-radius:3px; cursor:pointer; font-family:inherit; font-size:11px; font-weight:700; line-height:1; padding:0; color:inherit; transition:opacity .15s, background .15s; display:flex; align-items:center; justify-content:center; }
+  .card-share-btn:hover { opacity:1; background:rgba(255,255,255,0.8); }
   .country-json-btn { background:none; border:1px solid var(--line); color:var(--muted); font-family:ui-monospace, monospace; font-size:10px; font-weight:700; padding:3px 8px; border-radius:3px; cursor:pointer; vertical-align:middle; margin-left:12px; transition:color .15s, border-color .15s; }
   .country-json-btn:hover { color:var(--fg); border-color:var(--fg); }
   .country-share-btn { background:none; border:1px solid var(--line); color:var(--muted); font-family:inherit; font-size:11px; font-weight:700; padding:3px 8px; border-radius:3px; cursor:pointer; vertical-align:middle; margin-left:6px; transition:color .15s, border-color .15s; }
@@ -1247,6 +1249,7 @@ groups.forEach(group => {
         <div class="card-header" style="background:${col.BODY};color:${col.INK}">
           <p class="card-name">${p.name}</p>
           <p class="card-feel" style="color:${col.INK};opacity:0.65">${p.feel}</p>
+          <button class="card-share-btn" data-key="${c.key}" data-idx="${idx}" title="Share this palette" aria-label="Share">↗</button>
           <button class="json-btn" data-key="${c.key}" data-idx="${idx}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
           <button class="info-btn" data-key="${c.key}" data-idx="${idx}" title="Story" aria-label="Story">i</button>
         </div>
@@ -1357,6 +1360,7 @@ function runSearch(rawQuery) {
       <div class="card-header" style="background:${col.BODY};color:${col.INK}">
         <p class="card-name">${p.name}</p>
         <p class="card-feel" style="color:${col.INK};opacity:0.65">${p.feel}</p>
+        <button class="card-share-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Share this palette" aria-label="Share">↗</button>
         <button class="json-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
         <button class="info-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Story" aria-label="Story">i</button>
       </div>
@@ -1598,6 +1602,13 @@ document.addEventListener("click", e => {
   if (!btn) return;
   e.stopPropagation();
   showPaletteModal(btn.dataset.key, parseInt(btn.dataset.idx, 10));
+});
+
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".card-share-btn");
+  if (!btn) return;
+  e.stopPropagation();
+  sharePalette(btn.dataset.key, parseInt(btn.dataset.idx, 10));
 });
 
 function closeModal() {
