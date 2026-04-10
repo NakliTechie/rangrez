@@ -321,6 +321,225 @@
   .ip-headline { font-size:14px; margin-bottom:12px; line-height:1.4; }
   .ip-line { font-size:14px; margin-bottom:5px; }
 
+
+  /* ============ BIBLIOTHÈQUE SECTION ============ */
+  #biblio-view { display: none; }
+  body.biblio-mode #biblio-view { display: block; }
+  body.biblio-mode #main { display: none; }
+  body.biblio-mode nav.tabs { display: none; }
+  body.biblio-mode .mobile-header,
+  body.biblio-mode .mobile-reader { display: none !important; }
+  
+  .biblio { 
+    font-family: ui-serif, Georgia, "Times New Roman", serif; 
+    line-height: 1.6; 
+    color: var(--fg); 
+    background: var(--bg);
+    min-height: 100vh;
+  }
+  .biblio .biblio-inner { max-width: 920px; margin: 0 auto; padding: 48px 40px 96px; }
+  .biblio .biblio-masthead { padding: 0 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  .biblio .biblio-crumb { margin: 0 0 14px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .biblio .biblio-title { margin: 0 0 8px; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+  .biblio .biblio-sub { margin: 0; color: var(--muted); font-size: 14px; font-style: italic; max-width: 640px; }
+  
+  .biblio a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+  .biblio a:hover { text-decoration-color: var(--fg); }
+  
+  .biblio section.part { padding: 48px 0 24px; border-top: 1px solid var(--line); margin-top: 32px; }
+  .biblio section.part:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .biblio .part-label { margin: 0 0 6px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .biblio section.part > h2 { margin: 0 0 12px; font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+  .biblio .lede { margin: 0 0 24px; color: var(--muted); font-style: italic; font-size: 14px; max-width: 680px; }
+  
+  .biblio section.collection { padding: 32px 0 12px; border-top: 1px dashed var(--line); }
+  .biblio section.collection:first-of-type { border-top: none; padding-top: 16px; }
+  .biblio .coll-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .biblio .coll-head .n { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1px; min-width: 24px; }
+  .biblio .coll-head h3 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+  .biblio .coll-sub { margin: 0 0 18px 36px; color: var(--muted); font-size: 13px; font-style: italic; }
+  .biblio .selflink { color: var(--muted); margin-left: 6px; font-style: italic; font-weight: 400; text-decoration: none; opacity: 0.5; transition: opacity .15s; }
+  .biblio .selflink:hover { opacity: 1; }
+  
+  .biblio .anchors-block { margin: 16px 0 24px 36px; padding: 14px 18px; background: var(--card-bg); border-left: 2px solid var(--line); border-radius: 0 4px 4px 0; }
+  .biblio .anchors-block .label { margin: 0 0 10px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+  .biblio .anchors-block ol { margin: 0; padding: 0; list-style: none; }
+  .biblio .anchors-block li { padding: 6px 0 6px 28px; position: relative; font-size: 13px; line-height: 1.55; }
+  .biblio .anchors-block li .n { position: absolute; left: 0; top: 6px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.5px; }
+  .biblio .anchors-block li strong { font-weight: 700; }
+  
+  .biblio .palettes { margin: 16px 0 0 36px; }
+  .biblio .palettes .label { margin: 0 0 10px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+  .biblio article.pal { display: grid; grid-template-columns: 38px 1fr; gap: 0 6px; padding: 8px 0; border-bottom: 1px dotted var(--line); }
+  .biblio article.pal:last-child { border-bottom: none; }
+  .biblio article.pal .n { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.5px; padding-top: 4px; }
+  .biblio article.pal .pal-name { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.2px; }
+  .biblio article.pal .pal-body { margin: 4px 0 0; grid-column: 2; font-size: 12.5px; color: var(--fg); line-height: 1.55; }
+  .biblio article.pal:target { background: var(--card-bg); margin-left: -12px; padding-left: 12px; padding-right: 12px; border-left: 2px solid var(--accent, var(--fg)); }
+  
+  .biblio article.meta-item { padding: 18px 0; border-bottom: 1px dashed var(--line); position: relative; padding-left: 38px; }
+  .biblio article.meta-item:last-child { border-bottom: none; }
+  .biblio article.meta-item .n { position: absolute; left: 0; top: 18px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 0.5px; }
+  .biblio article.meta-item h4 { margin: 0 0 8px; font-size: 15px; font-weight: 700; line-height: 1.35; }
+  .biblio article.meta-item p { margin: 0; font-size: 13px; color: var(--fg); line-height: 1.6; }
+  
+  /* Disputatio + Priority Reading */
+  .biblio .disputation { padding-left: 36px; max-width: 720px; }
+  .biblio .disputation p { margin: 0 0 12px; font-size: 13px; line-height: 1.7; }
+  .biblio .priority-reading { padding-left: 36px; max-width: 720px; }
+  .biblio .priority-reading ol { padding-left: 24px; }
+  .biblio .priority-reading li { margin-bottom: 14px; font-size: 13px; line-height: 1.6; }
+  .biblio .priority-reading strong { font-weight: 700; }
+  
+  /* Header button styling — § symbol matches existing theme/layout buttons */
+  #biblio-btn, #mobile-biblio-btn { font-family: Georgia, serif; font-style: italic; font-weight: 700; }
+  body.biblio-mode #biblio-btn,
+  body.biblio-mode #mobile-biblio-btn { color: var(--accent, var(--fg)); }
+  
+  /* Per-card § shortcut button (next to share/json/info) */
+  .card-biblio-btn { 
+    position: absolute; top: 14px; right: 92px; 
+    background: rgba(255,255,255,0.4); border: 1px solid currentColor; opacity: 0.4; 
+    width: 20px; height: 20px; border-radius: 3px; cursor: pointer; 
+    font-family: Georgia, serif; font-size: 12px; font-style: italic; font-weight: 700; line-height: 1; 
+    padding: 0; color: inherit; transition: opacity .15s, background .15s; 
+    display: flex; align-items: center; justify-content: center; 
+  }
+  .card-biblio-btn:hover { opacity: 1; background: rgba(255,255,255,0.8); }
+  
+
+  
+  /* Mobile biblio view */
+  @media (max-width: 768px) {
+    body.biblio-mode { overflow: auto; }
+    body.biblio-mode html, body.biblio-mode body { height: auto; overflow: auto; }
+    .biblio .biblio-inner { padding: 24px 18px 60px; }
+    .biblio .biblio-title { font-size: 24px; }
+    .biblio .anchors-block, .biblio .coll-sub, .biblio .palettes, 
+    .biblio .disputation, .biblio .priority-reading { margin-left: 0; padding-left: 12px; }
+    .biblio article.meta-item { padding-left: 28px; }
+    .biblio article.pal { grid-template-columns: 32px 1fr; }
+  }
+
+
+  /* ============ BIBLIOTHÈQUE STICKY LEFT NAV ============ */
+  .biblio .biblio-inner { 
+    display: grid; 
+    grid-template-columns: 220px 1fr; 
+    gap: 48px; 
+    max-width: 1100px; 
+    align-items: start;
+  }
+  .biblio-nav { 
+    position: sticky; 
+    top: 24px; 
+    max-height: calc(100vh - 48px); 
+    overflow-y: auto; 
+    padding-right: 12px; 
+    border-right: 1px solid var(--line); 
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  .biblio-nav .bn-label { 
+    margin: 0 0 12px; 
+    font-size: 10px; 
+    color: var(--muted); 
+    letter-spacing: 1.5px; 
+    text-transform: uppercase; 
+    font-weight: 700;
+  }
+  .biblio-nav ul { list-style: none; padding: 0; margin: 0; }
+  .biblio-nav li { margin: 0; }
+  .biblio-nav li a { 
+    display: block; 
+    padding: 5px 8px; 
+    margin-left: -8px; 
+    border-radius: 3px; 
+    font-size: 12px; 
+    color: var(--muted); 
+    text-decoration: none; 
+    line-height: 1.4; 
+    transition: color .15s, background .15s;
+  }
+  .biblio-nav li a:hover { color: var(--fg); background: var(--card-bg); }
+  .biblio-nav li a.active { color: var(--fg); background: var(--card-bg); font-weight: 700; }
+  .biblio-main { min-width: 0; }
+
+  /* ============ BIBLIOTHÈQUE FLOATING BACK BUTTON ============ */
+  #biblio-back-fab { 
+    display: none; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 200;
+  }
+  body.biblio-mode #biblio-back-fab { display: block; }
+  #biblio-back-btn { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: var(--card-bg); 
+    border: 1px solid var(--line); 
+    border-radius: 6px; 
+    padding: 10px 16px 10px 14px; 
+    font-family: ui-sans-serif, system-ui, sans-serif; 
+    font-size: 13px; 
+    font-weight: 600; 
+    color: var(--fg); 
+    cursor: pointer; 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1); 
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  #biblio-back-btn:hover { 
+    transform: translateY(-1px); 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15); 
+    border-color: var(--fg);
+  }
+  #biblio-back-btn .bb-arrow { font-size: 16px; line-height: 1; }
+  #biblio-back-btn .bb-label { line-height: 1; }
+  body.dark #biblio-back-btn { box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+
+  /* Mobile: collapse left nav into a dropdown jump button */
+  @media (max-width: 900px) {
+    .biblio .biblio-inner { 
+      grid-template-columns: 1fr; 
+      gap: 0; 
+      padding: 24px 18px 60px;
+    }
+    .biblio-nav { 
+      position: relative; 
+      top: 0; 
+      max-height: none; 
+      overflow: visible; 
+      padding-right: 0; 
+      padding-bottom: 16px; 
+      margin-bottom: 24px; 
+      border-right: none; 
+      border-bottom: 1px solid var(--line);
+    }
+    .biblio-nav ul { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 4px;
+    }
+    .biblio-nav li a { 
+      padding: 6px 10px; 
+      margin-left: 0; 
+      border: 1px solid var(--line);
+      font-size: 11px;
+    }
+    #biblio-back-fab { 
+      top: auto; 
+      bottom: 20px; 
+      right: 16px; 
+      left: 16px;
+    }
+    #biblio-back-btn { 
+      width: 100%; 
+      justify-content: center; 
+      padding: 14px 16px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -335,6 +554,7 @@
       <button class="search-clear" id="search-clear" aria-label="Clear search" type="button">×</button>
     </div>
     <button class="theme-btn" id="layout-btn" aria-label="Cycle view mode" title="Card / Inspector / Darshan view">▦</button>
+    <button class="theme-btn" id="biblio-btn" aria-label="Bibliothèque" title="Open Bibliothèque">§</button>
     <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">◐</button>
     <button class="help-btn" id="help-btn" aria-label="Help">?</button>
   </div>
@@ -343,12 +563,973 @@
 <nav class="tabs" id="tabs"></nav>
 <main id="main"></main>
 
+<!-- ============ BIBLIOTHÈQUE SECTION ============ -->
+<section id="biblio-view" class="biblio">
+  <div class="biblio-inner">
+    <aside class="biblio-nav" id="biblio-nav">
+      <p class="bn-label">CONTENTS</p>
+      <ul>
+      <li><a href="#biblio-meta" data-anchor="meta">§ 0 Canon</a></li>
+      <li><a href="#biblio-c1" data-anchor="c1">1 · Japan</a></li>
+      <li><a href="#biblio-c2" data-anchor="c2">2 · China</a></li>
+      <li><a href="#biblio-c3" data-anchor="c3">3 · India · North</a></li>
+      <li><a href="#biblio-c4" data-anchor="c4">4 · India · West + Goa</a></li>
+      <li><a href="#biblio-c5" data-anchor="c5">5 · India · Kashmir</a></li>
+      <li><a href="#biblio-c6" data-anchor="c6">6 · India · East + NE</a></li>
+      <li><a href="#biblio-c7" data-anchor="c7">7 · India · South</a></li>
+      <li><a href="#biblio-c8" data-anchor="c8">8 · Mexico</a></li>
+      <li><a href="#biblio-c9" data-anchor="c9">9 · Morocco</a></li>
+      <li><a href="#biblio-c10" data-anchor="c10">10 · Iran / Persia</a></li>
+      <li><a href="#biblio-c11" data-anchor="c11">11 · Scandinavia</a></li>
+      <li><a href="#biblio-c12" data-anchor="c12">12 · West Africa</a></li>
+      <li><a href="#biblio-c13" data-anchor="c13">13 · Italy</a></li>
+      <li><a href="#biblio-c14" data-anchor="c14">14 · Russia</a></li>
+      <li><a href="#biblio-c15" data-anchor="c15">15 · Bauhaus</a></li>
+      <li><a href="#biblio-c16" data-anchor="c16">16 · Brutalism</a></li>
+      <li><a href="#biblio-c17" data-anchor="c17">17 · Memphis</a></li>
+      <li><a href="#biblio-c18" data-anchor="c18">18 · Cyberpunk</a></li>
+      <li><a href="#biblio-c19" data-anchor="c19">19 · Vaporwave</a></li>
+      <li><a href="#biblio-c20" data-anchor="c20">20 · Chernobyl</a></li>
+      <li><a href="#biblio-c21" data-anchor="c21">21 · Tribal · India</a></li>
+      <li><a href="#biblio-c22" data-anchor="c22">22 · Sarees · India</a></li>
+      <li><a href="#biblio-defence" data-anchor="defence">§ 3 Disputatio</a></li>
+      <li><a href="#biblio-reading" data-anchor="reading">§ 3 Priority Reading</a></li>
+      </ul>
+    </aside>
+    <div class="biblio-main">
+    <div class="biblio-masthead">
+      <p class="biblio-crumb">RANGREZ</p>
+      <h2 class="biblio-title">Bibliothèque</h2>
+      <p class="biblio-sub">References and sources for each of the 240 palettes across 22 collections.</p>
+    </div>
+    
+
+
+
+<div class="mobile-nav">
+  
+</div>
+
+<div class="layout">
+
+
+
+<main>
+
+<!-- ========================================================= -->
+<!-- § 0 — META LAYER                                           -->
+<!-- ========================================================= -->
+<section class="part" id="meta">
+  <p class="part-label">§ 0</p>
+  <h2>The Meta Layer</h2>
+  <p class="lede">The canonical colour-and-culture library. Sixteen works spanning pigment chemistry, chromatic theory, and the cultural histories of specific dyes, stones, and named colours — the scholarly foundation on which the collections that follow are built.</p>
+
+  <article class="meta-item" id="m1">
+    <span class="n">0.1</span>
+    <h4>Victoria Finlay — <em>Colour: Travels Through the Paintbox</em> (2002)<a class="selflink" href="#m1">§</a></h4>
+    <p>The single most accessible book on how specific colours came from specific places: ochre from Australia, indigo from India, mummy brown from Egypt, ultramarine from Badakhshan. Finlay travels to each origin site in turn, and the book defines an entire genre of colour writing. <a href="https://en.wikipedia.org/wiki/Victoria_Finlay" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+
+  <article class="meta-item" id="m2">
+    <span class="n">0.2</span>
+    <h4>Kassia St Clair — <em>The Secret Lives of Colour</em> (2016)<a class="selflink" href="#m2">§</a></h4>
+    <p>Seventy-five colour biographies, two to three pages each. The modern successor to Finlay — the shortest path into the field for a general reader. <a href="https://www.kassiastclair.com/books/the-secret-lives-of-colour" target="_blank" rel="noopener">Author site</a></p>
+  </article>
+
+  <article class="meta-item" id="m3">
+    <span class="n">0.3</span>
+    <h4>Philip Ball — <em>Bright Earth: Art and the Invention of Colour</em> (2001)<a class="selflink" href="#m3">§</a></h4>
+    <p>The chemistry and technology side. Why cobalt-blue replaced lapis, why Prussian blue changed painting, why mauve created the modern chemical industry. <a href="https://en.wikipedia.org/wiki/Bright_Earth:_Art_and_the_Invention_of_Colour" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+
+  <article class="meta-item" id="m4">
+    <span class="n">0.4</span>
+    <h4>Michel Pastoureau — the colour monographs<a class="selflink" href="#m4">§</a></h4>
+    <p><em>Blue</em> (2001), <em>Black</em> (2008), <em>Green</em> (2013), <em>Red</em> (2016), <em>Yellow</em> (2019), <em>White</em> (2022). The French medievalist's life work. Each volume runs to roughly two hundred pages and traces one colour across two thousand years of European use. <em>Blue</em> alone covers lapis lazuli, Chinese qinghua, Indian indigo, Russian Gzhel, and Portuguese azulejo in a single narrative thread. <a href="https://press.princeton.edu/series/the-color-monographs" target="_blank" rel="noopener">Princeton UP series</a></p>
+  </article>
+
+  <article class="meta-item" id="m5">
+    <span class="n">0.5</span>
+    <h4>John Gage — <em>Colour and Culture: Practice and Meaning from Antiquity to Abstraction</em> (1993)<a class="selflink" href="#m5">§</a></h4>
+    <p>The academic heavyweight. Denser than the others, but the definitive scholarly reference. <a href="https://en.wikipedia.org/wiki/John_Gage_(art_historian)" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+
+  <article class="meta-item" id="m6">
+    <span class="n">0.6</span>
+    <h4>Josef Albers — <em>Interaction of Color</em> (1963)<a class="selflink" href="#m6">§</a></h4>
+    <p>Not history — phenomenology. How colours behave next to each other. Every palette designer's bible. <a href="https://yalebooks.yale.edu/book/9780300179354/interaction-of-color/" target="_blank" rel="noopener">Yale UP</a></p>
+  </article>
+
+  <article class="meta-item" id="m7">
+    <span class="n">0.7</span>
+    <h4>David Batchelor — <em>Chromophobia</em> (2000)<a class="selflink" href="#m7">§</a></h4>
+    <p>The counter-argument: why Western intellectual culture has systematically distrusted bright colour since Aristotle. Short, sharp, and the single best source on chromophobia as an intellectual tradition. <a href="https://reaktionbooks.co.uk/work/chromophobia" target="_blank" rel="noopener">Reaktion Books</a></p>
+  </article>
+
+  <article class="meta-item" id="m8">
+    <span class="n">0.8</span>
+    <h4>Jenny Balfour-Paul — <em>Indigo: Egyptian Mummies to Blue Jeans</em> (1998/2011)<a class="selflink" href="#m8">§</a></h4>
+    <p>The definitive global history of indigo. Covers Yoruba adìre, Indian neel, Japanese aizome, European woad — everything in the India, West Africa, and Japan collections. Published by British Museum Press.</p>
+  </article>
+
+  <article class="meta-item" id="m9">
+    <span class="n">0.9</span>
+    <h4>Catherine E. McKinley — <em>Indigo: In Search of the Color That Seduced the World</em> (2011)<a class="selflink" href="#m9">§</a></h4>
+    <p>Travelogue-memoir on West African indigo. A first-person account of the Yoruba adìre and Mande bògòlan dye traditions as they survive today.</p>
+  </article>
+
+  <article class="meta-item" id="m10">
+    <span class="n">0.10</span>
+    <h4>Amy Butler Greenfield — <em>A Perfect Red</em> (2005)<a class="selflink" href="#m10">§</a></h4>
+    <p>The cochineal story — how a Mexican cactus-dwelling insect funded the Spanish Empire and dyed the robes of Europe for three centuries. <a href="https://en.wikipedia.org/wiki/A_Perfect_Red" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+
+  <article class="meta-item" id="m11">
+    <span class="n">0.11</span>
+    <h4>Werner's Nomenclature of Colours (1814/1821)<a class="selflink" href="#m11">§</a></h4>
+    <p>The colour system Darwin took on the <em>Beagle</em>. Now a cult reference object. <a href="https://www.si.edu/object/werners-nomenclature-colours%3Asiris_sil_1027158" target="_blank" rel="noopener">Smithsonian digitised copy</a></p>
+  </article>
+
+  <article class="meta-item" id="m12">
+    <span class="n">0.12</span>
+    <h4>Harvard Forbes Pigment Collection<a class="selflink" href="#m12">§</a></h4>
+    <p>2,500 historical pigments catalogued and photographed. The closest thing to "ground truth" for any pigment claim you make. <a href="https://harvardartmuseums.org/tour/the-forbes-pigment-collection" target="_blank" rel="noopener">Harvard Art Museums</a></p>
+  </article>
+
+  <article class="meta-item" id="m13">
+    <span class="n">0.13</span>
+    <h4>Pigments Through the Ages (WebExhibits)<a class="selflink" href="#m13">§</a></h4>
+    <p>Free online reference, pigment-by-pigment chemistry and history. <a href="http://www.webexhibits.org/pigments/" target="_blank" rel="noopener">webexhibits.org/pigments</a></p>
+  </article>
+
+  <article class="meta-item" id="m14">
+    <span class="n">0.14</span>
+    <h4>Mark Rothko — <em>Writings on Art</em><a class="selflink" href="#m14">§</a></h4>
+    <p>The primary source for colour as meaning without representation — Rothko in his own words on chromatic feeling and the language of the canvas.</p>
+  </article>
+
+  <article class="meta-item" id="m15">
+    <span class="n">0.15</span>
+    <h4>Wassily Kandinsky — <em>Concerning the Spiritual in Art</em> (1912)<a class="selflink" href="#m15">§</a></h4>
+    <p>The foundational text for "colours have emotional weight." Directly relevant to Bauhaus. <a href="https://en.wikipedia.org/wiki/Concerning_the_Spiritual_in_Art" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+
+  <article class="meta-item" id="m16">
+    <span class="n">0.16</span>
+    <h4>Goethe — <em>Theory of Colours</em> (1810)<a class="selflink" href="#m16">§</a></h4>
+    <p>The philosophical and phenomenological alternative to Newton's physics. Goethe insisted that colour was a human phenomenon, not merely a wavelength — the foundational text for any argument that a named, culture-specific colour is more than its hex value. <a href="https://en.wikipedia.org/wiki/Theory_of_Colours" target="_blank" rel="noopener">Wikipedia</a></p>
+  </article>
+</section>
+
+<!-- ========================================================= -->
+<!-- § 1 — COUNTRIES                                            -->
+<!-- ========================================================= -->
+<section class="part">
+  <p class="part-label">§ 1</p>
+  <h2>Country Collections</h2>
+  <p class="lede">Fourteen regional palette libraries, each grounded in named material traditions, pigment histories, and political contexts.</p>
+
+  <!-- 1 · JAPAN ================================================ -->
+  <section class="collection" id="c1">
+    <div class="coll-head">
+      <span class="n">1</span>
+      <h3>Japan 日本<a class="selflink" href="#c1">§</a></h3>
+    </div>
+    <p class="coll-sub">Edo sumptuary restraint, wabi-sabi, shijūhasshoku. Bengara, kon, matsuba accents.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 1.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Shijūhasshoku (四十八茶百鼠)</strong> — the 48 browns + 100 greys Edo sumptuary law forced townspeople into. <a href="https://en.wikipedia.org/wiki/Traditional_colors_of_Japan" target="_blank" rel="noopener">Traditional colors of Japan</a></li>
+        <li><span class="n">b</span><strong>Nippon Colors</strong> — free reference site for 250 named Japanese traditional colours with hex. <a href="https://nipponcolors.com/" target="_blank" rel="noopener">nipponcolors.com</a></li>
+        <li><span class="n">c</span><strong>Leonard Koren — <em>Wabi-Sabi for Artists, Designers, Poets &amp; Philosophers</em></strong> (1994). The short book every Western designer quotes. <a href="https://en.wikipedia.org/wiki/Wabi-sabi" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Junichirō Tanizaki — <em>In Praise of Shadows</em></strong> (1933). 40-page essay on Japanese preference for dim, muted, shadowed beauty. Essential for URUSHI, SUMI, TATAMI. <a href="https://en.wikipedia.org/wiki/In_Praise_of_Shadows" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>Tokyo National Museum</strong> — Edo collection. <a href="https://www.tnm.jp/" target="_blank" rel="noopener">tnm.jp</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c1-p1"><span class="n">1.1</span><p class="pal-name">無印 MUJI · light role<a class="selflink" href="#c1-p1">§</a></p><p class="pal-body">The brand whose entire identity is a single muted aesthetic. Founded 1980 as a no-brand grocery line, now Japan's most coherent design house. <a href="https://en.wikipedia.org/wiki/Muji" target="_blank" rel="noopener">Wikipedia</a> · Kenya Hara, <em>Designing Design</em> (2007).</p></article>
+      <article class="pal" id="c1-p2"><span class="n">1.2</span><p class="pal-name">生成り KINARI · warm role<a class="selflink" href="#c1-p2">§</a></p><p class="pal-body">Unbleached raw silk/cotton colour. One of the core <em>shijūhasshoku</em> (forty-eight browns and a hundred greys) names that Edo sumptuary law forced townspeople to wear. <a href="https://en.wikipedia.org/wiki/Traditional_colors_of_Japan" target="_blank" rel="noopener">Traditional colors of Japan</a>.</p></article>
+      <article class="pal" id="c1-p3"><span class="n">1.3</span><p class="pal-name">墨 SUMI · mono role<a class="selflink" href="#c1-p3">§</a></p><p class="pal-body">Japanese ink stick — soot bound with animal glue, ground on an inkstone with water. The substrate of calligraphy and ink-wash painting. <a href="https://en.wikipedia.org/wiki/Inkstick" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Sumi-e" target="_blank" rel="noopener">Sumi-e</a>.</p></article>
+      <article class="pal" id="c1-p4"><span class="n">1.4</span><p class="pal-name">桜 SAKURA<a class="selflink" href="#c1-p4">§</a></p><p class="pal-body">Cherry blossom — bloom-and-fall ten days each spring. The aesthetic anchor of <em>mono no aware</em>, the pathos of impermanence. <a href="https://en.wikipedia.org/wiki/Hanami" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Cherry_blossom" target="_blank" rel="noopener">Cherry blossom</a>.</p></article>
+      <article class="pal" id="c1-p5"><span class="n">1.5</span><p class="pal-name">抹茶 MATCHA<a class="selflink" href="#c1-p5">§</a></p><p class="pal-body">Stone-ground tea-ceremony powder from Uji, whisked with hot water and a bamboo <em>chasen</em>. <a href="https://en.wikipedia.org/wiki/Matcha" target="_blank" rel="noopener">Wikipedia</a> · Okakura Kakuzō, <em>The Book of Tea</em> (1906).</p></article>
+      <article class="pal" id="c1-p6"><span class="n">1.6</span><p class="pal-name">紺 KON<a class="selflink" href="#c1-p6">§</a></p><p class="pal-body">Deep indigo — the workwear blue of Edo Japan. Noren curtains, sashiko stitching, samue work clothes. <a href="https://en.wikipedia.org/wiki/Japanese_indigo_dyeing" target="_blank" rel="noopener">Japanese indigo</a>.</p></article>
+      <article class="pal" id="c1-p7"><span class="n">1.7</span><p class="pal-name">朽葉 KUCHIBA<a class="selflink" href="#c1-p7">§</a></p><p class="pal-body">Decayed-leaf brown — fallen ginkgo on temple stone, late November. A <em>shijūhasshoku</em> name. <a href="https://en.wikipedia.org/wiki/Traditional_colors_of_Japan" target="_blank" rel="noopener">Traditional colors of Japan</a>.</p></article>
+      <article class="pal" id="c1-p8"><span class="n">1.8</span><p class="pal-name">畳 TATAMI<a class="selflink" href="#c1-p8">§</a></p><p class="pal-body">Fresh igusa rush mat — the pale grass-green of a newly laid <em>tatami</em> floor before the sun bleaches it cream. <a href="https://en.wikipedia.org/wiki/Tatami" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c1-p9"><span class="n">1.9</span><p class="pal-name">紅 BENI<a class="selflink" href="#c1-p9">§</a></p><p class="pal-body">Safflower lip pigment, distilled in Yamagata, used by geisha for the lower lip. The single most labour-intensive cosmetic in Edo Japan. <a href="https://en.wikipedia.org/wiki/Safflower" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Beni_(cosmetics)" target="_blank" rel="noopener">Beni cosmetics</a>.</p></article>
+      <article class="pal" id="c1-p10"><span class="n">1.10</span><p class="pal-name">漆 URUSHI · dark role<a class="selflink" href="#c1-p10">§</a></p><p class="pal-body">Wajima lacquerware — Japanese lacquer (urushiol) from the toxic sap of <em>Toxicodendron vernicifluum</em>, applied in dozens of layers. The <em>kintsugi</em> tradition repairs broken vessels with gold, making the break visible. <a href="https://en.wikipedia.org/wiki/Urushiol" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Wajima-nuri" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Kintsugi" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 2 · CHINA ================================================ -->
+  <section class="collection" id="c2">
+    <div class="coll-head"><span class="n">2</span><h3>China 中国<a class="selflink" href="#c2">§</a></h3></div>
+    <p class="coll-sub">Song to Qing to Spring Festival. Cinnabar, qinghua, jade accents.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 2.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Five Elements colour system (wuxing 五行)</strong> — <a href="https://en.wikipedia.org/wiki/Wuxing_(Chinese_philosophy)" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Traditional colors of China</strong> — <a href="https://en.wikipedia.org/wiki/Traditional_colors_of_China" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">c</span><strong>Shijing / Book of Songs</strong> — 11th–7th c. BCE, earliest named-colour references in Chinese literature. <a href="https://en.wikipedia.org/wiki/Classic_of_Poetry" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Robert Finlay — <em>The Pilgrim Art: Cultures of Porcelain in World History</em></strong> (2010). The scholarly source on blue-and-white's global impact.</li>
+        <li><span class="n">e</span><strong>Jessica Rawson — <em>The British Museum Book of Chinese Art</em></strong>. The one-volume general reference. <a href="https://www.britishmuseum.org/collection/galleries/china-and-south-asia" target="_blank" rel="noopener">British Museum</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c2-p1"><span class="n">2.1</span><p class="pal-name">白瓷 BAIZI · light role<a class="selflink" href="#c2-p1">§</a></p><p class="pal-body">White porcelain — Jingdezhen kaolin, the 1000-year-old imperial kiln tradition. <a href="https://en.wikipedia.org/wiki/Jingdezhen_porcelain" target="_blank" rel="noopener">Jingdezhen</a> · <a href="https://en.wikipedia.org/wiki/Dehua_porcelain" target="_blank" rel="noopener">Dehua white</a>.</p></article>
+      <article class="pal" id="c2-p2"><span class="n">2.2</span><p class="pal-name">米紙 MIZHI · warm role<a class="selflink" href="#c2-p2">§</a></p><p class="pal-body">Rice paper — <em>xuan</em> paper from Jing County, the support for Chinese calligraphy and ink-wash. UNESCO Intangible Cultural Heritage 2009. <a href="https://en.wikipedia.org/wiki/Xuan_paper" target="_blank" rel="noopener">Xuan paper</a>.</p></article>
+      <article class="pal" id="c2-p3"><span class="n">2.3</span><p class="pal-name">水墨 SHUIMO · mono role<a class="selflink" href="#c2-p3">§</a></p><p class="pal-body">Ink-wash painting — the literati tradition of monochrome landscape from the Tang dynasty onward, built on five tonal values of black ink. <a href="https://en.wikipedia.org/wiki/Ink_wash_painting" target="_blank" rel="noopener">Ink-wash painting</a>.</p></article>
+      <article class="pal" id="c2-p4"><span class="n">2.4</span><p class="pal-name">桃花 TAOHUA<a class="selflink" href="#c2-p4">§</a></p><p class="pal-body">Peach blossom pink — auspicious in Chinese symbolism, associated with the Daoist immortals' garden and with marriage. <a href="https://en.wikipedia.org/wiki/Peach_(color)" target="_blank" rel="noopener">Peach</a>.</p></article>
+      <article class="pal" id="c2-p5"><span class="n">2.5</span><p class="pal-name">黄 HUANG<a class="selflink" href="#c2-p5">§</a></p><p class="pal-body">Imperial yellow — the colour reserved for the emperor in the Ming and Qing courts; commoners wearing it could be executed. <a href="https://en.wikipedia.org/wiki/Imperial_yellow" target="_blank" rel="noopener">Imperial yellow</a>.</p></article>
+      <article class="pal" id="c2-p6"><span class="n">2.6</span><p class="pal-name">青瓷 QINGCI<a class="selflink" href="#c2-p6">§</a></p><p class="pal-body">Celadon — pale jade-green stoneware glaze, perfected under the Song. The Longquan kilns are the canonical source. <a href="https://en.wikipedia.org/wiki/Celadon" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Longquan_celadon" target="_blank" rel="noopener">Longquan celadon</a>.</p></article>
+      <article class="pal" id="c2-p7"><span class="n">2.7</span><p class="pal-name">青花 QINGHUA<a class="selflink" href="#c2-p7">§</a></p><p class="pal-body">Blue-and-white porcelain — cobalt-on-white, perfected at Jingdezhen in the Yuan dynasty using cobalt imported from Persia. The most globally traded ceramic in human history. <a href="https://en.wikipedia.org/wiki/Blue_and_white_pottery" target="_blank" rel="noopener">Blue and white pottery</a>.</p></article>
+      <article class="pal" id="c2-p8"><span class="n">2.8</span><p class="pal-name">朱砂 ZHUSHA<a class="selflink" href="#c2-p8">§</a></p><p class="pal-body">Cinnabar — vermilion mercury sulfide, the red of imperial seals and lacquer. Toxic; carved into deep relief in Ming court lacquerware. <a href="https://en.wikipedia.org/wiki/Cinnabar" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Carved_lacquer" target="_blank" rel="noopener">Carved lacquer</a>.</p></article>
+      <article class="pal" id="c2-p9"><span class="n">2.9</span><p class="pal-name">红 HONG<a class="selflink" href="#c2-p9">§</a></p><p class="pal-body">The red of Chinese New Year — paper lanterns, couplets, envelopes. The colour of fortune, summoning, and the warding-off of the Nian beast. <a href="https://en.wikipedia.org/wiki/Chinese_New_Year" target="_blank" rel="noopener">Chinese New Year</a>.</p></article>
+      <article class="pal" id="c2-p10"><span class="n">2.10</span><p class="pal-name">漆器 QIQI · dark role<a class="selflink" href="#c2-p10">§</a></p><p class="pal-body">Chinese lacquerware — the same urushiol-based tradition as Japan but older, traced to the Neolithic Hemudu culture (5000 BCE). The deepest dark in the East Asian palette. <a href="https://en.wikipedia.org/wiki/Chinese_lacquerware" target="_blank" rel="noopener">Chinese lacquerware</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 3 · INDIA NORTH ========================================= -->
+  <section class="collection" id="c3">
+    <div class="coll-head"><span class="n">3</span><h3>India · North<a class="selflink" href="#c3">§</a></h3></div>
+    <p class="coll-sub">Hindustani lens. Sindoor, neel, mehendi accents. Champaran 1917 embedded. &nbsp;·&nbsp; <a href="india-north.html" style="color:var(--accent);text-decoration-color:var(--accent);">Read the full chapter →</a></p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 3.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Vedic colour / varṇa system</strong> — the deep substrate. <a href="https://en.wikipedia.org/wiki/Varna_(Hinduism)" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Mughal miniature painting</strong> — <a href="https://en.wikipedia.org/wiki/Mughal_painting" target="_blank" rel="noopener">Wikipedia</a> · Met's free PDF <em>Wonder of the Age</em>. <a href="https://www.metmuseum.org/art/metpublications" target="_blank" rel="noopener">Met Publications</a></li>
+        <li><span class="n">c</span><strong>B.N. Goswamy — <em>The Spirit of Indian Painting</em></strong>. The Indian art-historical canon, written for lay readers.</li>
+        <li><span class="n">d</span><strong>Champaran Satyagraha 1917</strong> — the indigo-planter revolt is the origin of Gandhi's Indian political career. Critical context for NEEL. <a href="https://en.wikipedia.org/wiki/Champaran_Satyagraha" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>Balfour-Paul — <em>Indigo</em></strong> (see 0.8) — covers Indian neel in depth.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c3-p1"><span class="n">3.1</span><p class="pal-name">चूना CHUNA · light role<a class="selflink" href="#c3-p1">§</a></p><p class="pal-body">Slaked lime whitewash, applied to havelis and village walls every monsoon — cools the wall, repels termites. The working-class exterior of north India for centuries. <a href="https://en.wikipedia.org/wiki/Whitewash" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Jali" target="_blank" rel="noopener">Jali</a>.</p></article>
+      <article class="pal" id="c3-p2"><span class="n">3.2</span><p class="pal-name">खादी KHADI · warm role<a class="selflink" href="#c3-p2">§</a></p><p class="pal-body">Handspun, hand-woven cotton — the cloth Gandhi turned into a freedom-movement program. Spinning your own thread on the <em>charkha</em> was the political act. <a href="https://en.wikipedia.org/wiki/Khadi" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Swadeshi_movement" target="_blank" rel="noopener">Swadeshi</a>.</p></article>
+      <article class="pal" id="c3-p3"><span class="n">3.3</span><p class="pal-name">काजल KAJAL · mono role<a class="selflink" href="#c3-p3">§</a></p><p class="pal-body">Lamp-soot kohl, mixed with ghee, applied to the eyes of newborns to ward off the evil eye and to women's eyes for everything else. Folk chemistry as ritual cosmetic. <a href="https://en.wikipedia.org/wiki/Kohl_(cosmetics)" target="_blank" rel="noopener">Kohl</a>.</p></article>
+      <article class="pal" id="c3-p4"><span class="n">3.4</span><p class="pal-name">गुलाबी GULABI<a class="selflink" href="#c3-p4">§</a></p><p class="pal-body">In 1876, the entire walled city of Jaipur was painted pink to welcome the Prince of Wales. The Maharaja Sawai Ram Singh II ordered the colour preserved by edict; the city has remained pink ever since. <a href="https://en.wikipedia.org/wiki/Jaipur" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Hawa_Mahal" target="_blank" rel="noopener">Hawa Mahal</a>.</p></article>
+      <article class="pal" id="c3-p5"><span class="n">3.5</span><p class="pal-name">हल्दी HALDI<a class="selflink" href="#c3-p5">§</a></p><p class="pal-body">Turmeric — both medicine and food and ceremony. The night before an Indian wedding, bride and groom are smeared head-to-foot with haldi paste in the <em>pithi</em> ceremony. <a href="https://en.wikipedia.org/wiki/Turmeric" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c3-p6"><span class="n">3.6</span><p class="pal-name">नील NEEL<a class="selflink" href="#c3-p6">§</a></p><p class="pal-body">Indigo — the dye that triggered Gandhi's first satyagraha at Champaran in 1917, where British planters were forcing tenant farmers to grow it at confiscatory prices. <a href="https://en.wikipedia.org/wiki/Indigo_dye" target="_blank" rel="noopener">Indigo</a> · <a href="https://en.wikipedia.org/wiki/Champaran_Satyagraha" target="_blank" rel="noopener">Champaran Satyagraha</a>.</p></article>
+      <article class="pal" id="c3-p7"><span class="n">3.7</span><p class="pal-name">कुमकुम KUMKUM<a class="selflink" href="#c3-p7">§</a></p><p class="pal-body">The red powder of the bindi, the sindoor in a married woman's hair-parting, the tilak on a temple-goer's forehead. Made from turmeric and slaked lime — yellow turns red on contact with alkali. <a href="https://en.wikipedia.org/wiki/Sindoor" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Bindi_(decoration)" target="_blank" rel="noopener">Bindi</a>.</p></article>
+      <article class="pal" id="c3-p8"><span class="n">3.8</span><p class="pal-name">आकाश AAKASH<a class="selflink" href="#c3-p8">§</a></p><p class="pal-body">Krishna is conventionally painted blue in Rajput and Pahari miniatures because the Bhagavata Purana describes him as "dark as a rain cloud." The wash behind Krishna in a Pichwai painting from Nathdwara. <a href="https://en.wikipedia.org/wiki/Pichhwai" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Krishna" target="_blank" rel="noopener">Krishna</a>.</p></article>
+      <article class="pal" id="c3-p9"><span class="n">3.9</span><p class="pal-name">मोर MOR<a class="selflink" href="#c3-p9">§</a></p><p class="pal-body">The peacock — India's national bird and Krishna's headdress. The eye-spot in a peacock feather is one of the most saturated natural colour combinations on earth. <a href="https://en.wikipedia.org/wiki/Peafowl" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Krishna" target="_blank" rel="noopener">Krishna</a>.</p></article>
+      <article class="pal" id="c3-p10"><span class="n">3.10</span><p class="pal-name">शीशम SHEESHAM · dark role<a class="selflink" href="#c3-p10">§</a></p><p class="pal-body">Indian rosewood — the heavy carved cabinet (<em>almirah</em>) every middle-class household has somewhere, brass-handled and bracketed by generations of patina. <a href="https://en.wikipedia.org/wiki/Dalbergia_sissoo" target="_blank" rel="noopener">Dalbergia sissoo</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 4 · INDIA WEST + GOA ===================================== -->
+  <section class="collection" id="c4">
+    <div class="coll-head"><span class="n">4</span><h3>India · West + Goa<a class="selflink" href="#c4">§</a></h3></div>
+    <p class="coll-sub">Maharashtra, Gujarat, Goa. Sindoor, Azulejo cobalt, Sahyadri pine accents. 4 overrides.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 4.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Art Deco Mumbai</strong> — second-largest Art Deco ensemble after Miami Beach. Atul Kumar's public archive. <a href="https://www.artdecomumbai.com/" target="_blank" rel="noopener">artdecomumbai.com</a></li>
+        <li><span class="n">b</span><strong>Ahmedabad UNESCO inscription 2017</strong> — the Pol houses of the old city. <a href="https://whc.unesco.org/en/list/1551/" target="_blank" rel="noopener">UNESCO</a></li>
+        <li><span class="n">c</span><strong>Kutch Bhunga architecture</strong> — circular mud houses, earthquake-resistant. <a href="https://www.archnet.org/" target="_blank" rel="noopener">ArchNet</a></li>
+        <li><span class="n">d</span><strong>Goa Azulejos / Portuguese tile</strong> — <a href="https://en.wikipedia.org/wiki/Azulejo" target="_blank" rel="noopener">Azulejo</a> · <a href="https://www.foriente.pt/" target="_blank" rel="noopener">Fundação Oriente</a></li>
+        <li><span class="n">e</span><strong>Fontainhas, Panjim</strong> — preserved Portuguese Latin Quarter. INTACH Goa documentation.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c4-p1"><span class="n">4.1</span><p class="pal-name">MUMBAI ART DECO · light role<a class="selflink" href="#c4-p1">§</a></p><p class="pal-body">Mumbai has the world's second-largest collection of Art Deco architecture after Miami — UNESCO World Heritage 2018 as the "Victorian Gothic and Art Deco Ensembles of Mumbai." <a href="https://en.wikipedia.org/wiki/Art_Deco_architecture_of_Mumbai" target="_blank" rel="noopener">Art Deco Mumbai</a> · <a href="https://whc.unesco.org/en/list/1480/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c4-p2"><span class="n">4.2</span><p class="pal-name">પોળ POL · warm role<a class="selflink" href="#c4-p2">§</a></p><p class="pal-body">Ahmedabad's old city — UNESCO World Heritage 2017 (India's first UNESCO city). Organised around <em>pols</em>, residential clusters with ornately carved wooden facades, internal courtyards, and bird-feeders called <em>chabutras</em> at intersections. <a href="https://en.wikipedia.org/wiki/Ahmedabad" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://whc.unesco.org/en/list/1551/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c4-p3"><span class="n">4.3</span><p class="pal-name">BOMBAY GOTHIC · mono role<a class="selflink" href="#c4-p3">§</a></p><p class="pal-body">Mumbai's Victorian Gothic — Frederick Stevens's Chhatrapati Shivaji Terminus (1887) and the row of colonial-era Gothic Revival public buildings around Oval Maidan. UNESCO 2018 (paired with Art Deco). <a href="https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_Terminus" target="_blank" rel="noopener">CSMT</a> · <a href="https://whc.unesco.org/en/list/1480/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c4-p4"><span class="n">4.4</span><p class="pal-name">પાલિતાણા PALITANA<a class="selflink" href="#c4-p4">§</a></p><p class="pal-body">Palitana — the Jain pilgrimage site in Gujarat with 863 temples on Shatrunjaya hill, climbed barefoot at dawn. The largest temple complex in the world by count. <a href="https://en.wikipedia.org/wiki/Palitana_temples" target="_blank" rel="noopener">Palitana temples</a>.</p></article>
+      <article class="pal" id="c4-p5"><span class="n">4.5</span><p class="pal-name">लावणी LAVANI<a class="selflink" href="#c4-p5">§</a></p><p class="pal-body">Maharashtrian devotional dance form, born in temples and refined in 19th-century courts. Distinctive nine-yard saree worn in the kashta drape. <a href="https://en.wikipedia.org/wiki/Lavani" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c4-p6"><span class="n">4.6</span><p class="pal-name">ભુંગા KUTCH BHUNGA<a class="selflink" href="#c4-p6">§</a></p><p class="pal-body">The mud-and-mirror circular thatched houses of the Banni grasslands of Kutch — engineered to survive earthquakes through the 2001 Bhuj quake while concrete buildings around them collapsed. <a href="https://en.wikipedia.org/wiki/Bhunga" target="_blank" rel="noopener">Bhunga</a> · <a href="https://en.wikipedia.org/wiki/Kutch_district" target="_blank" rel="noopener">Kutch</a>.</p></article>
+      <article class="pal" id="c4-p7"><span class="n">4.7</span><p class="pal-name">गणेश चतुर्थी GANESH CHATURTHI<a class="selflink" href="#c4-p7">§</a></p><p class="pal-body">Mumbai's ten-day Ganesh Chaturthi festival — the largest public Hindu festival in the city, founded as a unifying nationalist event by Tilak in 1893 to circumvent British colonial bans on assembly. <a href="https://en.wikipedia.org/wiki/Ganesh_Chaturthi" target="_blank" rel="noopener">Ganesh Chaturthi</a>.</p></article>
+      <article class="pal" id="c4-p8"><span class="n">4.8</span><p class="pal-name">AZULEJO (GOA)<a class="selflink" href="#c4-p8">§</a></p><p class="pal-body">Portuguese-Goan glazed tile tradition, descended from Lisbon's azulejos — found on church facades and Indo-Portuguese house frontages in Old Goa and Fontainhas. <a href="https://en.wikipedia.org/wiki/Azulejo" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c4-p9"><span class="n">4.9</span><p class="pal-name">FONTAINHAS<a class="selflink" href="#c4-p9">§</a></p><p class="pal-body">The Latin Quarter of Panjim, Goa — the only neighbourhood in India where Portuguese colonial street architecture survives intact, candy-coloured houses on narrow lanes. <a href="https://en.wikipedia.org/wiki/Fontainhas,_Goa" target="_blank" rel="noopener">Fontainhas</a>.</p></article>
+      <article class="pal" id="c4-p10"><span class="n">4.10</span><p class="pal-name">सह्याद्री रात्री SAHYADRI NIGHT · dark role<a class="selflink" href="#c4-p10">§</a></p><p class="pal-body">The Western Ghats — UNESCO World Heritage 2012, one of the eight "hottest hotspots" of biological diversity in the world. The mountains visible from Pune, Mumbai, and the Konkan coast. <a href="https://en.wikipedia.org/wiki/Western_Ghats" target="_blank" rel="noopener">Western Ghats</a> · <a href="https://whc.unesco.org/en/list/1342/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 5 · KASHMIR ============================================== -->
+  <section class="collection" id="c5">
+    <div class="coll-head"><span class="n">5</span><h3>India · Kashmir<a class="selflink" href="#c5">§</a></h3></div>
+    <p class="coll-sub">Saffron, Cobalt, Pine accents. Political slot: Curfew Dawn. Personal slot: Pheran.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 5.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Pashmina &amp; shahtoosh</strong> — <a href="https://en.wikipedia.org/wiki/Pashmina" target="_blank" rel="noopener">Pashmina</a>. ITC Kashmir economic reports.</li>
+        <li><span class="n">b</span><strong>Sozni embroidery</strong> — <a href="https://www.craftcouncilofindia.org/" target="_blank" rel="noopener">Craft Council of India</a> documentation.</li>
+        <li><span class="n">c</span><strong>Kashmiri papier-mâché</strong> — the Persian-origin craft. <a href="https://en.wikipedia.org/wiki/Kashmiri_papier-m%C3%A2ch%C3%A9" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Saffron cultivation in Pampore</strong> — <a href="https://en.wikipedia.org/wiki/Saffron" target="_blank" rel="noopener">Saffron</a></li>
+        <li><span class="n">e</span><strong>Basharat Peer, <em>Curfewed Night</em></strong> (2008) memoir. <strong>Mirza Waheed, <em>The Collaborator</em></strong> (2011) novel. The two primary literary sources behind the CURFEW DAWN slot — testimony and fiction that together refuse both erasure and sensationalism.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c5-p1"><span class="n">5.1</span><p class="pal-name">पश्मीना PASHMINA · light role<a class="selflink" href="#c5-p1">§</a></p><p class="pal-body">The undercoat of the Changthangi goat at 14,000 feet in the Ladakh winter at -40°C. Combed out by hand each spring. The textile trade name "cashmere" is the Kashmir spelling. <a href="https://en.wikipedia.org/wiki/Pashmina" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Changthangi" target="_blank" rel="noopener">Changthangi goat</a>.</p></article>
+      <article class="pal" id="c5-p2"><span class="n">5.2</span><p class="pal-name">کہوہ KAHWA · warm role<a class="selflink" href="#c5-p2">§</a></p><p class="pal-body">Kashmiri saffron-and-cardamom green tea — the standard daily and ceremonial drink, served in a samovar. <a href="https://en.wikipedia.org/wiki/Kahwah" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c5-p3"><span class="n">5.3</span><p class="pal-name">SLATE · mono role<a class="selflink" href="#c5-p3">§</a></p><p class="pal-body">The grey-blue stone of Kashmir — used for paving, courtyards, and house foundations across the Vale. <a href="https://en.wikipedia.org/wiki/Slate" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c5-p4"><span class="n">5.4</span><p class="pal-name">سوزنی SOZNI<a class="selflink" href="#c5-p4">§</a></p><p class="pal-body">The fine needle-embroidery tradition of Kashmir, applied to pashmina shawls. A single shawl can take a year of hand-stitched work. <a href="https://en.wikipedia.org/wiki/Sozni" target="_blank" rel="noopener">Sozni</a>.</p></article>
+      <article class="pal" id="c5-p5"><span class="n">5.5</span><p class="pal-name">پہرن PHERAN<a class="selflink" href="#c5-p5">§</a></p><p class="pal-body">The long woollen cloak worn by both Kashmiri men and women, with a brass-bound <em>kangri</em> firepot held inside it for warmth. <a href="https://en.wikipedia.org/wiki/Pheran" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c5-p6"><span class="n">5.6</span><p class="pal-name">زعفران SAFFRON<a class="selflink" href="#c5-p6">§</a></p><p class="pal-body">150,000 hand-picked <em>Crocus sativus</em> flowers yield one kilogram of dried saffron — the world's most expensive spice. Kashmir's Pampore plateau is one of three global centres of cultivation. <a href="https://en.wikipedia.org/wiki/Saffron" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c5-p7"><span class="n">5.7</span><p class="pal-name">چنار CHINAR<a class="selflink" href="#c5-p7">§</a></p><p class="pal-body">The plane tree (Oriental plane) introduced to Kashmir under the Mughals, planted around shrines and along waterways. Its leaves turn deep crimson in October. <a href="https://en.wikipedia.org/wiki/Platanus_orientalis" target="_blank" rel="noopener">Platanus orientalis</a>.</p></article>
+      <article class="pal" id="c5-p8"><span class="n">5.8</span><p class="pal-name">کاغذی PAPIER-MÂCHÉ<a class="selflink" href="#c5-p8">§</a></p><p class="pal-body">Kashmiri papier-mâché — the painted lacquerwork tradition introduced from Persia in the 14th century by Sufi missionaries. Floral motifs in deep colour with gold leaf. <a href="https://en.wikipedia.org/wiki/Kashmiri_papier-m%C3%A2ch%C3%A9" target="_blank" rel="noopener">Kashmiri papier-mâché</a>.</p></article>
+      <article class="pal" id="c5-p9"><span class="n">5.9</span><p class="pal-name">CURFEW DAWN<a class="selflink" href="#c5-p9">§</a></p><p class="pal-body">The dawn after a curfew — the political grey of contemporary Kashmir, where extended communications blackouts and curfews have shaped daily life since the 1990s and especially since 2019. <a href="https://en.wikipedia.org/wiki/Insurgency_in_Jammu_and_Kashmir" target="_blank" rel="noopener">Kashmir insurgency</a>.</p></article>
+      <article class="pal" id="c5-p10"><span class="n">5.10</span><p class="pal-name">DAL LAKE DUSK · dark role<a class="selflink" href="#c5-p10">§</a></p><p class="pal-body">Dal Lake at dusk — the floating-garden lake at the centre of Srinagar, now critically polluted by encroachment and untreated sewage. The dark water that holds the shikara boats. <a href="https://en.wikipedia.org/wiki/Dal_Lake" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 6 · INDIA EAST + NE ====================================== -->
+  <section class="collection" id="c6">
+    <div class="coll-head"><span class="n">6</span><h3>India · East + NE<a class="selflink" href="#c6">§</a></h3></div>
+    <p class="coll-sub">12 slots across 8 states. Terracotta, Cobalt, Paddy-green accents. 6 overrides.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 6.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Tagore / Santiniketan / Kala Bhavana</strong> — the Bengal School. <a href="https://en.wikipedia.org/wiki/Kala_Bhavana" target="_blank" rel="noopener">Kala Bhavana</a></li>
+        <li><span class="n">b</span><strong>Pattachitra (Odisha)</strong> — <a href="https://en.wikipedia.org/wiki/Pattachitra" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Raghurajpur" target="_blank" rel="noopener">Raghurajpur heritage crafts village</a></li>
+        <li><span class="n">c</span><strong>Konark Sun Temple</strong> — UNESCO. <a href="https://whc.unesco.org/en/list/246/" target="_blank" rel="noopener">UNESCO</a></li>
+        <li><span class="n">d</span><strong>Jagannath Rath Yatra, Puri</strong> — <a href="https://en.wikipedia.org/wiki/Ratha_Yatra_(Puri)" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>Sanjoy Hazarika — <em>Strangers of the Mist</em></strong> (1994). Essential one-volume introduction to the Seven Sisters.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c6-p1"><span class="n">6.1</span><p class="pal-name">ঠাকুরবাড়ি TAGORE WHITEWASH · light role<a class="selflink" href="#c6-p1">§</a></p><p class="pal-body">Tagore's family estate in north Calcutta — the whitewashed Jorasanko Thakur Bari that produced Rabindranath Tagore, Abanindranath Tagore, and the Bengal School of Art. <a href="https://en.wikipedia.org/wiki/Jorasanko_Thakur_Bari" target="_blank" rel="noopener">Jorasanko Thakur Bari</a>.</p></article>
+      <article class="pal" id="c6-p2"><span class="n">6.2</span><p class="pal-name">ପଟ୍ଟଚିତ୍ର PATACHITRA · warm role<a class="selflink" href="#c6-p2">§</a></p><p class="pal-body">Odisha's narrative scroll-painting tradition — mineral and vegetable pigments on cloth treated with tamarind paste. The Raghurajpur GI village is the active centre today. <a href="https://en.wikipedia.org/wiki/Pattachitra" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c6-p3"><span class="n">6.3</span><p class="pal-name">KHASI LIMESTONE · mono role<a class="selflink" href="#c6-p3">§</a></p><p class="pal-body">Cherrapunji limestone — the rock that holds up the Khasi Hills of Meghalaya, the wettest inhabited place on earth. The substrate of the living root bridges. <a href="https://en.wikipedia.org/wiki/Khasi_Hills" target="_blank" rel="noopener">Khasi Hills</a>.</p></article>
+      <article class="pal" id="c6-p4"><span class="n">6.4</span><p class="pal-name">କୋଣାର୍କ KONARK WHEEL<a class="selflink" href="#c6-p4">§</a></p><p class="pal-body">The 13th-century Konark Sun Temple in Odisha — built as a stone chariot of the sun god, with twelve pairs of colossal carved wheels. UNESCO World Heritage 1984. <a href="https://en.wikipedia.org/wiki/Konark_Sun_Temple" target="_blank" rel="noopener">Konark Sun Temple</a> · <a href="https://whc.unesco.org/en/list/246/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c6-p5"><span class="n">6.5</span><p class="pal-name">ଜଗନ୍ନାଥ JAGANNATH RATH YATRA<a class="selflink" href="#c6-p5">§</a></p><p class="pal-body">The annual chariot festival at Puri's Jagannath temple — three colossal wooden chariots, the largest with 16 wheels, pulled by thousands of devotees through the streets. The origin of the English word "juggernaut." <a href="https://en.wikipedia.org/wiki/Ratha_Yatra" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Jagannath_Temple,_Puri" target="_blank" rel="noopener">Jagannath temple</a>.</p></article>
+      <article class="pal" id="c6-p6"><span class="n">6.6</span><p class="pal-name">बोधि BODHI<a class="selflink" href="#c6-p6">§</a></p><p class="pal-body">The Bodhi tree at Bodh Gaya — descendant of the original under which the Buddha attained enlightenment in the 5th century BCE. The most sacred site in the Buddhist world. <a href="https://en.wikipedia.org/wiki/Bodhi_Tree" target="_blank" rel="noopener">Bodhi Tree</a> · <a href="https://en.wikipedia.org/wiki/Mahabodhi_Temple" target="_blank" rel="noopener">Mahabodhi Temple</a>.</p></article>
+      <article class="pal" id="c6-p7"><span class="n">6.7</span><p class="pal-name">কামাখ্যা KAMAKHYA<a class="selflink" href="#c6-p7">§</a></p><p class="pal-body">The Kamakhya temple in Guwahati — the most important Shakta pilgrimage site in India, built around a stone yoni. The annual Ambubachi Mela commemorates the goddess's menstruation. <a href="https://en.wikipedia.org/wiki/Kamakhya_Temple" target="_blank" rel="noopener">Kamakhya Temple</a>.</p></article>
+      <article class="pal" id="c6-p8"><span class="n">6.8</span><p class="pal-name">HORNBILL FESTIVAL<a class="selflink" href="#c6-p8">§</a></p><p class="pal-body">Nagaland's annual ten-day cultural festival in Kohima, named after the Indian hornbill — the bird that features in the folklore of most of the state's 17 tribes. <a href="https://en.wikipedia.org/wiki/Hornbill_Festival" target="_blank" rel="noopener">Hornbill Festival</a>.</p></article>
+      <article class="pal" id="c6-p9"><span class="n">6.9</span><p class="pal-name">TAWANG MONASTERY<a class="selflink" href="#c6-p9">§</a></p><p class="pal-body">The 17th-century Tibetan Buddhist monastery at Tawang in Arunachal Pradesh — the second-largest functioning Buddhist monastery in the world after Lhasa's Potala. The 14th Dalai Lama crossed into India here in 1959. <a href="https://en.wikipedia.org/wiki/Tawang_Monastery" target="_blank" rel="noopener">Tawang Monastery</a>.</p></article>
+      <article class="pal" id="c6-p10"><span class="n">6.10</span><p class="pal-name">LIVING ROOT BRIDGES<a class="selflink" href="#c6-p10">§</a></p><p class="pal-body">The living bridges woven by the Khasi from the aerial roots of <em>Ficus elastica</em> over decades — UNESCO tentative list. They strengthen with age, unlike built bridges. <a href="https://en.wikipedia.org/wiki/Living_root_bridge" target="_blank" rel="noopener">Living root bridges</a>.</p></article>
+      <article class="pal" id="c6-p11"><span class="n">6.11</span><p class="pal-name">LOKTAK SANGAI<a class="selflink" href="#c6-p11">§</a></p><p class="pal-body">Loktak Lake in Manipur — the largest freshwater lake in northeast India, famous for its <em>phumdis</em> (floating biomass islands) that host the endangered Sangai deer. <a href="https://en.wikipedia.org/wiki/Loktak_Lake" target="_blank" rel="noopener">Loktak Lake</a> · <a href="https://en.wikipedia.org/wiki/Sangai" target="_blank" rel="noopener">Sangai</a>.</p></article>
+      <article class="pal" id="c6-p12"><span class="n">6.12</span><p class="pal-name">KANCHENJUNGA PRE-DAWN · dark role<a class="selflink" href="#c6-p12">§</a></p><p class="pal-body">Kanchenjunga at first light — the third-highest mountain on earth, visible from Darjeeling. The pre-dawn moment when the eastern face turns gold while the rest of the world is still dark. <a href="https://en.wikipedia.org/wiki/Kangchenjunga" target="_blank" rel="noopener">Kangchenjunga</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 7 · INDIA SOUTH ========================================== -->
+  <section class="collection" id="c7">
+    <div class="coll-head"><span class="n">7</span><h3>India · South<a class="selflink" href="#c7">§</a></h3></div>
+    <p class="coll-sub">TN, Kerala, Karnataka, Andhra, Telangana. Sandalwood, Sahyadri pine, ocean indigo accents.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 7.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Vidya Dehejia — <em>The Sensuous and the Sacred: Chola Bronzes from South India</em></strong> (2002). The definitive catalogue. <a href="https://www.metmuseum.org/" target="_blank" rel="noopener">Met</a></li>
+        <li><span class="n">b</span><strong>George Michell — <em>The Hindu Temple: An Introduction to its Meaning and Forms</em></strong> (1977). Standard text for Dravidian temple architecture.</li>
+        <li><span class="n">c</span><strong>G. Arunima — <em>There Comes Papa: Colonialism and the Transformation of Matriliny in Kerala</em></strong> (2003).</li>
+        <li><span class="n">d</span><strong>Kanjivaram silk</strong> — GI-registered. <a href="https://en.wikipedia.org/wiki/Kanchipuram_silk" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>A.K. Ramanujan — <em>Speaking of Siva</em></strong>. Translations of Kannada vachana poetry; the deep substrate of Karnataka Bhakti aesthetics.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c7-p1"><span class="n">7.1</span><p class="pal-name">മുണ്ട് MUNDU · light role<a class="selflink" href="#c7-p1">§</a></p><p class="pal-body">The Kerala unstitched white cotton wrap, worn by men of all classes and the model for the Gandhian dhoti. Often paired with a gold border for ceremonial wear. <a href="https://en.wikipedia.org/wiki/Mundu" target="_blank" rel="noopener">Mundu</a>.</p></article>
+      <article class="pal" id="c7-p2"><span class="n">7.2</span><p class="pal-name">ಚಂದನ MYSORE SANDALWOOD · warm role<a class="selflink" href="#c7-p2">§</a></p><p class="pal-body">Mysore sandalwood — <em>Santalum album</em>, the slow-growing heartwood that yields the Karnataka attar industry. The state holds a monopoly under the Mysore Sandal Soap brand. <a href="https://en.wikipedia.org/wiki/Santalum_album" target="_blank" rel="noopener">Santalum album</a>.</p></article>
+      <article class="pal" id="c7-p3"><span class="n">7.3</span><p class="pal-name">ಹಂಪಿ HAMPI GRANITE · mono role<a class="selflink" href="#c7-p3">§</a></p><p class="pal-body">The 14th-century Vijayanagara capital, ruined in 1565 — boulder-strewn landscape on the Tungabhadra river. UNESCO World Heritage 1986. <a href="https://en.wikipedia.org/wiki/Hampi" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://whc.unesco.org/en/list/241/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c7-p4"><span class="n">7.4</span><p class="pal-name">சோழ வெண்கலம் CHOLA BRONZE<a class="selflink" href="#c7-p4">§</a></p><p class="pal-body">The Chola dynasty's lost-wax bronze casting tradition — the Nataraja figure of Shiva dancing in a ring of fire is the canonical form, perfected at Thanjavur in the 10th–11th centuries. <a href="https://en.wikipedia.org/wiki/Chola_bronze" target="_blank" rel="noopener">Chola bronze</a> · <a href="https://en.wikipedia.org/wiki/Nataraja" target="_blank" rel="noopener">Nataraja</a>.</p></article>
+      <article class="pal" id="c7-p5"><span class="n">7.5</span><p class="pal-name">மீனாட்சி MADURAI MEENAKSHI<a class="selflink" href="#c7-p5">§</a></p><p class="pal-body">The Meenakshi Amman temple in Madurai — Tamil Nadu's great Dravidian temple complex with twelve <em>gopuram</em> towers covered in 33,000 polychrome painted figures. <a href="https://en.wikipedia.org/wiki/Meenakshi_Temple" target="_blank" rel="noopener">Meenakshi Temple</a>.</p></article>
+      <article class="pal" id="c7-p6"><span class="n">7.6</span><p class="pal-name">PONDICHERRY<a class="selflink" href="#c7-p6">§</a></p><p class="pal-body">The former French colonial enclave on the Coromandel coast — Tamil grid laid alongside French boulevard, Auroville on the outskirts. <a href="https://en.wikipedia.org/wiki/Pondicherry" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c7-p7"><span class="n">7.7</span><p class="pal-name">തെയ്യം THEYYAM<a class="selflink" href="#c7-p7">§</a></p><p class="pal-body">The ritual possession-dance tradition of north Kerala — performers in elaborate red costumes and headdresses become local deities for the duration of the ritual. <a href="https://en.wikipedia.org/wiki/Theyyam" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c7-p8"><span class="n">7.8</span><p class="pal-name">లేపాక్షి LEPAKSHI<a class="selflink" href="#c7-p8">§</a></p><p class="pal-body">The 16th-century Vijayanagara temple at Lepakshi in Andhra Pradesh, famous for the largest Nandi sculpture in India and for ceiling murals in vegetable pigment. <a href="https://en.wikipedia.org/wiki/Lepakshi" target="_blank" rel="noopener">Lepakshi</a>.</p></article>
+      <article class="pal" id="c7-p9"><span class="n">7.9</span><p class="pal-name">چارمینار CHARMINAR<a class="selflink" href="#c7-p9">§</a></p><p class="pal-body">Hyderabad's 1591 Charminar — the four-minaret arch built by Quli Qutb Shah at the founding of the city. The visual emblem of the Deccan Sultanate aesthetic. <a href="https://en.wikipedia.org/wiki/Charminar" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c7-p10"><span class="n">7.10</span><p class="pal-name">BACKWATER NIGHT · dark role<a class="selflink" href="#c7-p10">§</a></p><p class="pal-body">The Kerala backwaters at night — 900 km of interconnected canals, lakes, and lagoons along the Malabar coast. The dark of black water under coconut palms. <a href="https://en.wikipedia.org/wiki/Kerala_backwaters" target="_blank" rel="noopener">Kerala backwaters</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 8 · MEXICO =============================================== -->
+  <section class="collection" id="c8">
+    <div class="coll-head"><span class="n">8</span><h3>Mexico<a class="selflink" href="#c8">§</a></h3></div>
+    <p class="coll-sub">Cal, Amate, Obsidiana roles. Buganvilia, Cempasúchil, Casa Azul as bold overrides.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 8.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Greenfield, <em>A Perfect Red</em></strong> (see 0.10) — the cochineal story. Essential.</li>
+        <li><span class="n">b</span><strong>Elena Phipps — <em>Cochineal Red: The Art History of a Color</em></strong>. Met free PDF. <a href="https://www.metmuseum.org/art/metpublications/Cochineal_Red_The_Art_History_of_a_Color" target="_blank" rel="noopener">Met Publications</a></li>
+        <li><span class="n">c</span><strong>Luis Barragán</strong> — Pritzker 1980. Casa Barragán is UNESCO. <a href="https://whc.unesco.org/en/list/1136/" target="_blank" rel="noopener">UNESCO</a> · <a href="https://www.barragan-foundation.org/" target="_blank" rel="noopener">Barragán Foundation</a></li>
+        <li><span class="n">d</span><strong>Frida Kahlo — Casa Azul (Museo Frida Kahlo)</strong>. <a href="https://www.museofridakahlo.org.mx/" target="_blank" rel="noopener">Museum site</a></li>
+        <li><span class="n">e</span><strong>Día de Muertos</strong> — UNESCO Intangible Heritage. <a href="https://ich.unesco.org/en/RL/indigenous-festivity-dedicated-to-the-dead-00054" target="_blank" rel="noopener">UNESCO ICH</a></li>
+        <li><span class="n">f</span><strong>Octavio Paz — <em>The Labyrinth of Solitude</em></strong> (1950). The essential one-volume cultural explanation. Nobel 1990.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c8-p1"><span class="n">8.1</span><p class="pal-name">CAL · light role<a class="selflink" href="#c8-p1">§</a></p><p class="pal-body">Slaked lime whitewash — the colonial Mexican exterior, applied to adobe walls in the highlands and to colonial church facades. Same chemistry as India's Chuna. <a href="https://en.wikipedia.org/wiki/Whitewash" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Limewash" target="_blank" rel="noopener">Limewash</a>.</p></article>
+      <article class="pal" id="c8-p2"><span class="n">8.2</span><p class="pal-name">AMATE · warm role<a class="selflink" href="#c8-p2">§</a></p><p class="pal-body">Pre-Columbian bark paper made from the inner bark of the wild fig tree, used by the Otomi for ceremonial cut-paper figures. The substrate of the codices the Spanish burned. <a href="https://en.wikipedia.org/wiki/Amate" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c8-p3"><span class="n">8.3</span><p class="pal-name">OBSIDIANA · mono role<a class="selflink" href="#c8-p3">§</a></p><p class="pal-body">Volcanic glass — the black obsidian of central Mexican volcanism, knapped by the Aztec into ritual blades and mirrors. Sharper than steel at the edge. <a href="https://en.wikipedia.org/wiki/Obsidian" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c8-p4"><span class="n">8.4</span><p class="pal-name">BUGANVILIA<a class="selflink" href="#c8-p4">§</a></p><p class="pal-body">Bougainvillea — the magenta climbing vine that drapes over Mexican courtyard walls and Oaxacan colonial facades. The signature flower of Luis Barragán's residential work. <a href="https://en.wikipedia.org/wiki/Bougainvillea" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c8-p5"><span class="n">8.5</span><p class="pal-name">NOPAL<a class="selflink" href="#c8-p5">§</a></p><p class="pal-body">The prickly pear cactus — <em>Opuntia ficus-indica</em>, the plant on Mexico's coat of arms (eagle perched on a cactus). Eaten as <em>nopalitos</em>; the cochineal insect feeds on it. <a href="https://en.wikipedia.org/wiki/Opuntia" target="_blank" rel="noopener">Opuntia</a>.</p></article>
+      <article class="pal" id="c8-p6"><span class="n">8.6</span><p class="pal-name">CEMPASÚCHIL<a class="selflink" href="#c8-p6">§</a></p><p class="pal-body">The marigold (<em>Tagetes erecta</em>) — the orange flower scattered on Día de Muertos altars to guide the dead home with its scent. <a href="https://en.wikipedia.org/wiki/Tagetes_erecta" target="_blank" rel="noopener">Tagetes erecta</a> · <a href="https://en.wikipedia.org/wiki/Day_of_the_Dead" target="_blank" rel="noopener">Day of the Dead</a>.</p></article>
+      <article class="pal" id="c8-p7"><span class="n">8.7</span><p class="pal-name">TALAVERA<a class="selflink" href="#c8-p7">§</a></p><p class="pal-body">The tin-glazed earthenware tradition brought to Puebla by Spanish potters in the 16th century — descendant of Iberian Talavera, fused with indigenous decorative motifs. <a href="https://en.wikipedia.org/wiki/Talavera_pottery" target="_blank" rel="noopener">Talavera pottery</a>.</p></article>
+      <article class="pal" id="c8-p8"><span class="n">8.8</span><p class="pal-name">BARRO<a class="selflink" href="#c8-p8">§</a></p><p class="pal-body">The unglazed earthenware tradition of Oaxaca — burnished black <em>barro negro</em> from San Bartolo Coyotepec is the canonical form. <a href="https://en.wikipedia.org/wiki/Barro_negro_pottery" target="_blank" rel="noopener">Barro negro pottery</a>.</p></article>
+      <article class="pal" id="c8-p9"><span class="n">8.9</span><p class="pal-name">CASA AZUL<a class="selflink" href="#c8-p9">§</a></p><p class="pal-body">Frida Kahlo's house in Coyoacán — the cobalt-blue walls she painted herself, now the Museo Frida Kahlo. <a href="https://en.wikipedia.org/wiki/Casa_Azul" target="_blank" rel="noopener">Casa Azul</a>.</p></article>
+      <article class="pal" id="c8-p10"><span class="n">8.10</span><p class="pal-name">NOCHE DE MUERTOS · dark role<a class="selflink" href="#c8-p10">§</a></p><p class="pal-body">The night of Día de Muertos — November 1–2, when families spend the night at the cemetery with marigolds, candles, and pan de muerto. UNESCO ICH 2008. <a href="https://en.wikipedia.org/wiki/Day_of_the_Dead" target="_blank" rel="noopener">Day of the Dead</a> · <a href="https://ich.unesco.org/en/RL/indigenous-festivity-dedicated-to-the-dead-00054" target="_blank" rel="noopener">UNESCO ICH</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 9 · MOROCCO ============================================== -->
+  <section class="collection" id="c9">
+    <div class="coll-head"><span class="n">9</span><h3>Morocco المغرب<a class="selflink" href="#c9">§</a></h3></div>
+    <p class="coll-sub">Tadelakt, Sahara, Khol roles. Marrakech red, Chefchaouen blue, Henna rust as bold overrides.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 9.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Tadelakt</strong> — traditional lime plaster of Marrakech. <a href="https://en.wikipedia.org/wiki/Tadelakt" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Zellige</strong> — the geometric tilework tradition. <a href="https://en.wikipedia.org/wiki/Zellij" target="_blank" rel="noopener">Zellij</a>. Titus Burckhardt, <em>Fez: City of Islam</em>.</li>
+        <li><span class="n">c</span><strong>Amazigh / Berber culture</strong> — <a href="https://en.wikipedia.org/wiki/Berbers" target="_blank" rel="noopener">Wikipedia</a>. Michael Peyron's scholarship.</li>
+        <li><span class="n">d</span><strong>Chefchaouen</strong> — 1930s Jewish-refugee origin of the blue wash. <a href="https://en.wikipedia.org/wiki/Chefchaouen" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>Paul Bowles — <em>The Sheltering Sky</em></strong> (1949); Tangier diaries.</li>
+        <li><span class="n">f</span><strong>Matisse in Tangier 1912–13</strong>. Morocco paintings at the Hermitage. Foundational "Orientalist but seriously" colour vocabulary.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c9-p1"><span class="n">9.1</span><p class="pal-name">تادلكت TADELAKT · light role<a class="selflink" href="#c9-p1">§</a></p><p class="pal-body">The polished lime-and-soap plaster of Marrakech hammams and riads — applied wet, burnished with stone, finished with black soap. Waterproof and silky. <a href="https://en.wikipedia.org/wiki/Tadelakt" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c9-p2"><span class="n">9.2</span><p class="pal-name">صحراء SAHARA · warm role<a class="selflink" href="#c9-p2">§</a></p><p class="pal-body">The Sahara — the world's largest hot desert, the southern boundary of the Maghreb. The dune fields of Erg Chebbi are the canonical Moroccan Sahara image. <a href="https://en.wikipedia.org/wiki/Sahara" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c9-p3"><span class="n">9.3</span><p class="pal-name">كحل KHOL · mono role<a class="selflink" href="#c9-p3">§</a></p><p class="pal-body">North African kohl — antimony or galena ground fine and applied to the eyes. The Moroccan equivalent of Indian kajal, with the same protective and cosmetic role. <a href="https://en.wikipedia.org/wiki/Kohl_(cosmetics)" target="_blank" rel="noopener">Kohl</a>.</p></article>
+      <article class="pal" id="c9-p4"><span class="n">9.4</span><p class="pal-name">مراكش MARRAKECH<a class="selflink" href="#c9-p4">§</a></p><p class="pal-body">The red walls of Marrakech — the rammed earth (<em>pisé</em>) and red ochre paint that give the city its name "the red city." UNESCO World Heritage 1985. <a href="https://en.wikipedia.org/wiki/Marrakesh" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://whc.unesco.org/en/list/331/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c9-p5"><span class="n">9.5</span><p class="pal-name">نعناع NA'NA<a class="selflink" href="#c9-p5">§</a></p><p class="pal-body">Moroccan mint tea — gunpowder green tea brewed with fresh spearmint and heavy sugar, poured from height into small glasses. The national hospitality ritual. <a href="https://en.wikipedia.org/wiki/Maghrebi_mint_tea" target="_blank" rel="noopener">Maghrebi mint tea</a>.</p></article>
+      <article class="pal" id="c9-p6"><span class="n">9.6</span><p class="pal-name">زعفران ZAAFRAN<a class="selflink" href="#c9-p6">§</a></p><p class="pal-body">Moroccan saffron — grown around Taliouine in the Atlas foothills, distinct from Kashmir and Iran by its terroir but the same <em>Crocus sativus</em>. <a href="https://en.wikipedia.org/wiki/Saffron" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c9-p7"><span class="n">9.7</span><p class="pal-name">شفشاون CHEFCHAOUEN<a class="selflink" href="#c9-p7">§</a></p><p class="pal-body">The blue-painted town in the Rif mountains, repainted blue every spring since at least the 1930s — variously attributed to Jewish refugees, Sufi tradition, or mosquito repellent. <a href="https://en.wikipedia.org/wiki/Chefchaouen" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c9-p8"><span class="n">9.8</span><p class="pal-name">حناء HENNA<a class="selflink" href="#c9-p8">§</a></p><p class="pal-body">Henna — the orange-brown dye from <em>Lawsonia inermis</em> applied to skin and hair across North Africa, the Middle East, and South Asia. The Moroccan tradition uses thicker geometric motifs than the Indian. <a href="https://en.wikipedia.org/wiki/Henna" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c9-p9"><span class="n">9.9</span><p class="pal-name">الصويرة ESSAOUIRA<a class="selflink" href="#c9-p9">§</a></p><p class="pal-body">The Atlantic-coast fishing port and former Portuguese citadel — UNESCO World Heritage 2001. The blue boats and white walls that defined the Hendrix-era hippie trail. <a href="https://en.wikipedia.org/wiki/Essaouira" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://whc.unesco.org/en/list/753/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c9-p10"><span class="n">9.10</span><p class="pal-name">ليل LAIL · dark role<a class="selflink" href="#c9-p10">§</a></p><p class="pal-body">The Sahara night sky — among the darkest in the world, with the Milky Way fully visible to the naked eye. <a href="https://en.wikipedia.org/wiki/Dark-sky_movement" target="_blank" rel="noopener">Dark sky</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 10 · IRAN ================================================ -->
+  <section class="collection" id="c10">
+    <div class="coll-head"><span class="n">10</span><h3>Iran / Persia ایران<a class="selflink" href="#c10">§</a></h3></div>
+    <p class="coll-sub">Sang, Khesht, Morakkab roles. Lajvard, the lapis of Badakhshan, is the source of every cobalt in European and Asian art history.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 10.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Sheila Canby — <em>Persian Painting</em></strong> (British Museum, 1993). The one-volume reference.</li>
+        <li><span class="n">b</span><strong>Arthur Upham Pope — <em>A Survey of Persian Art</em></strong> (1938–9). Six volumes; dated but foundational.</li>
+        <li><span class="n">c</span><strong>Lapis lazuli / Badakhshan</strong> — <a href="https://en.wikipedia.org/wiki/Lapis_lazuli" target="_blank" rel="noopener">Wikipedia</a>. Finlay's <em>Colour</em> chapter on the Sar-i Sang mines is the accessible source. Every cobalt-blue tile, manuscript illumination, Ming porcelain, Renaissance altarpiece, and Portuguese azulejo ultimately traces its lineage to this one mountain valley in north-eastern Afghanistan.</li>
+        <li><span class="n">d</span><strong>Isfahan Imam Square</strong> — UNESCO. <a href="https://whc.unesco.org/en/list/115/" target="_blank" rel="noopener">UNESCO</a></li>
+        <li><span class="n">e</span><strong>Persian carpet tradition</strong> — <a href="https://en.wikipedia.org/wiki/Persian_carpet" target="_blank" rel="noopener">Wikipedia</a> · Cecil Edwards, <em>The Persian Carpet</em> (1953).</li>
+        <li><span class="n">f</span><strong>Nowruz &amp; Shab-e Yalda</strong> — <a href="https://ich.unesco.org/en/RL/nowruz-01279" target="_blank" rel="noopener">Nowruz UNESCO</a> · <a href="https://en.wikipedia.org/wiki/Yald%C4%81_Night" target="_blank" rel="noopener">Yalda Night</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c10-p1"><span class="n">10.1</span><p class="pal-name">سنگ SANG · light role<a class="selflink" href="#c10-p1">§</a></p><p class="pal-body">The pale travertine and limestone of central Iran — the substrate of Persepolis, Pasargadae, and the Zoroastrian fire temples. <a href="https://en.wikipedia.org/wiki/Persepolis" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c10-p2"><span class="n">10.2</span><p class="pal-name">خشت KHESHT · warm role<a class="selflink" href="#c10-p2">§</a></p><p class="pal-body">Sun-dried mud brick — the building material of central Iranian desert cities like Yazd, Bam, and Isfahan's old quarters. The vernacular technique of the Iranian plateau. <a href="https://en.wikipedia.org/wiki/Mudbrick" target="_blank" rel="noopener">Mudbrick</a> · <a href="https://en.wikipedia.org/wiki/Yazd" target="_blank" rel="noopener">Yazd</a>.</p></article>
+      <article class="pal" id="c10-p3"><span class="n">10.3</span><p class="pal-name">مرکب MORAKKAB · mono role<a class="selflink" href="#c10-p3">§</a></p><p class="pal-body">Iron gall ink — the standard ink of Persian calligraphy and miniature painting. Used by Mir Ali Tabrizi in the 14th century to formalise the Nasta'liq script. <a href="https://en.wikipedia.org/wiki/Iron_gall_ink" target="_blank" rel="noopener">Iron gall ink</a> · <a href="https://en.wikipedia.org/wiki/Nastaliq" target="_blank" rel="noopener">Nastaliq</a>.</p></article>
+      <article class="pal" id="c10-p4"><span class="n">10.4</span><p class="pal-name">گل GOL<a class="selflink" href="#c10-p4">§</a></p><p class="pal-body">The pink of Shiraz's Nasir al-Mulk Mosque — the rose-tinted stained glass that fills the prayer hall with shifting pink light at dawn. <a href="https://en.wikipedia.org/wiki/Nasir_ol_Molk_Mosque" target="_blank" rel="noopener">Nasir ol Molk Mosque</a>.</p></article>
+      <article class="pal" id="c10-p5"><span class="n">10.5</span><p class="pal-name">پسته PESTEH<a class="selflink" href="#c10-p5">§</a></p><p class="pal-body">Persian pistachio — the elongated Akbari variety from Kerman, with the highest oil content in the world and the pale olive-green of the kernel after the reddish skin is rubbed off. <a href="https://en.wikipedia.org/wiki/Pistachio" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c10-p6"><span class="n">10.6</span><p class="pal-name">زعفران ZAAFARAN<a class="selflink" href="#c10-p6">§</a></p><p class="pal-body">Iranian saffron — Iran produces ~90% of the world's saffron, mostly around Mashhad in Khorasan. The deepest red threads with the highest crocin content. <a href="https://en.wikipedia.org/wiki/Saffron" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c10-p7"><span class="n">10.7</span><p class="pal-name">لاجورد LAJVARD<a class="selflink" href="#c10-p7">§</a></p><p class="pal-body">Lapis lazuli — mined in Badakhshan (now Afghanistan) since the Bronze Age, ground to make ultramarine pigment for Persian miniatures and Iranian-made ultramarine that travelled through Italy to become the most expensive pigment in Renaissance painting. <a href="https://en.wikipedia.org/wiki/Lapis_lazuli" target="_blank" rel="noopener">Lapis lazuli</a> · <a href="https://en.wikipedia.org/wiki/Ultramarine" target="_blank" rel="noopener">Ultramarine</a>.</p></article>
+      <article class="pal" id="c10-p8"><span class="n">10.8</span><p class="pal-name">آجر AJOR<a class="selflink" href="#c10-p8">§</a></p><p class="pal-body">The traditional sun-dried Iranian brick — the warm reddish-brown of <em>kheshteh</em> walls, the workhorse colour of Persian vernacular architecture. <a href="https://en.wikipedia.org/wiki/Brick" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c10-p9"><span class="n">10.9</span><p class="pal-name">فیروزه FIROUZEH<a class="selflink" href="#c10-p9">§</a></p><p class="pal-body">Persian turquoise — mined for 2000 years at Neyshabur, the canonical "Persian blue" of Iranian tilework and jewellery. <a href="https://en.wikipedia.org/wiki/Turquoise" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c10-p10"><span class="n">10.10</span><p class="pal-name">شب یلدا SHAB-E YALDA · dark role<a class="selflink" href="#c10-p10">§</a></p><p class="pal-body">The longest night of the year, the Iranian winter solstice — celebrated by gathering family, eating pomegranates and watermelons, reading Hafez. UNESCO ICH 2022. <a href="https://en.wikipedia.org/wiki/Yald%C4%81_Night" target="_blank" rel="noopener">Yaldā Night</a> · <a href="https://ich.unesco.org/en/RL/yalda-shab-e-yalda-or-shab-e-chelleh-01877" target="_blank" rel="noopener">UNESCO ICH</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 11 · SCANDINAVIA ========================================= -->
+  <section class="collection" id="c11">
+    <div class="coll-head"><span class="n">11</span><h3>Scandinavia<a class="selflink" href="#c11">§</a></h3></div>
+    <p class="coll-sub">Snö, Lin, Granit roles. Falu red, Fjord green, Polarnatt dark.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 11.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Scandinavian Design Movement</strong> — <a href="https://en.wikipedia.org/wiki/Scandinavian_design" target="_blank" rel="noopener">Wikipedia</a>. The 1954–57 "Design in Scandinavia" US touring show is the origin of global recognition.</li>
+        <li><span class="n">b</span><strong>Falu red / Falun copper mine</strong> — UNESCO. <a href="https://en.wikipedia.org/wiki/Falu_red" target="_blank" rel="noopener">Falu red</a> · <a href="https://whc.unesco.org/en/list/1027/" target="_blank" rel="noopener">UNESCO</a>. The iron-oxide byproduct is why every Swedish barn is that specific red.</li>
+        <li><span class="n">c</span><strong>Carl Larsson — <em>Ett hem</em></strong> (1899). The watercolour album that invented the modern Scandinavian domestic aesthetic. <a href="https://en.wikipedia.org/wiki/Carl_Larsson" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Alvar Aalto</strong> — <a href="https://www.alvaraalto.fi/en/" target="_blank" rel="noopener">Alvar Aalto Foundation</a></li>
+        <li><span class="n">e</span><strong>Designmuseum Danmark</strong> — Jacobsen, Wegner, Lindberg. <a href="https://designmuseum.dk/en/" target="_blank" rel="noopener">designmuseum.dk</a></li>
+        <li><span class="n">f</span><strong>Gustavian style</strong> — Swedish neoclassical under Gustav III. <a href="https://en.wikipedia.org/wiki/Gustavian_style" target="_blank" rel="noopener">Wikipedia</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c11-p1"><span class="n">11.1</span><p class="pal-name">SNÖ · light role<a class="selflink" href="#c11-p1">§</a></p><p class="pal-body">Nordic snow — the whiteness of the long winter, the central condition of Scandinavian aesthetic life. <a href="https://en.wikipedia.org/wiki/Snow" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c11-p2"><span class="n">11.2</span><p class="pal-name">LIN · warm role<a class="selflink" href="#c11-p2">§</a></p><p class="pal-body">Linen — the flax-fibre cloth that has been the Scandinavian summer textile for millennia. The pale natural cream of unbleached <em>Linum usitatissimum</em>. <a href="https://en.wikipedia.org/wiki/Linen" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Flax" target="_blank" rel="noopener">Flax</a>.</p></article>
+      <article class="pal" id="c11-p3"><span class="n">11.3</span><p class="pal-name">GRANIT · mono role<a class="selflink" href="#c11-p3">§</a></p><p class="pal-body">Nordic granite — the grey igneous rock that forms the bedrock of the Scandinavian Shield, exposed across Sweden, Finland, and Norway. <a href="https://en.wikipedia.org/wiki/Granite" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c11-p4"><span class="n">11.4</span><p class="pal-name">FALU<a class="selflink" href="#c11-p4">§</a></p><p class="pal-body">Falu red — the iron-oxide byproduct of the Falun copper mine that has painted Swedish barns and houses since the 17th century. The mine is UNESCO World Heritage. <a href="https://en.wikipedia.org/wiki/Falu_red" target="_blank" rel="noopener">Falu red</a> · <a href="https://whc.unesco.org/en/list/1027/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c11-p5"><span class="n">11.5</span><p class="pal-name">FJORD<a class="selflink" href="#c11-p5">§</a></p><p class="pal-body">The deep glacial-carved inlets of the Norwegian coast — 1190 named fjords, the most famous (Geirangerfjord, Nærøyfjord) UNESCO-listed. <a href="https://en.wikipedia.org/wiki/Fjord" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://whc.unesco.org/en/list/1195/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c11-p6"><span class="n">11.6</span><p class="pal-name">SKOGSLJUS<a class="selflink" href="#c11-p6">§</a></p><p class="pal-body">"Forest light" in Swedish — the diffuse green-gold light filtered through pine and spruce canopy in a Nordic forest. <a href="https://en.wikipedia.org/wiki/Taiga" target="_blank" rel="noopener">Taiga</a>.</p></article>
+      <article class="pal" id="c11-p7"><span class="n">11.7</span><p class="pal-name">AURORA<a class="selflink" href="#c11-p7">§</a></p><p class="pal-body">The northern lights — the auroral display visible across northern Scandinavia from September to March, caused by charged particles from the sun striking the upper atmosphere. <a href="https://en.wikipedia.org/wiki/Aurora" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c11-p8"><span class="n">11.8</span><p class="pal-name">GUSTAVIANSK<a class="selflink" href="#c11-p8">§</a></p><p class="pal-body">Swedish neoclassical interior style under King Gustav III (1771–1792) — pale grey-blue and cream, restrained classical ornament, the Nordic answer to French Louis XVI. <a href="https://en.wikipedia.org/wiki/Gustavian_style" target="_blank" rel="noopener">Gustavian style</a>.</p></article>
+      <article class="pal" id="c11-p9"><span class="n">11.9</span><p class="pal-name">VALLMO<a class="selflink" href="#c11-p9">§</a></p><p class="pal-body">The Nordic poppy — the red field flower that blooms in midsummer across Scandinavian meadows. The folk-art symbol of Swedish midsummer. <a href="https://en.wikipedia.org/wiki/Papaver_rhoeas" target="_blank" rel="noopener">Papaver rhoeas</a>.</p></article>
+      <article class="pal" id="c11-p10"><span class="n">11.10</span><p class="pal-name">POLARNATT · dark role<a class="selflink" href="#c11-p10">§</a></p><p class="pal-body">Polar night — the months above the Arctic Circle when the sun does not rise above the horizon. The defining condition of northern Scandinavian life. <a href="https://en.wikipedia.org/wiki/Polar_night" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 12 · WEST AFRICA ========================================= -->
+  <section class="collection" id="c12">
+    <div class="coll-head"><span class="n">12</span><h3>West Africa<a class="selflink" href="#c12">§</a></h3></div>
+    <p class="coll-sub">Yoruba, Akan, Bambara, Wolof, Fula. Adìre indigo, Bissap crimson, Òrun gold.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 12.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>McKinley, <em>Indigo</em></strong> (see 0.9) — directly supports the whole collection.</li>
+        <li><span class="n">b</span><strong>Adìre (Yoruba resist-dyed cloth)</strong> — <a href="https://en.wikipedia.org/wiki/Adire_(textile_art)" target="_blank" rel="noopener">Wikipedia</a>. Ruth Nielsen's scholarship is the academic source.</li>
+        <li><span class="n">c</span><strong>Bògòlanfini / Mali mud cloth</strong> — <a href="https://en.wikipedia.org/wiki/Bogolan" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Kente cloth (Asante/Akan)</strong> — <a href="https://en.wikipedia.org/wiki/Kente_cloth" target="_blank" rel="noopener">Wikipedia</a> · Doran H. Ross, <em>Wrapped in Pride</em> (1998) is the catalogue.</li>
+        <li><span class="n">e</span><strong>Adinkra symbols</strong> — <a href="https://en.wikipedia.org/wiki/Adinkra_symbols" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">f</span><strong>John Picton &amp; John Mack — <em>African Textiles</em></strong> (British Museum Press, 1989). The standard reference.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c12-p1"><span class="n">12.1</span><p class="pal-name">BAOBAB · light role<a class="selflink" href="#c12-p1">§</a></p><p class="pal-body">The baobab (<em>Adansonia digitata</em>) — the iconic tree of the Sahel, with a hollow swollen trunk that stores water and lives over 1000 years. <a href="https://en.wikipedia.org/wiki/Adansonia" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c12-p2"><span class="n">12.2</span><p class="pal-name">FONIO · warm role<a class="selflink" href="#c12-p2">§</a></p><p class="pal-body">Fonio — an ancient drought-resistant West African grain (<em>Digitaria exilis</em>), the smallest grain in the cereal family. Cultivated in the Sahel for at least 5000 years. <a href="https://en.wikipedia.org/wiki/Fonio" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c12-p3"><span class="n">12.3</span><p class="pal-name">KAOLIN · mono role<a class="selflink" href="#c12-p3">§</a></p><p class="pal-body">White kaolin clay — used ritually and as body paint across West Africa. The Dogon of Mali apply it around the eyes for the Dama funerary dance. <a href="https://en.wikipedia.org/wiki/Kaolinite" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Dogon_people" target="_blank" rel="noopener">Dogon</a>.</p></article>
+      <article class="pal" id="c12-p4"><span class="n">12.4</span><p class="pal-name">ADÌRE<a class="selflink" href="#c12-p4">§</a></p><p class="pal-body">Yoruba indigo resist-dyed cloth — patterns made by tying, stitching, or starching the cloth before dyeing. Ruth Nielsen's work is the academic source. <a href="https://en.wikipedia.org/wiki/Adire_(textile_art)" target="_blank" rel="noopener">Adire</a>.</p></article>
+      <article class="pal" id="c12-p5"><span class="n">12.5</span><p class="pal-name">KENTE<a class="selflink" href="#c12-p5">§</a></p><p class="pal-body">Asante and Ewe ceremonial cloth woven in narrow strips on a small horizontal loom — historically reserved for royalty, now national dress of Ghana. <a href="https://en.wikipedia.org/wiki/Kente_cloth" target="_blank" rel="noopener">Kente cloth</a>.</p></article>
+      <article class="pal" id="c12-p6"><span class="n">12.6</span><p class="pal-name">BÒGÒLAN<a class="selflink" href="#c12-p6">§</a></p><p class="pal-body">Mali mud cloth — Bambara cotton dyed with fermented river mud, the geometric brown-and-white tradition of the inland Niger delta. <a href="https://en.wikipedia.org/wiki/Bogolan" target="_blank" rel="noopener">Bogolan</a>.</p></article>
+      <article class="pal" id="c12-p7"><span class="n">12.7</span><p class="pal-name">BISSAP<a class="selflink" href="#c12-p7">§</a></p><p class="pal-body">Senegalese hibiscus drink — deep crimson sorrel infusion, the everyday street drink of Dakar. <a href="https://en.wikipedia.org/wiki/Hibiscus_tea" target="_blank" rel="noopener">Hibiscus tea</a>.</p></article>
+      <article class="pal" id="c12-p8"><span class="n">12.8</span><p class="pal-name">SÀHĚL<a class="selflink" href="#c12-p8">§</a></p><p class="pal-body">The Sahel — the semi-arid transition zone between the Sahara and the Sudanian savanna, stretching across ten countries from Senegal to Sudan. <a href="https://en.wikipedia.org/wiki/Sahel" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c12-p9"><span class="n">12.9</span><p class="pal-name">NIGER<a class="selflink" href="#c12-p9">§</a></p><p class="pal-body">The Niger River — the principal river of West Africa, looping 4180 km through Guinea, Mali, Niger, and Nigeria. <a href="https://en.wikipedia.org/wiki/Niger_River" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c12-p10"><span class="n">12.10</span><p class="pal-name">ÒRUN · dark role<a class="selflink" href="#c12-p10">§</a></p><p class="pal-body">Yoruba word for sky/heaven/sun. Rowland Abiodun, <em>Yoruba Art and Language</em> (2014) is the standard academic source on Yoruba colour and symbolism. <a href="https://en.wikipedia.org/wiki/Yoruba_religion" target="_blank" rel="noopener">Yoruba religion</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 13 · ITALY =============================================== -->
+  <section class="collection" id="c13">
+    <div class="coll-head"><span class="n">13</span><h3>Italy<a class="selflink" href="#c13">§</a></h3></div>
+    <p class="coll-sub">Pompeii to Venice. Pompeian red, Lapis ultramarine, Cipresso sage accents.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 13.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Pompeian red</strong> — <a href="https://en.wikipedia.org/wiki/Pompeian_red" target="_blank" rel="noopener">Wikipedia</a>. The 2013 finding that some Pompeian red was originally yellow, gas-turned-red, is essential caveat knowledge.</li>
+        <li><span class="n">b</span><strong>Carrara marble</strong> — <a href="https://en.wikipedia.org/wiki/Carrara_marble" target="_blank" rel="noopener">Wikipedia</a>. Michelangelo sourced here.</li>
+        <li><span class="n">c</span><strong>Uffizi</strong> — Fra Angelico, Giotto, Piero della Francesca fresco colour. <a href="https://www.uffizi.it/en" target="_blank" rel="noopener">Uffizi</a></li>
+        <li><span class="n">d</span><strong>Marcia Hall — <em>Color and Meaning: Practice and Theory in Renaissance Painting</em></strong> (1992). Titian, Veronese, Tintoretto.</li>
+        <li><span class="n">e</span><strong>Cennino Cennini — <em>Il Libro dell'Arte</em></strong> (c. 1400). Oldest surviving pigment manual. Dover reprint. <a href="https://en.wikipedia.org/wiki/Il_libro_dell%27arte" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">f</span><strong>Rosso Corsa (Ferrari red)</strong> — the national racing colour. <a href="https://en.wikipedia.org/wiki/Rosso_Corsa" target="_blank" rel="noopener">Wikipedia</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c13-p1"><span class="n">13.1</span><p class="pal-name">CARRARA · light role<a class="selflink" href="#c13-p1">§</a></p><p class="pal-body">White marble from the Apuan Alps in northwest Tuscany — Michelangelo's source for the David and the Pietà. The quarries have operated continuously since the Roman period. <a href="https://en.wikipedia.org/wiki/Carrara_marble" target="_blank" rel="noopener">Carrara marble</a>.</p></article>
+      <article class="pal" id="c13-p2"><span class="n">13.2</span><p class="pal-name">PERGAMENA · warm role<a class="selflink" href="#c13-p2">§</a></p><p class="pal-body">Parchment — animal skin treated with lime and stretched, the writing surface of the Italian Renaissance scriptoria before paper. The warm cream of Vatican manuscripts. <a href="https://en.wikipedia.org/wiki/Parchment" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p3"><span class="n">13.3</span><p class="pal-name">PIETRA SERENA · mono role<a class="selflink" href="#c13-p3">§</a></p><p class="pal-body">Florence's blue-grey sandstone — Brunelleschi's preferred material for the architectural ribs of the Pazzi Chapel and Santo Spirito. <a href="https://en.wikipedia.org/wiki/Pietra_serena" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p4"><span class="n">13.4</span><p class="pal-name">POMPEIANO<a class="selflink" href="#c13-p4">§</a></p><p class="pal-body">The deep red of Pompeian wall painting, preserved by volcanic ash from the AD 79 eruption. The 2013 finding that some Pompeian "red" was originally yellow, gas-altered by the eruption itself, is essential caveat. <a href="https://en.wikipedia.org/wiki/Pompeian_red" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p5"><span class="n">13.5</span><p class="pal-name">SIENA<a class="selflink" href="#c13-p5">§</a></p><p class="pal-body">Raw and burnt sienna — earth pigments from the Tuscan town of Siena, used in painting since prehistory. The substrate of the medieval and Renaissance palette. <a href="https://en.wikipedia.org/wiki/Sienna" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p6"><span class="n">13.6</span><p class="pal-name">CIPRESSO<a class="selflink" href="#c13-p6">§</a></p><p class="pal-body">The Italian cypress (<em>Cupressus sempervirens</em>) — the dark vertical evergreen that defines the Tuscan skyline, planted along driveways to villas and along church paths. <a href="https://en.wikipedia.org/wiki/Cupressus_sempervirens" target="_blank" rel="noopener">Cupressus sempervirens</a>.</p></article>
+      <article class="pal" id="c13-p7"><span class="n">13.7</span><p class="pal-name">LAPISLAZZULI<a class="selflink" href="#c13-p7">§</a></p><p class="pal-body">The Italian Renaissance application of Iranian lapis lazuli — ground to make ultramarine, the most expensive pigment in Renaissance painting, reserved for the Virgin's robe. <a href="https://en.wikipedia.org/wiki/Ultramarine" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p8"><span class="n">13.8</span><p class="pal-name">ORO<a class="selflink" href="#c13-p8">§</a></p><p class="pal-body">Gold leaf in Byzantine and early Renaissance Italian painting — the gold ground of Cimabue, Duccio, and the Fra Angelico altarpieces. The cross above the apse at San Vitale, Ravenna. <a href="https://en.wikipedia.org/wiki/Gilding" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Gold_ground" target="_blank" rel="noopener">Gold ground</a>.</p></article>
+      <article class="pal" id="c13-p9"><span class="n">13.9</span><p class="pal-name">ESPRESSO<a class="selflink" href="#c13-p9">§</a></p><p class="pal-body">The 1884 Milanese invention of forced-pressure coffee extraction. The dark brown of the espresso shot is the modern Italian cultural export. <a href="https://en.wikipedia.org/wiki/Espresso" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c13-p10"><span class="n">13.10</span><p class="pal-name">NOTTE VENEZIANA · dark role<a class="selflink" href="#c13-p10">§</a></p><p class="pal-body">Venetian night — the dark of the lagoon under the campanile. Jan Morris, <em>Venice</em> (1960) for substance. <a href="https://en.wikipedia.org/wiki/Venice" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 14 · RUSSIA ============================================== -->
+  <section class="collection" id="c14">
+    <div class="coll-head"><span class="n">14</span><h3>Russia Россия<a class="selflink" href="#c14">§</a></h3></div>
+    <p class="coll-sub">Folk to Soviet to St Basil's. Khokhloma red, Gzhel cobalt, Tayga pine accents.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 14.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Russian iconography</strong> — <a href="https://en.wikipedia.org/wiki/Russian_icons" target="_blank" rel="noopener">Wikipedia</a>. Leonid Ouspensky, <em>Theology of the Icon</em> (1978). Andrei Rublev is canonical. <a href="https://www.tretyakovgallery.ru/en/" target="_blank" rel="noopener">Tretyakov Gallery</a></li>
+        <li><span class="n">b</span><strong>Khokhloma painting</strong> — red-gold-black wooden-ware tradition. <a href="https://en.wikipedia.org/wiki/Khokhloma" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">c</span><strong>Gzhel</strong> — Russia's blue-and-white folk ceramic. <a href="https://en.wikipedia.org/wiki/Gzhel" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>St Basil's Cathedral / Cathedral of the Intercession</strong> — UNESCO. <a href="https://whc.unesco.org/en/list/545/" target="_blank" rel="noopener">UNESCO</a></li>
+        <li><span class="n">e</span><strong>Christina Kiaer — <em>Imagine No Possessions: The Socialist Objects of Russian Constructivism</em></strong> (2005). Rodchenko, Stepanova, El Lissitzky.</li>
+        <li><span class="n">f</span><strong>Orlando Figes — <em>Natasha's Dance: A Cultural History of Russia</em></strong> (2002). The single best one-volume cultural history, from Pushkin to perestroika.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c14-p1"><span class="n">14.1</span><p class="pal-name">СНЕГ SNEG · light role<a class="selflink" href="#c14-p1">§</a></p><p class="pal-body">Russian snow — the dominant condition of Russian winter and the foundational Russian aesthetic constraint. <a href="https://en.wikipedia.org/wiki/Snow" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c14-p2"><span class="n">14.2</span><p class="pal-name">ЛЁН LYON · warm role<a class="selflink" href="#c14-p2">§</a></p><p class="pal-body">Russian linen — the cloth of Vologda, embroidered by women across the northern provinces. The pale flax tone of pre-revolutionary peasant garments. <a href="https://en.wikipedia.org/wiki/Linen" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c14-p3"><span class="n">14.3</span><p class="pal-name">ПЕТЕРБУРГ PETERBURG · mono role<a class="selflink" href="#c14-p3">§</a></p><p class="pal-body">St Petersburg's pastel neoclassical facades — the Italian-influenced palette of Rastrelli's Winter Palace, the Stroganov Palace, the Smolny. <a href="https://en.wikipedia.org/wiki/Saint_Petersburg" target="_blank" rel="noopener">Saint Petersburg</a>.</p></article>
+      <article class="pal" id="c14-p4"><span class="n">14.4</span><p class="pal-name">ГЖЕЛЬ GZHEL<a class="selflink" href="#c14-p4">§</a></p><p class="pal-body">Russia's blue-and-white folk ceramic, made in the village of Gzhel near Moscow since the 14th century. Cobalt-on-white in the same chemistry as Chinese qinghua. <a href="https://en.wikipedia.org/wiki/Gzhel" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c14-p5"><span class="n">14.5</span><p class="pal-name">ХОХЛОМА KHOKHLOMA<a class="selflink" href="#c14-p5">§</a></p><p class="pal-body">The Volga region's red-gold-on-black wooden-ware tradition — bowls, spoons, and platters lacquered to look like gilded metal, traceable to the 17th century. <a href="https://en.wikipedia.org/wiki/Khokhloma" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c14-p6"><span class="n">14.6</span><p class="pal-name">БЕРЁЗА BERYOZA<a class="selflink" href="#c14-p6">§</a></p><p class="pal-body">The silver birch (<em>Betula pendula</em>) — Russia's national tree, the white-barked symbol of the Russian forest in folk song and poetry. <a href="https://en.wikipedia.org/wiki/Betula_pendula" target="_blank" rel="noopener">Betula pendula</a>.</p></article>
+      <article class="pal" id="c14-p7"><span class="n">14.7</span><p class="pal-name">ИКОНА IKONA<a class="selflink" href="#c14-p7">§</a></p><p class="pal-body">Russian Orthodox icon painting — the egg-tempera-on-wood tradition descended from Byzantium. Andrei Rublev (15th century) is canonical. <a href="https://en.wikipedia.org/wiki/Russian_icons" target="_blank" rel="noopener">Russian icons</a> · <a href="https://en.wikipedia.org/wiki/Andrei_Rublev" target="_blank" rel="noopener">Andrei Rublev</a>.</p></article>
+      <article class="pal" id="c14-p8"><span class="n">14.8</span><p class="pal-name">ТАЙГА TAYGA<a class="selflink" href="#c14-p8">§</a></p><p class="pal-body">The taiga — the boreal coniferous forest belt across northern Russia, the largest contiguous forest on earth. <a href="https://en.wikipedia.org/wiki/Taiga" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c14-p9"><span class="n">14.9</span><p class="pal-name">СОБОР SOBOR<a class="selflink" href="#c14-p9">§</a></p><p class="pal-body">St Basil's Cathedral / Cathedral of the Intercession on Red Square in Moscow, commissioned by Ivan the Terrible in 1555. UNESCO World Heritage 1990. <a href="https://en.wikipedia.org/wiki/Saint_Basil%27s_Cathedral" target="_blank" rel="noopener">Saint Basil's Cathedral</a> · <a href="https://whc.unesco.org/en/list/545/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c14-p10"><span class="n">14.10</span><p class="pal-name">НОЧЬ NOCH' · dark role<a class="selflink" href="#c14-p10">§</a></p><p class="pal-body">White Nights of St Petersburg — the midsummer weeks above the 60th parallel when the sun barely sets. The dark velvet not-quite-night of Russian summer. <a href="https://en.wikipedia.org/wiki/White_Nights_(festival)" target="_blank" rel="noopener">White Nights</a>.</p></article>
+    </div>
+  </section>
+</section>
+
+<!-- ========================================================= -->
+<!-- § 2 — THEMES                                               -->
+<!-- ========================================================= -->
+<section class="part">
+  <p class="part-label">§ 2</p>
+  <h2>Thematic Collections</h2>
+  <p class="lede">Eight movements, periods, and genres. Each traceable to a founding date, a founding document, and a specific critical literature.</p>
+
+  <!-- 15 · BAUHAUS ============================================= -->
+  <section class="collection" id="c15">
+    <div class="coll-head"><span class="n">15</span><h3>Bauhaus<a class="selflink" href="#c15">§</a></h3></div>
+    <p class="coll-sub">1919–1933. 14 years, 3 cities. Kandinsky's primary-colour-geometric discipline.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 15.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Bauhaus Dessau Foundation</strong> — the primary scholarly resource. UNESCO site. <a href="https://www.bauhaus-dessau.de/en/" target="_blank" rel="noopener">bauhaus-dessau.de</a></li>
+        <li><span class="n">b</span><strong>Magdalena Droste — <em>Bauhaus 1919–1933</em></strong> (Taschen). The one-volume authority, richly illustrated.</li>
+        <li><span class="n">c</span><strong>Frank Whitford — <em>Bauhaus</em></strong> (Thames &amp; Hudson, 1984). The cheap paperback everyone owns.</li>
+        <li><span class="n">d</span><strong>Johannes Itten — <em>The Art of Color</em></strong> (1961). The colour-theory textbook from the Bauhaus preliminary course.</li>
+        <li><span class="n">e</span><strong>Kandinsky — <em>Concerning the Spiritual in Art</em></strong> (see 0.15) &amp; <em>Point and Line to Plane</em> (1926).</li>
+        <li><span class="n">f</span><strong>Gunta Stölzl</strong> — the only woman Bauhaus master, director of the weaving workshop. <a href="https://www.guntastolzl.org/" target="_blank" rel="noopener">guntastolzl.org</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c15-p1"><span class="n">15.1</span><p class="pal-name">WEIMAR 1919 · light role<a class="selflink" href="#c15-p1">§</a></p><p class="pal-body">The founding year of the Staatliches Bauhaus in Weimar under Walter Gropius — the manifesto issued April 1919. <a href="https://en.wikipedia.org/wiki/Bauhaus" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c15-p2"><span class="n">15.2</span><p class="pal-name">DESSAU 1926 · mono role<a class="selflink" href="#c15-p2">§</a></p><p class="pal-body">The Gropius-designed Bauhaus building in Dessau, opened 1926 — UNESCO World Heritage. The single most photographed modernist building of the interwar period. <a href="https://en.wikipedia.org/wiki/Bauhaus_Dessau" target="_blank" rel="noopener">Bauhaus Dessau</a> · <a href="https://whc.unesco.org/en/list/729/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c15-p3"><span class="n">15.3</span><p class="pal-name">KANDINSKY BLUE<a class="selflink" href="#c15-p3">§</a></p><p class="pal-body">In Kandinsky's <em>Concerning the Spiritual in Art</em> (1911), blue is the centrifugal spiritual colour that pulls the viewer inward toward depth and contemplation. <a href="https://en.wikipedia.org/wiki/Concerning_the_Spiritual_in_Art" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Wassily_Kandinsky" target="_blank" rel="noopener">Kandinsky</a>.</p></article>
+      <article class="pal" id="c15-p4"><span class="n">15.4</span><p class="pal-name">KANDINSKY YELLOW<a class="selflink" href="#c15-p4">§</a></p><p class="pal-body">In Kandinsky's colour theory, yellow is the centripetal earthly colour that moves toward the viewer — paired with blue (centrifugal) and red (stationary, earthly). <a href="https://en.wikipedia.org/wiki/Concerning_the_Spiritual_in_Art" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c15-p5"><span class="n">15.5</span><p class="pal-name">KANDINSKY RED<a class="selflink" href="#c15-p5">§</a></p><p class="pal-body">In Kandinsky's system, red is the stationary earthly colour — neither approaching nor receding, the colour of stable terrestrial presence. <a href="https://en.wikipedia.org/wiki/Concerning_the_Spiritual_in_Art" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c15-p6"><span class="n">15.6</span><p class="pal-name">KLEE · warm role<a class="selflink" href="#c15-p6">§</a></p><p class="pal-body">Paul Klee — Bauhaus master, painter and theorist. The Zentrum Paul Klee in Bern holds the largest collection of his work. <a href="https://en.wikipedia.org/wiki/Paul_Klee" target="_blank" rel="noopener">Paul Klee</a> · <a href="https://www.zpk.org/en/" target="_blank" rel="noopener">Zentrum Paul Klee</a>.</p></article>
+      <article class="pal" id="c15-p7"><span class="n">15.7</span><p class="pal-name">MIES BARCELONA 1929<a class="selflink" href="#c15-p7">§</a></p><p class="pal-body">Mies van der Rohe's German Pavilion for the 1929 Barcelona International Exposition — the demonstration object of the modernist "less is more" doctrine. Reconstructed 1986. <a href="https://en.wikipedia.org/wiki/Barcelona_Pavilion" target="_blank" rel="noopener">Barcelona Pavilion</a> · <a href="https://miesbcn.com/" target="_blank" rel="noopener">Fundació Mies</a>.</p></article>
+      <article class="pal" id="c15-p8"><span class="n">15.8</span><p class="pal-name">ITTEN COLOR WHEEL<a class="selflink" href="#c15-p8">§</a></p><p class="pal-body">Johannes Itten's twelve-part colour wheel from the Bauhaus preliminary course — published in <em>The Art of Color</em> (1961). The teaching diagram every design student still copies. <a href="https://en.wikipedia.org/wiki/Johannes_Itten" target="_blank" rel="noopener">Johannes Itten</a>.</p></article>
+      <article class="pal" id="c15-p9"><span class="n">15.9</span><p class="pal-name">GUNTA STÖLZL<a class="selflink" href="#c15-p9">§</a></p><p class="pal-body">Gunta Stölzl — the only woman to become a Bauhaus master, director of the weaving workshop at Dessau from 1927. The most accomplished Bauhaus textile artist. <a href="https://en.wikipedia.org/wiki/Gunta_St%C3%B6lzl" target="_blank" rel="noopener">Gunta Stölzl</a>.</p></article>
+      <article class="pal" id="c15-p10"><span class="n">15.10</span><p class="pal-name">1933 CLOSED · dark role<a class="selflink" href="#c15-p10">§</a></p><p class="pal-body">The Bauhaus closed in Berlin in April 1933, dissolved by its own faculty under Mies van der Rohe in response to Gestapo harassment. The teachers scattered to America. <a href="https://en.wikipedia.org/wiki/Bauhaus" target="_blank" rel="noopener">Bauhaus</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 16 · BRUTALISM =========================================== -->
+  <section class="collection" id="c16">
+    <div class="coll-head"><span class="n">16</span><h3>Brutalism<a class="selflink" href="#c16">§</a></h3></div>
+    <p class="coll-sub">Béton brut to #brutalism. Le Corbusier's rough concrete, 1952 onward. 6 countries.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 16.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Reyner Banham — "The New Brutalism"</strong>, <em>Architectural Review</em>, December 1955. The founding text. Followed by <em>The New Brutalism: Ethic or Aesthetic?</em> (1966).</li>
+        <li><span class="n">b</span><strong>Barnabas Calder — <em>Raw Concrete: The Beauty of Brutalism</em></strong> (2016). The accessible modern re-appraisal of the movement.</li>
+        <li><span class="n">c</span><strong>#SOSBrutalism</strong> — the internet-era rehabilitation campaign. <a href="https://www.sosbrutalism.org/" target="_blank" rel="noopener">sosbrutalism.org</a></li>
+        <li><span class="n">d</span><strong>Peter Chadwick — <em>This Brutal World</em></strong> (2016). The Instagram-era photobook.</li>
+        <li><span class="n">e</span><strong>Unité d'Habitation / Le Corbusier UNESCO</strong> — 17 buildings inscribed 2016. <a href="https://whc.unesco.org/en/list/1321/" target="_blank" rel="noopener">UNESCO</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c16-p1"><span class="n">16.1</span><p class="pal-name">BÉTON BRUT · mono role<a class="selflink" href="#c16-p1">§</a></p><p class="pal-body">Le Corbusier's 1952 Unité d'Habitation in Marseille — the rough-cast concrete that gave Brutalism its name (<em>béton brut</em>, "raw concrete"). <a href="https://en.wikipedia.org/wiki/B%C3%A9ton_brut" target="_blank" rel="noopener">Béton brut</a> · <a href="https://en.wikipedia.org/wiki/Unit%C3%A9_d%27habitation" target="_blank" rel="noopener">Unité d'habitation</a>.</p></article>
+      <article class="pal" id="c16-p2"><span class="n">16.2</span><p class="pal-name">RONCHAMP · light role<a class="selflink" href="#c16-p2">§</a></p><p class="pal-body">Notre-Dame du Haut at Ronchamp (1955) — Le Corbusier's sculptural concrete chapel, his only religious building. UNESCO 2016. <a href="https://en.wikipedia.org/wiki/Notre-Dame_du_Haut" target="_blank" rel="noopener">Notre-Dame du Haut</a> · <a href="https://whc.unesco.org/en/list/1321/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c16-p3"><span class="n">16.3</span><p class="pal-name">SESC POMPÉIA · warm role<a class="selflink" href="#c16-p3">§</a></p><p class="pal-body">Lina Bo Bardi's SESC Pompéia in São Paulo (1986) — the warmest and most socially radical Brutalist project, a converted drum factory turned into a cultural and sports centre for workers. <a href="https://en.wikipedia.org/wiki/SESC_Pomp%C3%A9ia" target="_blank" rel="noopener">SESC Pompéia</a> · <a href="https://en.wikipedia.org/wiki/Lina_Bo_Bardi" target="_blank" rel="noopener">Lina Bo Bardi</a>.</p></article>
+      <article class="pal" id="c16-p4"><span class="n">16.4</span><p class="pal-name">BARBICAN<a class="selflink" href="#c16-p4">§</a></p><p class="pal-body">The Barbican Estate in the City of London — Chamberlin, Powell and Bon's 1965–76 housing megastructure, now a Grade II listed cultural complex. <a href="https://en.wikipedia.org/wiki/Barbican_Estate" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c16-p5"><span class="n">16.5</span><p class="pal-name">HABITAT 67<a class="selflink" href="#c16-p5">§</a></p><p class="pal-body">Moshe Safdie's 1967 Montreal Habitat — a stacked-modular housing experiment for Expo 67, prefigured the modular construction interest of the 2010s. <a href="https://en.wikipedia.org/wiki/Habitat_67" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c16-p6"><span class="n">16.6</span><p class="pal-name">BOSTON CITY HALL<a class="selflink" href="#c16-p6">§</a></p><p class="pal-body">Kallmann McKinnell & Knowles's 1968 Boston City Hall — the inverted ziggurat that became Brutalism's American emblem and was for decades the most-hated building in the United States. <a href="https://en.wikipedia.org/wiki/Boston_City_Hall" target="_blank" rel="noopener">Boston City Hall</a>.</p></article>
+      <article class="pal" id="c16-p7"><span class="n">16.7</span><p class="pal-name">CHANDIGARH<a class="selflink" href="#c16-p7">§</a></p><p class="pal-body">Le Corbusier's 1950s capitol complex for the new Indian state of Punjab — the Open Hand monument, the Secretariat, the High Court. UNESCO 2016. <a href="https://en.wikipedia.org/wiki/Chandigarh_Capitol_Complex" target="_blank" rel="noopener">Chandigarh Capitol Complex</a> · <a href="https://whc.unesco.org/en/list/1321/" target="_blank" rel="noopener">UNESCO</a>.</p></article>
+      <article class="pal" id="c16-p8"><span class="n">16.8</span><p class="pal-name">WOOD-GRAIN FORMWORK<a class="selflink" href="#c16-p8">§</a></p><p class="pal-body">The wood-grain texture left in concrete by the timber boards used as formwork — the surface signature of mid-century concrete and the visible record of how the building was made. <a href="https://en.wikipedia.org/wiki/Formwork" target="_blank" rel="noopener">Formwork</a>.</p></article>
+      <article class="pal" id="c16-p9"><span class="n">16.9</span><p class="pal-name">RUSTING REBAR<a class="selflink" href="#c16-p9">§</a></p><p class="pal-body">Rusting reinforcement bar — the visible symptom of concrete failure as steel inside expands and spalls the surface. The Brutalist aesthetic of decay. <a href="https://en.wikipedia.org/wiki/Rebar" target="_blank" rel="noopener">Rebar</a>.</p></article>
+      <article class="pal" id="c16-p10"><span class="n">16.10</span><p class="pal-name">BRUTALIST NIGHT · dark role<a class="selflink" href="#c16-p10">§</a></p><p class="pal-body">The aesthetic rehabilitation of Brutalism via Instagram and the #SOSBrutalism campaign — the discovery that concrete photographs beautifully at night under sodium light. <a href="https://www.sosbrutalism.org/" target="_blank" rel="noopener">sosbrutalism.org</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 17 · MEMPHIS ============================================= -->
+  <section class="collection" id="c17">
+    <div class="coll-head"><span class="n">17</span><h3>Memphis<a class="selflink" href="#c17">§</a></h3></div>
+    <p class="coll-sub">Milan 1981–1988. Sottsass and 10 collaborators. The anti-Bauhaus: hot pink, teal, acid yellow, terrazzo.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 17.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Barbara Radice — <em>Memphis: Research, Experiences, Results, Failures and Successes of New Design</em></strong> (1984). Radice was Sottsass's partner and the movement's official chronicler. Primary source.</li>
+        <li><span class="n">b</span><strong>Ettore Sottsass</strong> — <a href="https://en.wikipedia.org/wiki/Ettore_Sottsass" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://www.sottsass.it/" target="_blank" rel="noopener">Sottsass Associati</a></li>
+        <li><span class="n">c</span><strong>The Memphis Group</strong> — <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Wikipedia</a> (thorough).</li>
+        <li><span class="n">d</span><strong>"Stuck Inside of Mobile with the Memphis Blues Again"</strong> — the Dylan song playing at the December 1980 meeting is the source of the group's name.</li>
+        <li><span class="n">e</span><strong>Karl Lagerfeld's Monte Carlo apartment</strong> — fully Memphis-furnished, sold 1991, reappeared in the Sotheby's estate auction 2021. The clearest "fashion proof" of Memphis's reach.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c17-p1"><span class="n">17.1</span><p class="pal-name">MILAN 1981 · light role<a class="selflink" href="#c17-p1">§</a></p><p class="pal-body">The December 1981 founding meeting of the Memphis Group at Ettore Sottsass's apartment in Milan, the soundtrack reportedly Bob Dylan's "Stuck Inside of Mobile with the Memphis Blues Again." The most influential design movement of the 1980s. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p2"><span class="n">17.2</span><p class="pal-name">CARLTON BOOKCASE · warm role<a class="selflink" href="#c17-p2">§</a></p><p class="pal-body">Sottsass's 1981 Carlton Bookcase — the founding object of Memphis, a brightly coloured asymmetric room divider that broke every modernist rule simultaneously. <a href="https://en.wikipedia.org/wiki/Ettore_Sottsass" target="_blank" rel="noopener">Sottsass</a>.</p></article>
+      <article class="pal" id="c17-p3"><span class="n">17.3</span><p class="pal-name">BACTERIO · mono role<a class="selflink" href="#c17-p3">§</a></p><p class="pal-body">The Bacterio laminate pattern Sottsass designed for Abet Laminati in 1978 — black squiggles on white, the surface texture that became Memphis's visual signature. <a href="https://en.wikipedia.org/wiki/Ettore_Sottsass" target="_blank" rel="noopener">Sottsass</a>.</p></article>
+      <article class="pal" id="c17-p4"><span class="n">17.4</span><p class="pal-name">LAVENDER<a class="selflink" href="#c17-p4">§</a></p><p class="pal-body">The dusty lavender pastel that became one of the four canonical Memphis colours (alongside hot pink, mint, and acid yellow). <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p5"><span class="n">17.5</span><p class="pal-name">TAHITI LAMP<a class="selflink" href="#c17-p5">§</a></p><p class="pal-body">Sottsass's 1981 Tahiti table lamp — bright pink stand with a tropical-bird base. The single most reproduced Memphis object. <a href="https://en.wikipedia.org/wiki/Ettore_Sottsass" target="_blank" rel="noopener">Sottsass</a>.</p></article>
+      <article class="pal" id="c17-p6"><span class="n">17.6</span><p class="pal-name">CASABLANCA<a class="selflink" href="#c17-p6">§</a></p><p class="pal-body">Sottsass's 1981 Casablanca sideboard — the flagship Carlton-companion object, named after the Bogart film. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p7"><span class="n">17.7</span><p class="pal-name">TERRAZZO<a class="selflink" href="#c17-p7">§</a></p><p class="pal-body">Terrazzo — the Italian polished-aggregate flooring tradition reapplied as a Memphis surface motif: scattered chips of contrasting colour set in a smooth field. <a href="https://en.wikipedia.org/wiki/Terrazzo" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c17-p8"><span class="n">17.8</span><p class="pal-name">HOT PINK<a class="selflink" href="#c17-p8">§</a></p><p class="pal-body">The hot pink (#ff007f range) of the Memphis primary palette — used by Sottsass on the Tahiti lamp, by Nathalie du Pasquier in her textile prints. The most aggressive colour in 1980s design. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p9"><span class="n">17.9</span><p class="pal-name">MEMPHIS TEAL<a class="selflink" href="#c17-p9">§</a></p><p class="pal-body">The Memphis teal (mint-leaning cyan) that pairs with hot pink and acid yellow as the third canonical Memphis primary. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p10"><span class="n">17.10</span><p class="pal-name">ACID YELLOW<a class="selflink" href="#c17-p10">§</a></p><p class="pal-body">The acid yellow — Memphis's fourth primary, distinct from school-bus yellow by its slight green push, used for accents in du Pasquier and Sottsass textiles. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+      <article class="pal" id="c17-p11"><span class="n">17.11</span><p class="pal-name">DE LUCCHI FIRST CHAIR<a class="selflink" href="#c17-p11">§</a></p><p class="pal-body">Michele De Lucchi's 1983 First Chair — coloured wooden geometric volumes balanced on a metal frame, the cleanest distillation of Memphis's "play with primary form" doctrine. <a href="https://en.wikipedia.org/wiki/Michele_De_Lucchi" target="_blank" rel="noopener">Michele De Lucchi</a>.</p></article>
+      <article class="pal" id="c17-p12"><span class="n">17.12</span><p class="pal-name">1988 DISSOLVED · dark role<a class="selflink" href="#c17-p12">§</a></p><p class="pal-body">Sottsass dissolved Memphis at the end of 1988 — the movement had become a fashion brand and lost its critical edge. The dark closing palette is the deliberate fade-to-black. <a href="https://en.wikipedia.org/wiki/Memphis_Group" target="_blank" rel="noopener">Memphis Group</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 18 · CYBERPUNK =========================================== -->
+  <section class="collection" id="c18">
+    <div class="coll-head"><span class="n">18</span><h3>Cyberpunk<a class="selflink" href="#c18">§</a></h3></div>
+    <p class="coll-sub">15 slots. Breaking format — no role slots. Blade Runner 1982 to CP2077 2020.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 18.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>William Gibson — <em>Neuromancer</em></strong> (1984). <em>Burning Chrome</em> (1982, short story). The novel that named the genre. <a href="https://en.wikipedia.org/wiki/Neuromancer" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Ridley Scott — <em>Blade Runner</em></strong> (1982). <a href="https://en.wikipedia.org/wiki/Blade_Runner" target="_blank" rel="noopener">Wikipedia</a>. Syd Mead's production-design artwork is the colour source.</li>
+        <li><span class="n">c</span><strong>Katsuhiro Otomo — <em>Akira</em></strong> (1988). <a href="https://en.wikipedia.org/wiki/Akira_(1988_film)" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">d</span><strong>Mamoru Oshii — <em>Ghost in the Shell</em></strong> (1995). <a href="https://en.wikipedia.org/wiki/Ghost_in_the_Shell_(1995_film)" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">e</span><strong>Bruce Sterling — <em>Mirrorshades: The Cyberpunk Anthology</em></strong> (1986) preface. The genre manifesto.</li>
+        <li><span class="n">f</span><strong>Greg Girard &amp; Ian Lambot — <em>City of Darkness</em></strong> (1993). Kowloon Walled City photobook. <a href="https://en.wikipedia.org/wiki/Kowloon_Walled_City" target="_blank" rel="noopener">Wikipedia</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c18-p1"><span class="n">18.1</span><p class="pal-name">BLADE RUNNER 1982<a class="selflink" href="#c18-p1">§</a></p><p class="pal-body">Ridley Scott's 1982 <em>Blade Runner</em> — the visual founding moment of cyberpunk, with Syd Mead's LA cityscape, Vangelis's synth score, and Jordan Cronenweth's rain-soaked photography. <a href="https://en.wikipedia.org/wiki/Blade_Runner" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c18-p2"><span class="n">18.2</span><p class="pal-name">NEUROMANCER CHIBA<a class="selflink" href="#c18-p2">§</a></p><p class="pal-body">William Gibson's 1984 <em>Neuromancer</em> — the novel that coined "cyberspace" and built the literary cyberpunk template. The opening image: "The sky above the port was the color of television, tuned to a dead channel." <a href="https://en.wikipedia.org/wiki/Neuromancer" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c18-p3"><span class="n">18.3</span><p class="pal-name">AKIRA RED<a class="selflink" href="#c18-p3">§</a></p><p class="pal-body">Katsuhiro Otomo's 1988 anime <em>Akira</em> — the saturated red-against-black palette that defined Japanese cyberpunk and the Kaneda motorcycle silhouette that became its visual icon. <a href="https://en.wikipedia.org/wiki/Akira_(1988_film)" target="_blank" rel="noopener">Akira</a>.</p></article>
+      <article class="pal" id="c18-p4"><span class="n">18.4</span><p class="pal-name">GHOST IN THE SHELL<a class="selflink" href="#c18-p4">§</a></p><p class="pal-body">Mamoru Oshii's 1995 <em>Ghost in the Shell</em> — Major Kusanagi diving through the rain-soaked Hong Kong cityscape, the most influential anime of the cyberpunk canon. <a href="https://en.wikipedia.org/wiki/Ghost_in_the_Shell_(1995_film)" target="_blank" rel="noopener">Ghost in the Shell</a>.</p></article>
+      <article class="pal" id="c18-p5"><span class="n">18.5</span><p class="pal-name">MATRIX GREEN<a class="selflink" href="#c18-p5">§</a></p><p class="pal-body">The Wachowskis' 1999 <em>The Matrix</em> — the green-on-black "code rain" digital cascade, instantly the most-imitated visual effect of the late 1990s. <a href="https://en.wikipedia.org/wiki/The_Matrix" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c18-p6"><span class="n">18.6</span><p class="pal-name">CP2077 NIGHT CITY<a class="selflink" href="#c18-p6">§</a></p><p class="pal-body">CD Projekt Red's 2020 <em>Cyberpunk 2077</em> — the long-awaited videogame adaptation of Mike Pondsmith's 1988 tabletop RPG, set in Night City. <a href="https://en.wikipedia.org/wiki/Cyberpunk_2077" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Cyberpunk_(role-playing_game)" target="_blank" rel="noopener">Cyberpunk RPG</a>.</p></article>
+      <article class="pal" id="c18-p7"><span class="n">18.7</span><p class="pal-name">NEON TOKYO<a class="selflink" href="#c18-p7">§</a></p><p class="pal-body">Tokyo at night, Shinjuku and Shibuya — the saturation of Japanese commercial signage that gave <em>Blade Runner</em> its visual vocabulary and continues to anchor the cyberpunk aesthetic. <a href="https://en.wikipedia.org/wiki/Shinjuku" target="_blank" rel="noopener">Shinjuku</a> · <a href="https://en.wikipedia.org/wiki/Shibuya" target="_blank" rel="noopener">Shibuya</a>.</p></article>
+      <article class="pal" id="c18-p8"><span class="n">18.8</span><p class="pal-name">KOWLOON WALLED CITY<a class="selflink" href="#c18-p8">§</a></p><p class="pal-body">Kowloon Walled City — the densest human settlement in history, demolished in 1994. The unplanned vertical labyrinth of Hong Kong that became cyberpunk's reference for "lawless megastructure." <a href="https://en.wikipedia.org/wiki/Kowloon_Walled_City" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c18-p9"><span class="n">18.9</span><p class="pal-name">ACID RAIN<a class="selflink" href="#c18-p9">§</a></p><p class="pal-body">Acid rain — the actual atmospheric phenomenon (sulphur dioxide + water → sulfuric acid), and the visual shorthand cyberpunk uses for "the world has poisoned its own sky." <a href="https://en.wikipedia.org/wiki/Acid_rain" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c18-p10"><span class="n">18.10</span><p class="pal-name">CHROME<a class="selflink" href="#c18-p10">§</a></p><p class="pal-body">Chrome — the polished metal surface that became cyberpunk's vocabulary of cybernetic body modification and corporate sleekness, descending from the chrome-fetish typography of Roger Dean and HR Giger. <a href="https://en.wikipedia.org/wiki/Chrome_plating" target="_blank" rel="noopener">Chrome plating</a>.</p></article>
+      <article class="pal" id="c18-p11"><span class="n">18.11</span><p class="pal-name">SYNTH PINK<a class="selflink" href="#c18-p11">§</a></p><p class="pal-body">The hot pink of the synthwave revival (~2010 onward) — the colour of the imaginary 1980s that 80s sci-fi never actually used, codified by Kavinsky and the <em>Drive</em> soundtrack. <a href="https://en.wikipedia.org/wiki/Synthwave" target="_blank" rel="noopener">Synthwave</a>.</p></article>
+      <article class="pal" id="c18-p12"><span class="n">18.12</span><p class="pal-name">ELECTRIC VIOLET<a class="selflink" href="#c18-p12">§</a></p><p class="pal-body">The electric violet of the same synthwave palette — paired with hot pink and cyan, the three colours of the imagined retro-future. <a href="https://en.wikipedia.org/wiki/Synthwave" target="_blank" rel="noopener">Synthwave</a>.</p></article>
+      <article class="pal" id="c18-p13"><span class="n">18.13</span><p class="pal-name">HOLOGRAPHIC<a class="selflink" href="#c18-p13">§</a></p><p class="pal-body">Holographic colour-shifting surfaces — the chromatic-aberration aesthetic of vapourwave and post-cyberpunk graphic design, descending from actual diffraction-grating film. <a href="https://en.wikipedia.org/wiki/Holography" target="_blank" rel="noopener">Holography</a>.</p></article>
+      <article class="pal" id="c18-p14"><span class="n">18.14</span><p class="pal-name">CYBERDECK<a class="selflink" href="#c18-p14">§</a></p><p class="pal-body">The hand-built portable computer of cyberpunk fiction, descended from the William Gibson "deck" — modernised by the post-2010 cyberdeck DIY scene on Reddit. <a href="https://en.wikipedia.org/wiki/Cyberdeck" target="_blank" rel="noopener">Cyberdeck</a>.</p></article>
+      <article class="pal" id="c18-p15"><span class="n">18.15</span><p class="pal-name">NETRUNNER DARK<a class="selflink" href="#c18-p15">§</a></p><p class="pal-body">The netrunner — Gibson's archetype of the human who jacks into cyberspace. The dark mode role of cyberpunk's deepest interior space. <a href="https://en.wikipedia.org/wiki/Cyberpunk" target="_blank" rel="noopener">Cyberpunk</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 19 · VAPORWAVE =========================================== -->
+  <section class="collection" id="c19">
+    <div class="coll-head"><span class="n">19</span><h3>Vaporwave<a class="selflink" href="#c19">§</a></h3></div>
+    <p class="coll-sub">11 slots. Floral Shoppe 2011 to the 3 AM moodboard. Nostalgia for a 1980s that never existed.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 19.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Macintosh Plus — <em>Floral Shoppe</em> (フローラルの専門店), December 2011</strong>. The founding album. Ramona Andra Xavier. <a href="https://en.wikipedia.org/wiki/Floral_Shoppe" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Adam Harper — "Vaporwave and the pop-art of the virtual plaza"</strong>, <em>Dummy Magazine</em>, 7 December 2012. The founding critical essay.</li>
+        <li><span class="n">c</span><strong>Grafton Tanner — <em>Babbling Corpse: Vaporwave and the Commodification of Ghosts</em></strong> (2016). The book-length academic treatment.</li>
+        <li><span class="n">d</span><strong>Simon Reynolds — <em>Retromania</em></strong> (2011). Context for why the genre exists.</li>
+        <li><span class="n">e</span><strong>City pop</strong> — <a href="https://en.wikipedia.org/wiki/City_pop" target="_blank" rel="noopener">Wikipedia</a>. Mariya Takeuchi's "Plastic Love" (1984) going viral 2017–19 is the best case study.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c19-p1"><span class="n">19.1</span><p class="pal-name">FLORAL SHOPPE · light role<a class="selflink" href="#c19-p1">§</a></p><p class="pal-body">Macintosh Plus's 2011 album <em>Floral Shoppe</em> — the founding object of vaporwave, built around a pitched-down sample of Diana Ross's "It's Your Move" and a low-res Greek bust on the cover. <a href="https://en.wikipedia.org/wiki/Floral_Shoppe" target="_blank" rel="noopener">Floral Shoppe</a> · <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank" rel="noopener">Vaporwave</a>.</p></article>
+      <article class="pal" id="c19-p2"><span class="n">19.2</span><p class="pal-name">GREEK STATUE · warm role<a class="selflink" href="#c19-p2">§</a></p><p class="pal-body">Greek and Roman bust photography — the white classical sculpture isolated against pastel backgrounds, the canonical vaporwave visual element since <em>Floral Shoppe</em>. <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank" rel="noopener">Vaporwave</a>.</p></article>
+      <article class="pal" id="c19-p3"><span class="n">19.3</span><p class="pal-name">HELVETICA CHROME · mono role<a class="selflink" href="#c19-p3">§</a></p><p class="pal-body">Helvetica chrome — the chrome-extruded version of Helvetica typography that vaporwave borrowed from 1980s VHS title cards and shopping-mall signage. <a href="https://en.wikipedia.org/wiki/Helvetica" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c19-p4"><span class="n">19.4</span><p class="pal-name">CYAN DREAM<a class="selflink" href="#c19-p4">§</a></p><p class="pal-body">The cyan of pool-liner plastic and 1990s software-box backgrounds — the second canonical vaporwave colour after pink. <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank" rel="noopener">Vaporwave</a>.</p></article>
+      <article class="pal" id="c19-p5"><span class="n">19.5</span><p class="pal-name">LAVENDER DUSK<a class="selflink" href="#c19-p5">§</a></p><p class="pal-body">The lavender-pink dusk of the imagined Miami sunset — central to the closing-mall melancholy of mid-2010s vaporwave. <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank" rel="noopener">Vaporwave</a>.</p></article>
+      <article class="pal" id="c19-p6"><span class="n">19.6</span><p class="pal-name">WINDOWS 95<a class="selflink" href="#c19-p6">§</a></p><p class="pal-body">The 1995 Microsoft Windows 95 default UI — the grey window chrome and Marble Mountain wallpaper that vaporwave reanimated in 2012. <a href="https://en.wikipedia.org/wiki/Windows_95" target="_blank" rel="noopener">Windows 95</a>.</p></article>
+      <article class="pal" id="c19-p7"><span class="n">19.7</span><p class="pal-name">PALM TREE SILHOUETTE<a class="selflink" href="#c19-p7">§</a></p><p class="pal-body">The single palm tree silhouette against a sunset horizon — the canonical Outrun visual, descended from Magnum PI title cards and Tony Montana Miami in <em>Scarface</em>. <a href="https://en.wikipedia.org/wiki/Outrun_(aesthetic)" target="_blank" rel="noopener">Outrun</a>.</p></article>
+      <article class="pal" id="c19-p8"><span class="n">19.8</span><p class="pal-name">MIAMI 1984<a class="selflink" href="#c19-p8">§</a></p><p class="pal-body">1984 Miami — the unspecific pastel "Miami" of the cultural imagination that <em>Miami Vice</em> launched and vaporwave preserved. The flamingo and the art deco hotel. <a href="https://en.wikipedia.org/wiki/Miami_Vice" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank" rel="noopener">Vaporwave</a>.</p></article>
+      <article class="pal" id="c19-p9"><span class="n">19.9</span><p class="pal-name">CITY POP TAPE<a class="selflink" href="#c19-p9">§</a></p><p class="pal-body">Mariya Takeuchi's 1984 Japanese city pop track "Plastic Love" — resurrected by the YouTube algorithm in 2017 and turned into a 40-million-view global phenomenon. The audio cassette is the visual icon. <a href="https://en.wikipedia.org/wiki/Plastic_Love" target="_blank" rel="noopener">Plastic Love</a> · <a href="https://en.wikipedia.org/wiki/City_pop" target="_blank" rel="noopener">City pop</a>.</p></article>
+      <article class="pal" id="c19-p10"><span class="n">19.10</span><p class="pal-name">DOLPHIN<a class="selflink" href="#c19-p10">§</a></p><p class="pal-body">The dolphin — the Lisa Frank trapper-keeper school-supply animal, central to the vaporwave-and-millennial-nostalgia visual register. <a href="https://en.wikipedia.org/wiki/Lisa_Frank" target="_blank" rel="noopener">Lisa Frank</a>.</p></article>
+      <article class="pal" id="c19-p11"><span class="n">19.11</span><p class="pal-name">LATE NIGHT · dark role<a class="selflink" href="#c19-p11">§</a></p><p class="pal-body">The lo-fi-hip-hop-radio-beats-to-study-or-relax-to dark mode of vaporwave — the laptop on a desk in a dark room with the moon visible through the window. <a href="https://en.wikipedia.org/wiki/Lo-fi_music" target="_blank" rel="noopener">Lo-fi</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 20 · CHERNOBYL =========================================== -->
+  <section class="collection" id="c20">
+    <div class="coll-head"><span class="n">20</span><h3>Chernobyl ☢<a class="selflink" href="#c20">§</a></h3></div>
+    <p class="coll-sub">Synthetic accents only. Hazmat, Cherenkov, Geiger.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 20.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Svetlana Alexievich — <em>Voices from Chernobyl</em></strong> (1997). Nobel Prize 2015. The definitive oral history of the disaster — the only book on this list that is as much a moral document as a historical one. <a href="https://en.wikipedia.org/wiki/Voices_from_Chernobyl" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Serhii Plokhy — <em>Chernobyl: History of a Tragedy</em></strong> (2018). Baillie Gifford Prize. Best modern single-volume history.</li>
+        <li><span class="n">c</span><strong>Adam Higginbotham — <em>Midnight in Chernobyl</em></strong> (2019). More journalistic, equally rigorous.</li>
+        <li><span class="n">d</span><strong>Craig Mazin — <em>Chernobyl</em> HBO miniseries</strong> (2019). The visual-culture source.</li>
+        <li><span class="n">e</span><strong>IAEA Chernobyl reports</strong> — official technical source. <a href="https://www.iaea.org/topics/chornobyl" target="_blank" rel="noopener">iaea.org</a></li>
+        <li><span class="n">f</span><strong>Mary Mycio — <em>Wormwood Forest: A Natural History of Chernobyl</em></strong> (2005). The ecology side.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c20-p1"><span class="n">20.1</span><p class="pal-name">АТОМГРАД ATOMGRAD · light role<a class="selflink" href="#c20-p1">§</a></p><p class="pal-body">Pripyat at its founding — the youngest city in the Soviet Union, average age 26, scheduled May Day amusement park opening, built to house the workers of the V.I. Lenin Nuclear Power Plant. The BEFORE state. <a href="https://en.wikipedia.org/wiki/Pripyat" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c20-p2"><span class="n">20.2</span><p class="pal-name">ПРИПЯТЬ PRIPYAT · warm role<a class="selflink" href="#c20-p2">§</a></p><p class="pal-body">Pripyat after April 26, 1986 — evacuated 36 hours after the explosion of Reactor 4, never reoccupied. The exclusion zone surrounding it remains uninhabited. <a href="https://en.wikipedia.org/wiki/Pripyat" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Chernobyl_Exclusion_Zone" target="_blank" rel="noopener">Exclusion Zone</a>.</p></article>
+      <article class="pal" id="c20-p3"><span class="n">20.3</span><p class="pal-name">СВИНЕЦ SVINETS · mono role<a class="selflink" href="#c20-p3">§</a></p><p class="pal-body">Lead — the dense metal poured into the burning reactor core in the days after the accident in failed attempts to seal it, and used to line ambulance bays at Hospital 126 where the firefighters were taken. <a href="https://en.wikipedia.org/wiki/Lead" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c20-p4"><span class="n">20.4</span><p class="pal-name">КРАСНЫЙ ЛЕС RED FOREST<a class="selflink" href="#c20-p4">§</a></p><p class="pal-body">The pine forest west of the reactor that turned reddish-brown and died from the radiation in the days after the accident. The trees still stand, a 4 km² monument to the dose. <a href="https://en.wikipedia.org/wiki/Red_Forest" target="_blank" rel="noopener">Red Forest</a>.</p></article>
+      <article class="pal" id="c20-p5"><span class="n">20.5</span><p class="pal-name">CHERENKOV<a class="selflink" href="#c20-p5">§</a></p><p class="pal-body">Cherenkov radiation — the blue glow emitted by charged particles travelling faster than light through water. Visible inside the spent-fuel pools of every operating nuclear reactor. <a href="https://en.wikipedia.org/wiki/Cherenkov_radiation" target="_blank" rel="noopener">Cherenkov radiation</a>.</p></article>
+      <article class="pal" id="c20-p6"><span class="n">20.6</span><p class="pal-name">ПОЛЫНЬ POLYN'<a class="selflink" href="#c20-p6">§</a></p><p class="pal-body">Wormwood (<em>Artemisia absinthium</em>) — the bitter herb of the Sahel and central Eurasia. "Chernobyl" is the Ukrainian name for it; the Book of Revelation's "star called Wormwood" was widely cited after the accident. <a href="https://en.wikipedia.org/wiki/Artemisia_absinthium" target="_blank" rel="noopener">Artemisia absinthium</a>.</p></article>
+      <article class="pal" id="c20-p7"><span class="n">20.7</span><p class="pal-name">GEIGER<a class="selflink" href="#c20-p7">§</a></p><p class="pal-body">The Geiger counter — invented by Hans Geiger in 1908, the analog dial dosimeter that became the icon of the radiation-detection apparatus. <a href="https://en.wikipedia.org/wiki/Geiger_counter" target="_blank" rel="noopener">Geiger counter</a>.</p></article>
+      <article class="pal" id="c20-p8"><span class="n">20.8</span><p class="pal-name">HAZMAT<a class="selflink" href="#c20-p8">§</a></p><p class="pal-body">The international radiation hazard symbol — the trefoil — designed at UC Berkeley's Radiation Laboratory in 1946. The yellow-and-black version is the universal warning. <a href="https://en.wikipedia.org/wiki/Hazard_symbol" target="_blank" rel="noopener">Hazard symbol</a> · <a href="https://en.wikipedia.org/wiki/Ionizing_radiation" target="_blank" rel="noopener">Ionizing radiation</a>.</p></article>
+      <article class="pal" id="c20-p9"><span class="n">20.9</span><p class="pal-name">САРКОФАГ SARCOFAG<a class="selflink" href="#c20-p9">§</a></p><p class="pal-body">The original concrete Sarcophagus erected over Reactor 4 in November 1986 — and the New Safe Confinement arch installed over it in 2016, designed to last 100 years. <a href="https://en.wikipedia.org/wiki/Chernobyl_New_Safe_Confinement" target="_blank" rel="noopener">New Safe Confinement</a> · <a href="https://en.wikipedia.org/wiki/Object_Shelter" target="_blank" rel="noopener">Object Shelter</a>.</p></article>
+      <article class="pal" id="c20-p10"><span class="n">20.10</span><p class="pal-name">РЕАКТОР 4 REAKTOR 4 · dark role<a class="selflink" href="#c20-p10">§</a></p><p class="pal-body">Reactor 4 of the V.I. Lenin Nuclear Power Plant. The explosion occurred at 01:23:45 local time on April 26, 1986. The dark mode role anchors the entire collection. <a href="https://en.wikipedia.org/wiki/Chernobyl_disaster" target="_blank" rel="noopener">Chernobyl disaster</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 21 · TRIBAL INDIA ======================================== -->
+  <section class="collection" id="c21">
+    <div class="coll-head"><span class="n">21</span><h3>Tribal · India<a class="selflink" href="#c21">§</a></h3></div>
+    <p class="coll-sub">15 slots. Breaking format — no role slots. 13 cultural-geographic zones. 5 accent overrides.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 21.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Verrier Elwin</strong> — British-Indian anthropologist who became an Indian citizen. <em>The Baiga</em> (1939), <em>The Muria and their Ghotul</em> (1947). Controversial now, foundational ethnographic record. <a href="https://en.wikipedia.org/wiki/Verrier_Elwin" target="_blank" rel="noopener">Wikipedia</a></li>
+        <li><span class="n">b</span><strong>Ramachandra Guha — <em>Savaging the Civilized: Verrier Elwin, His Tribals, and India</em></strong> (1999). Critical biography; current standard on adivasi political history.</li>
+        <li><span class="n">c</span><strong>Felix Padel — <em>Sacrificing People: Invasions of a Tribal Landscape</em></strong> (2009). The Dongria Kondh / Niyamgiri / Vedanta case.</li>
+        <li><span class="n">d</span><strong>Ganesh Devy — People's Linguistic Survey of India</strong>. 780 Indian languages documented. <a href="https://www.bhasharesearch.org/" target="_blank" rel="noopener">bhasharesearch.org</a></li>
+        <li><span class="n">e</span><strong>Jyotindra Jain</strong> — National Crafts Museum scholarship; the best visual reference on adivasi art.</li>
+        <li><span class="n">f</span><em>Terminology note:</em> "tribal" is contested; "adivasi" (original inhabitants) is politically preferred. The collection's framing should acknowledge this if challenged.</li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c21-p1"><span class="n">21.1</span><p class="pal-name">वारली WARLI<a class="selflink" href="#c21-p1">§</a></p><p class="pal-body">Warli painting — the Maharashtra Adivasi tradition of white-rice-paste pictograms on red mud walls, dominated by hourglass-bodied human figures and the central <em>tarpa</em> dance circle. <a href="https://en.wikipedia.org/wiki/Warli_painting" target="_blank" rel="noopener">Warli painting</a>.</p></article>
+      <article class="pal" id="c21-p2"><span class="n">21.2</span><p class="pal-name">ढोकरा DHOKRA<a class="selflink" href="#c21-p2">§</a></p><p class="pal-body">Dhokra — the lost-wax bronze casting tradition of the Bastar tribes, traceable to the Indus Valley Civilization's Dancing Girl figurine (c. 2300 BCE). The crisscrossing wire armature is the signature. <a href="https://en.wikipedia.org/wiki/Dhokra" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c21-p3"><span class="n">21.3</span><p class="pal-name">गोंड GOND<a class="selflink" href="#c21-p3">§</a></p><p class="pal-body">Gond painting — the Madhya Pradesh tribal tradition built on dot, dash, and curve fillings, with animals as the primary subject. Jangarh Singh Shyam (1962–2001) is the modern founding figure. <a href="https://en.wikipedia.org/wiki/Gondi_painting" target="_blank" rel="noopener">Gondi painting</a>.</p></article>
+      <article class="pal" id="c21-p4"><span class="n">21.4</span><p class="pal-name">भील BHIL<a class="selflink" href="#c21-p4">§</a></p><p class="pal-body">Bhil pithora painting — the dot-only Madhya Pradesh tradition where every figure and form is composed of pure dots, no lines, no fills. <a href="https://en.wikipedia.org/wiki/Bhil_painting" target="_blank" rel="noopener">Bhil painting</a>.</p></article>
+      <article class="pal" id="c21-p5"><span class="n">21.5</span><p class="pal-name">पिठोरा PITHORA<a class="selflink" href="#c21-p5">§</a></p><p class="pal-body">Pithora painting — the Rathwa tribal ritual mural tradition of Chhota Udepur, painted by male shamans (<em>lakharas</em>) over several days as a fulfilled vow, centred on horses with riders. <a href="https://en.wikipedia.org/wiki/Pithora_painting" target="_blank" rel="noopener">Pithora painting</a>.</p></article>
+      <article class="pal" id="c21-p6"><span class="n">21.6</span><p class="pal-name">ଡଙ୍ଗରିଆ DONGRIA KONDH<a class="selflink" href="#c21-p6">§</a></p><p class="pal-body">The Dongria Kondh of Odisha — whose 2013 community vote blocked the UK mining giant Vedanta from extracting bauxite from the sacred Niyamgiri hills. The most significant indigenous land-rights victory in modern India. <a href="https://en.wikipedia.org/wiki/Dongria_Kondh" target="_blank" rel="noopener">Dongria Kondh</a> · <a href="https://en.wikipedia.org/wiki/Niyamgiri" target="_blank" rel="noopener">Niyamgiri</a>.</p></article>
+      <article class="pal" id="c21-p7"><span class="n">21.7</span><p class="pal-name">खोवर KHOVAR<a class="selflink" href="#c21-p7">§</a></p><p class="pal-body">Khovar painting — the Jharkhand tribal tradition of ritual house decoration, applied as scratched-wet-clay relief on lime-washed mud walls, made by women for marriages. <a href="https://en.wikipedia.org/wiki/Khovar_painting" target="_blank" rel="noopener">Khovar painting</a>.</p></article>
+      <article class="pal" id="c21-p8"><span class="n">21.8</span><p class="pal-name">बंजारा BANJARA<a class="selflink" href="#c21-p8">§</a></p><p class="pal-body">Banjara (Lambadi) embroidery — the mirror-and-cowrie shell needlework of the Banjara nomadic community, descended from the Rajasthani Lohar tradition. <a href="https://en.wikipedia.org/wiki/Banjara" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c21-p9"><span class="n">21.9</span><p class="pal-name">नागा NAGA<a class="selflink" href="#c21-p9">§</a></p><p class="pal-body">The Naga peoples of Nagaland — 17 distinct tribes whose shared visual culture is dominated by the mithun (<em>Bos frontalis</em>), the gayal cattle of the eastern Himalayas, and the hornbill. <a href="https://en.wikipedia.org/wiki/Naga_people" target="_blank" rel="noopener">Naga people</a> · <a href="https://en.wikipedia.org/wiki/Gayal" target="_blank" rel="noopener">Gayal</a>.</p></article>
+      <article class="pal" id="c21-p10"><span class="n">21.10</span><p class="pal-name">মিচিং MISING<a class="selflink" href="#c21-p10">§</a></p><p class="pal-body">The Mising of Assam — a riverine community on the Brahmaputra, whose traditional <em>chang ghar</em> stilt houses are adapted to seasonal flooding. <a href="https://en.wikipedia.org/wiki/Mising_people" target="_blank" rel="noopener">Mising people</a>.</p></article>
+      <article class="pal" id="c21-p11"><span class="n">21.11</span><p class="pal-name">आपातानी APATANI<a class="selflink" href="#c21-p11">§</a></p><p class="pal-body">The Apatani of Arunachal Pradesh's Ziro Valley — known globally for the integrated rice-fish farming on their terraced wet-rice fields, and for the (now-discontinued) facial tattoos and nose-plugs of older women. UNESCO tentative list. <a href="https://en.wikipedia.org/wiki/Apatani_people" target="_blank" rel="noopener">Apatani people</a> · <a href="https://en.wikipedia.org/wiki/Ziro_Valley" target="_blank" rel="noopener">Ziro Valley</a>.</p></article>
+      <article class="pal" id="c21-p12"><span class="n">21.12</span><p class="pal-name">ka JAINSEM (KHASI)<a class="selflink" href="#c21-p12">§</a></p><p class="pal-body">The Khasi <em>jainsem</em> — the unstitched two-piece cloth garment of Khasi women in Meghalaya, secured at both shoulders. <a href="https://en.wikipedia.org/wiki/Jainsem" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c21-p13"><span class="n">21.13</span><p class="pal-name">MIZO PUANCHEI<a class="selflink" href="#c21-p13">§</a></p><p class="pal-body">The Mizo <em>puanchei</em> — the ceremonial shawl of Mizoram, worn during the Cheraw bamboo dance, the most distinctive of Mizo cultural exports. <a href="https://en.wikipedia.org/wiki/Cheraw_dance" target="_blank" rel="noopener">Cheraw</a> · <a href="https://en.wikipedia.org/wiki/Mizo_people" target="_blank" rel="noopener">Mizo people</a>.</p></article>
+      <article class="pal" id="c21-p14"><span class="n">21.14</span><p class="pal-name">डोकोना BODO<a class="selflink" href="#c21-p14">§</a></p><p class="pal-body">The Bodo of Assam — the largest plains tribal community in northeast India. The <em>dokhona</em> is the women's traditional wraparound garment. <a href="https://en.wikipedia.org/wiki/Bodo_people" target="_blank" rel="noopener">Bodo people</a> · <a href="https://en.wikipedia.org/wiki/Bagurumba" target="_blank" rel="noopener">Bagurumba</a>.</p></article>
+      <article class="pal" id="c21-p15"><span class="n">21.15</span><p class="pal-name">बिश्नोई BISHNOI<a class="selflink" href="#c21-p15">§</a></p><p class="pal-body">The Bishnoi of Rajasthan — followers of Guru Jambheshwar (1485 CE) who teach 29 principles of environmental protection. The 1730 Khejarli massacre, where 363 Bishnoi were killed protecting <em>khejri</em> trees from the Maharaja's woodcutters, is the founding episode of Indian environmental ethics. The 1970s Chipko movement explicitly invoked it. <a href="https://en.wikipedia.org/wiki/Khejarli" target="_blank" rel="noopener">Khejarli</a> · <a href="https://en.wikipedia.org/wiki/Bishnoi" target="_blank" rel="noopener">Bishnoi</a>.</p></article>
+    </div>
+  </section>
+
+  <!-- 22 · SAREES ============================================== -->
+  <section class="collection" id="c22">
+    <div class="coll-head"><span class="n">22</span><h3>Sarees · India<a class="selflink" href="#c22">§</a></h3></div>
+    <p class="coll-sub">15 slots. Breaking format. 13 regions. Gold zari, jewel tones, jewel histories.</p>
+
+    <div class="anchors-block">
+      <p class="label">Collection anchors · 22.0</p>
+      <ol>
+        <li><span class="n">a</span><strong>Rta Kapur Chishti — <em>Saris: Tradition and Beyond</em></strong> (2010, Roli Books). Definitive one-volume reference; 108 regional drapes documented.</li>
+        <li><span class="n">b</span><strong>Rta Kapur Chishti &amp; Martand Singh — <em>Saris of India</em></strong> (multi-volume, 1988–95). The underlying scholarly work.</li>
+        <li><span class="n">c</span><strong>The Sari Series</strong> — <a href="https://www.thesariseries.com/" target="_blank" rel="noopener">thesariseries.com</a>. Free video tutorials on 84 regional drapes. Border &amp; Fall project.</li>
+        <li><span class="n">d</span><strong>Mukulika Banerjee &amp; Daniel Miller — <em>The Sari</em></strong> (2003). The anthropological study.</li>
+        <li><span class="n">e</span><strong>Linda Lynton — <em>The Sari: Styles, Patterns, History, Techniques</em></strong> (1995). Thames &amp; Hudson visual reference.</li>
+        <li><span class="n">f</span><strong>GI Registry India</strong> — most of these 15 slots are Geographical Indication registered. <a href="https://ipindia.gov.in/" target="_blank" rel="noopener">ipindia.gov.in</a></li>
+      </ol>
+    </div>
+
+    <div class="palettes">
+      <p class="label">Palette anchors</p>
+      <article class="pal" id="c22-p1"><span class="n">22.1</span><p class="pal-name">BANARASI<a class="selflink" href="#c22-p1">§</a></p><p class="pal-body">Banaras (Varanasi) brocade — the heavy gold-zari silk woven on draw-looms in Varanasi for centuries. GI tag 2009. <a href="https://en.wikipedia.org/wiki/Banarasi_sari" target="_blank" rel="noopener">Banarasi sari</a>.</p></article>
+      <article class="pal" id="c22-p2"><span class="n">22.2</span><p class="pal-name">காஞ்சிபுரம் KANCHIPURAM<a class="selflink" href="#c22-p2">§</a></p><p class="pal-body">Kanchipuram (Tamil Nadu) silk — the temple-town tradition with thick gold borders woven separately and joined to the body. GI tag 2005. <a href="https://en.wikipedia.org/wiki/Kanchipuram_silk" target="_blank" rel="noopener">Kanchipuram silk</a>.</p></article>
+      <article class="pal" id="c22-p3"><span class="n">22.3</span><p class="pal-name">પટોળા PATOLA<a class="selflink" href="#c22-p3">§</a></p><p class="pal-body">Patola — Patan Gujarat double-ikat silk, with both warp and weft tied and dyed before weaving. Six months of work for one saree. GI tag 2013. <a href="https://en.wikipedia.org/wiki/Patola_sari" target="_blank" rel="noopener">Patola sari</a>.</p></article>
+      <article class="pal" id="c22-p4"><span class="n">22.4</span><p class="pal-name">બાંધણી BANDHANI<a class="selflink" href="#c22-p4">§</a></p><p class="pal-body">Bandhani — the Gujarat-Rajasthan tie-dye tradition, with tens of thousands of points tied by hand on cotton or silk before dyeing. <a href="https://en.wikipedia.org/wiki/Bandhani" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c22-p5"><span class="n">22.5</span><p class="pal-name">पैठणी PAITHANI<a class="selflink" href="#c22-p5">§</a></p><p class="pal-body">Paithani (Maharashtra) silk — the Paithan tradition with tapestry-woven peacock and lotus motifs in the pallu and border. Six-month weaving cycles. GI tag 2010. <a href="https://en.wikipedia.org/wiki/Paithani" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c22-p6"><span class="n">22.6</span><p class="pal-name">জামদানি JAMDANI<a class="selflink" href="#c22-p6">§</a></p><p class="pal-body">Jamdani (Bengal) — the supplementary-weft fine muslin tradition, descended from the legendary Dhaka muslin of the Mughal era. UNESCO Intangible Cultural Heritage 2013. <a href="https://en.wikipedia.org/wiki/Jamdani" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c22-p7"><span class="n">22.7</span><p class="pal-name">ସମ୍ବଲପୁରୀ SAMBALPURI<a class="selflink" href="#c22-p7">§</a></p><p class="pal-body">Sambalpuri (Odisha) ikat — the western Odisha tie-dye-and-weave tradition, with motifs that read as the same on both faces of the cloth. GI tag 2010. <a href="https://en.wikipedia.org/wiki/Sambalpuri_sari" target="_blank" rel="noopener">Sambalpuri sari</a>.</p></article>
+      <article class="pal" id="c22-p8"><span class="n">22.8</span><p class="pal-name">चंदेरी CHANDERI<a class="selflink" href="#c22-p8">§</a></p><p class="pal-body">Chanderi (Madhya Pradesh) — the Bundelkhand silk-cotton blend with sheer transparency and gold zari accents. GI tag 2005. <a href="https://en.wikipedia.org/wiki/Chanderi_sari" target="_blank" rel="noopener">Chanderi sari</a>.</p></article>
+      <article class="pal" id="c22-p9"><span class="n">22.9</span><p class="pal-name">মুগা MUGA<a class="selflink" href="#c22-p9">§</a></p><p class="pal-body">Muga silk (Assam) — the golden silk from the wild silkworm <em>Antheraea assamensis</em>, found only in Assam. The colour deepens with age. GI tag 2007. <a href="https://en.wikipedia.org/wiki/Muga_silk" target="_blank" rel="noopener">Muga silk</a>.</p></article>
+      <article class="pal" id="c22-p10"><span class="n">22.10</span><p class="pal-name">ਫੁਲਕਾਰੀ PHULKARI<a class="selflink" href="#c22-p10">§</a></p><p class="pal-body">Phulkari — the Punjab embroidery tradition (literally "flower work"), worked from the back in long darning stitches that fill the front with floral motifs. <a href="https://en.wikipedia.org/wiki/Phulkari" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c22-p11"><span class="n">22.11</span><p class="pal-name">MAHESHWARI<a class="selflink" href="#c22-p11">§</a></p><p class="pal-body">Maheshwari — Madhya Pradesh's Maheshwar silk-cotton, the 18th-century revival under Ahilyabai Holkar, the queen-regent of Indore. GI tag 2010. <a href="https://en.wikipedia.org/wiki/Maheshwari_sari" target="_blank" rel="noopener">Maheshwari sari</a>.</p></article>
+      <article class="pal" id="c22-p12"><span class="n">22.12</span><p class="pal-name">POCHAMPALLY<a class="selflink" href="#c22-p12">§</a></p><p class="pal-body">Pochampally ikat (Telangana) — the geometric tie-dye-and-weave tradition. GI tag 2005. <a href="https://en.wikipedia.org/wiki/Pochampally_Saree" target="_blank" rel="noopener">Pochampally Saree</a>.</p></article>
+      <article class="pal" id="c22-p13"><span class="n">22.13</span><p class="pal-name">বালুচরী BALUCHARI<a class="selflink" href="#c22-p13">§</a></p><p class="pal-body">Baluchari (Bengal) — the Murshidabad/Bishnupur silk with mythological narrative scenes woven into the pallu. GI tag 2011. <a href="https://en.wikipedia.org/wiki/Baluchari_sari" target="_blank" rel="noopener">Baluchari sari</a>.</p></article>
+      <article class="pal" id="c22-p14"><span class="n">22.14</span><p class="pal-name">కలంకారి KALAMKARI<a class="selflink" href="#c22-p14">§</a></p><p class="pal-body">Kalamkari (Andhra) — the pen-drawn cotton tradition (<em>kalam</em> = pen, <em>kari</em> = work), originally Persian-influenced temple cloths from the Coromandel coast. GI tag 2008. <a href="https://en.wikipedia.org/wiki/Kalamkari" target="_blank" rel="noopener">Wikipedia</a>.</p></article>
+      <article class="pal" id="c22-p15"><span class="n">22.15</span><p class="pal-name">ಇಲ್ಕಲ್ ILKAL<a class="selflink" href="#c22-p15">§</a></p><p class="pal-body">Ilkal (Karnataka) — the cotton-and-silk tradition with the distinctive <em>tope teni</em> end-piece woven separately and joined to the body. GI tag 2007. <a href="https://en.wikipedia.org/wiki/Ilkal_saree" target="_blank" rel="noopener">Ilkal saree</a>.</p></article>
+    </div>
+  </section>
+</section>
+
+<!-- ========================================================= -->
+<!-- § 3 — APPARATUS                                            -->
+<!-- ========================================================= -->
+<section class="part" id="defence">
+  <p class="part-label">§ 3.1</p>
+  <h2>Disputatio</h2>
+  <p class="lede">In the scholastic tradition: the objection posed directly, then answered. Four anticipated challenges, each framed as an accusation and met in the form of a reply.</p>
+
+  <div class="box">
+    <h4>Objectio I · <em>"You are an appropriator. These are not your traditions to compile."</em></h4>
+    <p><strong>Respondeo.</strong> This library names specific communities, specific technical lineages, and specific political histories. Each of the 240 palettes carries a citation, a material source, and a story field. Where the terminology is itself contested — as with the word "tribal" versus the preferred "adivasi" (§21.0.f) — the debate is acknowledged within the preface rather than papered over. The charge of appropriation requires an undifferentiated borrowing; what you will find here is differentiated attribution, and that is a different thing.</p>
+  </div>
+
+  <div class="box">
+    <h4>Objectio II · <em>"You are a pretender. You have no standing to do this work."</em></h4>
+    <p><strong>Respondeo.</strong> No standing is claimed. The canon of colour-as-culture — Finlay (§0.1), St Clair (§0.2), Ball (§0.3), Pastoureau's six monographs (§0.4), Gage (§0.5) — has for decades established that colours are historical artefacts, not physical constants. What that canon has not produced is a design-facing, referenceable library that a working practitioner can actually use. Rangrez is that library. The role here is compiler, not ethnographer; the sources are named so that any reader may verify, extend, correct, or replace the compilation.</p>
+  </div>
+
+  <div class="box">
+    <h4>Objectio III · <em>"These are not colours. They are motifs. You have confused vocabulary with chromatics."</em></h4>
+    <p><strong>Respondeo.</strong> The confusion, if it is one, is Pastoureau's before it is ours. His monographs argue at length that a colour is never a wavelength in isolation — it is a historical bundle of material, meaning, ritual, and use, accumulated across centuries. Shab-e Yalda (§10.10) is not a hex code; it is the pomegranate-and-midnight palette associated with a specific Zoroastrian winter-solstice night. Qinghua (§2.7) is not merely a blue; it is the cobalt that carried Yuan and Ming porcelain into the trade routes of the world, and from there into Delft, Iznik, Talavera and the azulejo. The motif <em>is</em> the colour. To strip out the meaning and keep only the wavelength is to discard most of what the reader came for.</p>
+  </div>
+
+  <div class="box">
+    <h4>Objectio IV · <em>"Your selection is arbitrary. Why these twenty-two and not others?"</em></h4>
+    <p><strong>Respondeo.</strong> The selection has never claimed to be final. The West Africa preface (§12) already names the gap in plain language: only one African section exists, where at minimum Egypt, the Horn, and the Ethiopian tradition belong. Southeast Asia, the Andes, and the Pacific are equally absent and equally planned. This is the working library, not the closed canon. The better question is not "why these twenty-two" but "which twenty-three, twenty-four, twenty-five" — and that question is welcomed, which is why this disputatio exists at all.</p>
+  </div>
+</section>
+
+<section class="part" id="reading">
+  <p class="part-label">§ 3.2</p>
+  <h2>Priority Reading</h2>
+  <p class="lede">A reading order. Ten books sequenced so that each one compounds the reach of those already read.</p>
+
+  <div class="box">
+    <ol>
+      <li><strong>Kassia St Clair — <em>The Secret Lives of Colour</em></strong> (§0.2). The shortest route into the field.</li>
+      <li><strong>Victoria Finlay — <em>Colour: Travels Through the Paintbox</em></strong> (§0.1). The spiritual ancestor of this kind of compilation — first-person travel through the places where colours are made.</li>
+      <li><strong>Philip Ball — <em>Bright Earth</em></strong> (§0.3). The chemistry and technology strand: how pigments are made, why some replaced others, and what the shifts meant for painting.</li>
+      <li><strong>Michel Pastoureau — <em>Blue</em></strong> (§0.4). The best starting point in the six-volume monograph series — a single volume carrying lapis, qinghua, indigo, Gzhel, and azulejo on one narrative thread.</li>
+      <li><strong>Rta Kapur Chishti — <em>Saris: Tradition and Beyond</em></strong> (§22.0.a). The only comprehensive single-volume reference on the regional saree tradition.</li>
+      <li><strong>Svetlana Alexievich — <em>Voices from Chernobyl</em></strong> (§20.0.a). A moral document as much as a historical one.</li>
+      <li><strong>Pastoureau — <em>Red</em></strong> (§0.4). Covers cochineal, zhusha, kumkum, khokhloma, falu — five more collections.</li>
+      <li><strong>Finlay — <em>The Brilliant History of Color in Art</em></strong>. The art-history follow-up to #2.</li>
+      <li><strong>Catherine McKinley — <em>Indigo</em></strong> (§0.9). West Africa.</li>
+      <li><strong>Tanizaki — <em>In Praise of Shadows</em></strong> (§1.0.d). Japan — one evening's reading.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon">
+  Rangrez · Bibliothèque · Sources behind the library
+</footer>
+
+
+
+
+
+
+  </div>
+  </div>
+</section>
+
+
 <div class="mobile-header" id="mobile-header">
   <div class="mobile-header-top">
     <h1><a href="./" style="color:inherit; text-decoration:none;">Rangrez</a></h1>
     <div class="mobile-header-icons">
       <button class="mobile-icon-btn" id="mobile-search-btn" aria-label="Search">⌕</button>
       <button class="mobile-icon-btn" id="mobile-layout-btn" aria-label="Cycle view mode">▦</button>
+      <button class="mobile-icon-btn" id="mobile-biblio-btn" aria-label="Bibliothèque">§</button>
       <button class="mobile-icon-btn" id="mobile-theme-btn" aria-label="Toggle dark mode">◐</button>
       <button class="mobile-icon-btn" id="mobile-help-btn" aria-label="Help">?</button>
     </div>
@@ -1586,6 +2767,7 @@ groups.forEach(group => {
           <button class="card-share-btn" data-key="${c.key}" data-idx="${idx}" title="Share this palette" aria-label="Share">↗</button>
           <button class="json-btn" data-key="${c.key}" data-idx="${idx}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
           <button class="info-btn" data-key="${c.key}" data-idx="${idx}" title="Story" aria-label="Story">i</button>
+          <button class="card-biblio-btn" data-key="${c.key}" data-idx="${idx}" title="Bibliothèque entry" aria-label="Bibliothèque">§</button>
         </div>
         <div class="preview${markClass}" style="background:${col.BODY};color:${col.INK}">
           ${svgMark}
@@ -1731,6 +2913,7 @@ function runSearch(rawQuery) {
         <button class="card-share-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Share this palette" aria-label="Share">↗</button>
         <button class="json-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Click: copy palette JSON · Shift+click: download .json" aria-label="JSON">{}</button>
         <button class="info-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Story" aria-label="Story">i</button>
+        <button class="card-biblio-btn" data-key="${item.countryKey}" data-idx="${item.index}" title="Bibliothèque entry" aria-label="Bibliothèque">§</button>
       </div>
       <div class="preview${markClass}" style="background:${col.BODY};color:${col.INK}">
         ${svgMark}
@@ -2532,7 +3715,199 @@ function applyDeepLink() {
 window.addEventListener("hashchange", applyDeepLink);
 applyDeepLink();
 maybeShowWelcome();
+
+// ============ BIBLIOTHÈQUE TOGGLE, ROUTING & NAV ============
+const BIBLIO_COLL_MAP = {
+  "japan":"c1","china":"c2","india1":"c3","india_west":"c4","kashmir":"c5",
+  "india_east":"c6","india_south":"c7","mexico":"c8","morocco":"c9","iran":"c10",
+  "scandinavia":"c11","westafrica":"c12","italy":"c13","russia":"c14",
+  "bauhaus":"c15","brutalism":"c16","memphis":"c17","cyberpunk":"c18",
+  "vaporwave":"c19","chernobyl":"c20","tribal":"c21","sarees":"c22"
+};
+// Reverse map for figuring out which palette key a biblio cN belongs to
+const BIBLIO_COLL_MAP_REV = {};
+for (const k in BIBLIO_COLL_MAP) BIBLIO_COLL_MAP_REV[BIBLIO_COLL_MAP[k]] = k;
+
+// Track where the user came from (for the floating back button)
+let biblioReferrer = null;  // { sectionKey, paletteIndex, paletteName }
+
+function setBackButtonLabel() {
+  const labelEl = document.getElementById("biblio-back-label");
+  if (!labelEl) return;
+  if (biblioReferrer && biblioReferrer.paletteName) {
+    labelEl.textContent = `Back to ${biblioReferrer.paletteName}`;
+  } else if (biblioReferrer && biblioReferrer.sectionLabel) {
+    labelEl.textContent = `Back to ${biblioReferrer.sectionLabel}`;
+  } else {
+    labelEl.textContent = "Back to Rangrez";
+  }
+}
+
+function showBiblio(targetId) {
+  document.body.classList.add("biblio-mode");
+  setBackButtonLabel();
+  if (targetId) {
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      updateActiveNav();
+    }, 50);
+  } else {
+    window.scrollTo(0, 0);
+    setTimeout(updateActiveNav, 50);
+  }
+}
+
+function hideBiblio() {
+  document.body.classList.remove("biblio-mode");
+  // If we have a referrer, navigate back to that palette
+  if (biblioReferrer && biblioReferrer.sectionKey != null) {
+    const sectionKey = biblioReferrer.sectionKey;
+    const paletteIndex = biblioReferrer.paletteIndex;
+    if (typeof switchTab === "function") switchTab(sectionKey);
+    // Scroll to the specific palette card if we know it
+    setTimeout(() => {
+      const grid = document.querySelector(`#section-${sectionKey} .grid`);
+      if (grid && paletteIndex != null) {
+        const card = grid.children[paletteIndex];
+        if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }, 50);
+  } else {
+    window.scrollTo(0, 0);
+  }
+  biblioReferrer = null;
+  if (window.location.hash.startsWith("#biblio")) {
+    history.replaceState(null, "", window.location.pathname);
+  }
+}
+
+function toggleBiblio() {
+  if (document.body.classList.contains("biblio-mode")) {
+    hideBiblio();
+  } else {
+    biblioReferrer = null;
+    showBiblio();
+    history.replaceState(null, "", "#biblio");
+  }
+}
+
+const _biblioBtn = document.getElementById("biblio-btn");
+if (_biblioBtn) _biblioBtn.addEventListener("click", toggleBiblio);
+const _mobileBiblioBtn = document.getElementById("mobile-biblio-btn");
+if (_mobileBiblioBtn) _mobileBiblioBtn.addEventListener("click", toggleBiblio);
+
+// Floating back button (use delegation since the button is inserted after this script runs)
+document.addEventListener("click", e => {
+  if (e.target.closest("#biblio-back-btn")) hideBiblio();
+});
+
+// Per-card § click → jump to that palette's biblio entry, with referrer tracking
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".card-biblio-btn");
+  if (!btn) return;
+  e.stopPropagation();
+  const key = btn.dataset.key;
+  const idx = parseInt(btn.dataset.idx, 10);
+  const cId = BIBLIO_COLL_MAP[key];
+  if (!cId) return;
+  // Capture referrer
+  let paletteName = "";
+  try {
+    if (typeof palettes !== "undefined" && palettes[key] && palettes[key][idx]) {
+      paletteName = palettes[key][idx].name;
+    }
+  } catch (err) {}
+  biblioReferrer = { sectionKey: key, paletteIndex: idx, paletteName: paletteName };
+  const targetId = `${cId}-p${idx + 1}`;
+  showBiblio(targetId);
+  history.replaceState(null, "", `#biblio-${targetId}`);
+});
+
+// Sticky left nav: clicks scroll, scroll-spy highlights active section
+const biblioNav = document.getElementById("biblio-nav");
+if (biblioNav) {
+  // Click handler — smooth scroll to anchor (override default jump)
+  biblioNav.querySelectorAll("a[data-anchor]").forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      const anchor = a.dataset.anchor;
+      const target = document.getElementById(anchor);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", `#biblio-${anchor}`);
+      }
+    });
+  });
+}
+
+function updateActiveNav() {
+  if (!biblioNav) return;
+  if (!document.body.classList.contains("biblio-mode")) return;
+  // Find the section currently most visible in the viewport
+  const sections = biblioNav.querySelectorAll("a[data-anchor]");
+  let activeAnchor = null;
+  let bestTop = Infinity;
+  sections.forEach(a => {
+    const target = document.getElementById(a.dataset.anchor);
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    // We want the section whose top is closest to viewport top but still above 200px
+    if (rect.top <= 200 && rect.top > -window.innerHeight) {
+      // The section that is "current" — use the one with the highest top (smallest gap from 200)
+      const gap = 200 - rect.top;
+      if (gap < bestTop) {
+        bestTop = gap;
+        activeAnchor = a.dataset.anchor;
+      }
+    }
+  });
+  sections.forEach(a => {
+    a.classList.toggle("active", a.dataset.anchor === activeAnchor);
+  });
+}
+
+// Throttled scroll listener for nav highlight
+let _navScrollTimer = null;
+window.addEventListener("scroll", () => {
+  if (_navScrollTimer) return;
+  _navScrollTimer = setTimeout(() => {
+    _navScrollTimer = null;
+    updateActiveNav();
+  }, 100);
+});
+
+// URL hash on load: #biblio or #biblio-cN-pM or #biblio-cN
+function checkBiblioHash() {
+  const h = window.location.hash;
+  if (h === "#biblio" || h === "#biblio/") {
+    showBiblio();
+  } else if (h.startsWith("#biblio-")) {
+    const targetId = h.substring("#biblio-".length);
+    showBiblio(targetId);
+  }
+}
+checkBiblioHash();
+window.addEventListener("hashchange", checkBiblioHash);
+
+// ESC closes biblio view
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && document.body.classList.contains("biblio-mode")) {
+    hideBiblio();
+  }
+});
+
 </script>
 
+
+<!-- ============ BIBLIOTHÈQUE FLOATING BACK BUTTON ============ -->
+<div id="biblio-back-fab">
+  <button id="biblio-back-btn" type="button">
+    <span class="bb-arrow">←</span>
+    <span class="bb-label" id="biblio-back-label">Back to Rangrez</span>
+  </button>
+</div>
 </body>
 </html>
