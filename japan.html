@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rangrez · Bibliothèque · The Japan Chapter</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --fg: #1c1815;
+    --muted: #6b6b68;
+    --line: #e5e5e2;
+    --card-bg: #ffffff;
+    --accent: #8a6a3d;
+    --num: #b8b3a8;
+    --urushi: #5a1a12;
+  }
+  body.dark {
+    --bg: #14110e;
+    --fg: #ede8dc;
+    --muted: #8a8680;
+    --line: #2e2a24;
+    --card-bg: #1e1a16;
+    --accent: #c9a36a;
+    --num: #5a564e;
+    --urushi: #b06a4a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  html { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  body.dark { scrollbar-color: var(--line) transparent; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; border: 2px solid var(--bg); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  aside.toc, .mobile-picker { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
+  body {
+    margin: 0;
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+    transition: background .2s, color .2s;
+  }
+  a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+  /* HEADER */
+  header.masthead {
+    padding: 56px 40px 36px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  header.masthead .crumb {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  header.masthead .crumb a { color: var(--muted); text-decoration: none; }
+  header.masthead .crumb a:hover { color: var(--fg); }
+  header.masthead h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header.masthead .sub {
+    margin: 0;
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 15px;
+    font-style: italic;
+    font-family: ui-serif, Georgia, serif;
+  }
+  .theme-btn {
+    position: absolute;
+    top: 56px;
+    right: 40px;
+    background: none;
+    border: 1px solid var(--line);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--muted);
+    font-family: inherit;
+    line-height: 1;
+    padding: 0;
+    transition: color .15s, border-color .15s;
+  }
+  .theme-btn:hover { color: var(--fg); border-color: var(--fg); }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 32px 20px 32px 40px;
+    border-right: 1px solid var(--line);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+  }
+  aside.toc h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 18px 0 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  aside.toc h3:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  aside.toc ol { list-style: none; padding: 0; margin: 0; }
+  aside.toc li { margin: 2px 0; display: flex; gap: 8px; }
+  aside.toc .n { color: var(--num); font-variant-numeric: tabular-nums; flex-shrink: 0; min-width: 28px; }
+  aside.toc a { text-decoration: none; color: var(--muted); line-height: 1.4; }
+  aside.toc a:hover { color: var(--fg); }
+
+  main { padding: 48px 56px 120px; min-width: 0; max-width: 820px; }
+
+  /* PREFACE */
+  section.preface, section.timeline, section.reading-section {
+    margin: 0 0 72px;
+    scroll-margin-top: 80px;
+  }
+  section.preface h2, section.timeline h2, section.reading-section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  section.preface p {
+    font-size: 17px;
+    line-height: 1.72;
+    margin: 0 0 20px;
+    max-width: 640px;
+  }
+  section.preface p.drop::first-letter {
+    font-size: 54px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.88;
+    margin: 6px 10px 0 0;
+    color: var(--accent);
+    font-family: ui-serif, Georgia, serif;
+  }
+
+  /* TIMELINE */
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 640px;
+  }
+  .timeline-list li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+  }
+  .timeline-list li:last-child { border-bottom: 1px dotted var(--line); }
+  .timeline-list .date {
+    color: var(--muted);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding-top: 1px;
+  }
+
+  /* PALETTE CHAPTERS */
+  section.palette-chapter {
+    margin: 88px 0;
+    padding-top: 40px;
+    border-top: 2px solid var(--fg);
+    scroll-margin-top: 80px;
+  }
+  section.palette-chapter:first-of-type { margin-top: 32px; }
+
+  .pal-head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin: 0 0 8px;
+    flex-wrap: wrap;
+  }
+  .pal-head .n {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .pal-head h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .pal-head h2 .script {
+    color: var(--muted);
+    font-weight: 400;
+    margin-right: 10px;
+  }
+  .pal-meaning {
+    margin: 0 0 24px;
+    padding-left: 72px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+  .pal-lede {
+    padding-left: 72px;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 36px;
+    max-width: 640px;
+  }
+
+  .pal-body { padding-left: 72px; max-width: 700px; }
+  .pal-body > h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 36px 0 12px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  .pal-body p { font-size: 15px; line-height: 1.7; margin: 0 0 16px; }
+  .pal-body .quote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 22px;
+    margin: 20px 0 20px 4px;
+    font-style: italic;
+    color: var(--fg);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .pal-body .quote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .pal-body ul.objects, .pal-body ol.sources {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+  .pal-body ul.objects li, .pal-body ol.sources li {
+    padding: 10px 0 10px 28px;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+    line-height: 1.55;
+    position: relative;
+  }
+  .pal-body ul.objects li:last-child, .pal-body ol.sources li:last-child {
+    border-bottom: 1px dotted var(--line);
+  }
+  .pal-body ul.objects li .n, .pal-body ol.sources li .n {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    font-size: 10px;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Urushi gets the keystone accent (the dark-role keystone) */
+  #p10 { border-top-color: var(--urushi); }
+  #p10 .pal-head .n { color: var(--urushi); }
+  #p10 .pal-body .quote { border-left-color: var(--urushi); }
+
+  /* READING SECTION */
+  section.reading-section ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 700px;
+  }
+  section.reading-section ol li {
+    padding: 14px 0 14px 36px;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+    line-height: 1.55;
+    position: relative;
+  }
+  section.reading-section ol li:last-child { border-bottom: 1px dotted var(--line); }
+  section.reading-section ol li .n {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-size: 11px;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  /* SELF-LINK */
+  .selflink {
+    color: var(--num);
+    font-size: 11px;
+    text-decoration: none;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  section.palette-chapter:hover .pal-head .selflink { opacity: 1; }
+
+  footer.colophon {
+    margin: 120px 40px 60px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  footer.colophon a { color: var(--muted); text-decoration: none; }
+  footer.colophon a:hover { color: var(--fg); }
+
+  /* MOBILE NAV (hidden by default) */
+  .mobile-nav { display: none; }
+  .mobile-picker { display: none; }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.5; }
+    header.masthead { padding: 0 0 16pt; border-bottom: 1pt solid #000; }
+    header.masthead h1 { font-size: 22pt; }
+    .theme-btn, aside.toc, .selflink, footer.colophon, .mobile-nav { display: none !important; }
+    .layout { display: block; max-width: none; }
+    main { padding: 16pt 0 0; max-width: none; }
+    section.palette-chapter { page-break-before: always; border-top: 1pt solid #000; padding-top: 14pt; }
+    section.palette-chapter:first-of-type { page-break-before: auto; }
+    section.preface, section.timeline, section.reading-section { page-break-inside: avoid; }
+    .pal-body { padding-left: 0; }
+    .pal-meaning, .pal-lede { padding-left: 0; }
+    .pal-head .n { font-size: 26pt; color: #888; }
+    a { color: #000; text-decoration: none; }
+    a[href^="http"]::after {
+      content: " ⟨" attr(href) "⟩";
+      font-size: 8pt;
+      color: #555;
+      word-break: break-all;
+      font-family: ui-monospace, monospace;
+    }
+    a[href^="#"]::after { content: ""; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    html { scroll-padding-top: 72px; }
+    .layout { display: block; }
+    aside.toc { display: none; }
+
+    header.masthead { padding: 32px 20px 24px; }
+    header.masthead h1 { font-size: 26px; }
+    header.masthead .sub { font-size: 14px; }
+    .theme-btn { top: 28px; right: 20px; }
+
+    .mobile-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 16px;
+    }
+    .mobile-jump-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 11px 16px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--fg);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-jump-btn:active { opacity: 0.7; }
+    .mj-chev { color: var(--muted); font-size: 11px; }
+
+    .mobile-picker.open {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 200;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-picker-inner {
+      padding: 64px 24px 80px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .mobile-picker h3 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 28px 0 8px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    .mobile-picker h3:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .mobile-picker ol { list-style: none; padding: 0; margin: 0; }
+    .mobile-picker a {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 15px 4px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--line);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-picker a:active { opacity: 0.6; }
+    .mobile-picker .n {
+      color: var(--num);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      min-width: 36px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .mobile-picker-close {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--fg);
+      cursor: pointer;
+      z-index: 201;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    main { padding: 32px 20px 80px; max-width: none; }
+    section.preface p { font-size: 16px; }
+    section.palette-chapter { margin: 60px 0; padding-top: 30px; }
+    .pal-head { gap: 14px; }
+    .pal-head .n { font-size: 36px; }
+    .pal-head h2 { font-size: 22px; }
+    .pal-meaning { padding-left: 0; margin-bottom: 18px; }
+    .pal-lede { padding-left: 0; font-size: 16px; }
+    .pal-body { padding-left: 0; }
+    .pal-body p { font-size: 14px; }
+    .pal-body .quote { font-size: 14px; padding-left: 18px; }
+    .pal-body ul.objects li, .pal-body ol.sources li { font-size: 13px; padding-left: 26px; }
+    .selflink { opacity: 0.4; padding: 4px; }
+    .timeline-list li { grid-template-columns: 90px 1fr; font-size: 13px; gap: 14px; }
+    .timeline-list .date { font-size: 11px; }
+    footer.colophon { margin: 60px 20px 40px; font-size: 10px; }
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { padding: 24px 16px 18px; }
+    header.masthead h1 { font-size: 23px; }
+    .theme-btn { top: 22px; right: 16px; width: 32px; height: 32px; }
+    main { padding: 24px 16px 64px; }
+    .mobile-nav { padding: 8px 14px; }
+    .mobile-picker-inner { padding: 60px 18px 72px; }
+    .pal-head .n { font-size: 30px; }
+    .pal-head h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="crumb"><a href="bibliotheque.html">← Bibliothèque</a> · Chapter</p>
+  <h1>The Japan Chapter</h1>
+  <p class="sub">A long-form reading of Collection §1 — ten palettes and the continuous thousand-year project of making chromatic discipline itself into a form of beauty.</p>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+</header>
+
+<div class="mobile-nav">
+  <button class="mobile-jump-btn" id="mobileJumpBtn">
+    <span class="mj-label">Jump to section</span>
+    <span class="mj-chev">▾</span>
+  </button>
+</div>
+
+<div class="layout">
+
+<aside class="toc">
+  <h3>§ Opening</h3>
+  <ol>
+    <li><span class="n">§</span><a href="#preface">Preface</a></li>
+    <li><span class="n">§</span><a href="#timeline">Timeline</a></li>
+  </ol>
+  <h3>§ Palettes</h3>
+  <ol>
+    <li><span class="n">1.1</span><a href="#p1">Muji · Cleanest White</a></li>
+    <li><span class="n">1.2</span><a href="#p2">Kinari · Unbleached</a></li>
+    <li><span class="n">1.3</span><a href="#p3">Sumi · Ink</a></li>
+    <li><span class="n">1.4</span><a href="#p4">Sakura · Cherry Blossom</a></li>
+    <li><span class="n">1.5</span><a href="#p5">Matcha · Whisked Tea</a></li>
+    <li><span class="n">1.6</span><a href="#p6">Kon · Deep Indigo</a></li>
+    <li><span class="n">1.7</span><a href="#p7">Kuchiba · Decayed Leaf</a></li>
+    <li><span class="n">1.8</span><a href="#p8">Tatami · Rush Mat</a></li>
+    <li><span class="n">1.9</span><a href="#p9">Beni · Safflower Red</a></li>
+    <li><span class="n">1.10</span><a href="#p10">Urushi · Lacquer</a></li>
+  </ol>
+  <h3>§ Apparatus</h3>
+  <ol>
+    <li><span class="n">§</span><a href="#reading">Further Reading</a></li>
+  </ol>
+</aside>
+
+<main>
+
+<!-- ================================================================ -->
+<!-- PREFACE                                                          -->
+<!-- ================================================================ -->
+<section class="preface" id="preface">
+  <h2>Preface</h2>
+  <p class="drop">Japan is the world's most disciplined chromatic tradition. Where the Persian palette is a story of pigments carried outwards along trade routes, and the Chinese palette is a story of imperial codification over three millennia, the Japanese palette is a story of <em>restraint</em> — of a culture that took the full colour spectrum it had inherited from Tang China, subjected it to nearly a thousand years of philosophical editing, and produced at the far end a vocabulary in which the most prized colours are muted, desaturated, seasonal, and often deliberately incomplete.</p>
+  <p>The editing happens in waves. The Heian court in the ninth through twelfth centuries codifies the twelve-layered kimono (<em>jūnihitoe</em>) and the seasonal colour combinations that accompany each moment of the year; <em>The Pillow Book</em> of Sei Shōnagon and <em>The Tale of Genji</em> of Lady Murasaki are effectively the world's first extended writing on colour as social code. The Kamakura and Muromachi periods bring Zen Buddhism from China and the Sinified ink-wash aesthetic with it; the tea ceremony, codified by Sen no Rikyū in the sixteenth century, turns the appreciation of a single rough bowl into a complete aesthetic discipline. The Edo shogunate (1603–1868) then enforces a two-and-a-half-century set of sumptuary laws that restrict what colours the merchant and artisan classes are permitted to wear — and in response, the townspeople of Edo develop the <em>shijūhasshoku</em>, the "forty-eight browns and a hundred greys," a chromatic system that extracts maximum expressive range from the narrow band of muted tones legally available to them.</p>
+  <p>The ten palettes in this chapter follow that historical arc. Three role slots hold the anchors of the tradition: the unbleached raw paper of <em>kinari</em>, the carbon-black <em>sumi</em> ink that writes on it, and the deep red-black <em>urushi</em> lacquer that coats the finer objects of the home. Six overrides carry the canonical seasonal and material colours — the cherry blossom that announces spring, the whisked green of tea, the Edo indigo of the workman's coat, the decayed leaf of late November, the fresh rush-mat floor, the safflower red of the geisha's lip. The tenth slot is the modern closer: <em>muji</em>, the cleanest white, taken from the brand that — more consciously than any other twentieth-century commercial enterprise — tried to distil a thousand years of Japanese chromatic restraint into a line of products for the post-industrial global consumer.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- TIMELINE                                                         -->
+<!-- ================================================================ -->
+<section class="timeline" id="timeline">
+  <h2>A Japanese chronology</h2>
+  <ul class="timeline-list">
+    <li><span class="date">c. 14,000 BCE</span><span>The Jōmon period begins. The earliest pottery in East Asia is made on the Japanese archipelago, roughly four thousand years before pottery appears anywhere in the Fertile Crescent.</span></li>
+    <li><span class="date">710 CE</span><span>The Nara period begins. The imperial capital is fixed at Heijō-kyō (modern Nara) on a Chinese grid. Buddhism, tea, ink, and Tang Chinese colour vocabulary all enter Japan in this period.</span></li>
+    <li><span class="date">752 CE</span><span>The Great Buddha of Tōdai-ji is dedicated at Nara — the largest bronze casting in Japanese history and the centrepiece of a monastery that still stands.</span></li>
+    <li><span class="date">794 CE</span><span>The capital moves to Heian-kyō (modern Kyoto). The Heian period will last until 1185 and produce the aesthetic vocabulary on which all later Japanese colour tradition is built.</span></li>
+    <li><span class="date">c. 1002</span><span>Sei Shōnagon writes <em>The Pillow Book</em> (<em>Makura no Sōshi</em>), the first substantial literary document of Heian court chromatic sensibility.</span></li>
+    <li><span class="date">c. 1010</span><span>Lady Murasaki Shikibu writes <em>The Tale of Genji</em> (<em>Genji monogatari</em>), arguably the world's first psychological novel. Its readings of colour as social and seasonal code are still the foundation of Japanese chromatic scholarship.</span></li>
+    <li><span class="date">1191</span><span>The Zen monk Eisai returns from Song China with tea seeds and begins the planting of tea in Japan. The tea ceremony will emerge from this initial introduction over the next four centuries.</span></li>
+    <li><span class="date">1336–1573</span><span>The Muromachi period. Zen Buddhism becomes central to elite culture. Ink-wash painting (<em>suiboku-ga</em>) reaches its Japanese height under Sesshū Tōyō (1420–1506). Tea, dry gardens, Noh theatre, and the <em>wabi-sabi</em> aesthetic all crystallise.</span></li>
+    <li><span class="date">1522–1591</span><span>Sen no Rikyū codifies the <em>wabi-cha</em> tea ceremony under the patronage of Toyotomi Hideyoshi. His death by ritual suicide, ordered by Hideyoshi, marks the moment the tea aesthetic becomes a serious political matter.</span></li>
+    <li><span class="date">1603</span><span>Tokugawa Ieyasu is named shogun. The Edo period begins, and with it two and a half centuries of rigid sumptuary law restricting the colours, fabrics, and fashions permitted to each social class.</span></li>
+    <li><span class="date">17th–19th c.</span><span>The <em>shijūhasshoku</em> — forty-eight browns and one hundred greys — develops among the Edo townspeople as a response to sumptuary restriction. The ukiyo-e print tradition flourishes in parallel (Hokusai, Hiroshige, Utamaro).</span></li>
+    <li><span class="date">1868</span><span>The Meiji Restoration ends the Edo shogunate and opens Japan to the West. Western chromatic norms enter the country in a single generation; the traditional colours do not disappear but are repositioned as <em>traditional</em> rather than <em>current</em>.</span></li>
+    <li><span class="date">1906</span><span>Okakura Kakuzō, writing in English for an American audience, publishes <em>The Book of Tea</em>. It remains the single most influential Western-language introduction to Japanese aesthetics.</span></li>
+    <li><span class="date">1926</span><span>Yanagi Sōetsu and a small group of colleagues launch the <em>mingei</em> (folk craft) movement, which will underwrite every twentieth-century Japanese design revival from Hamada Shōji's pottery to the founding of Muji.</span></li>
+    <li><span class="date">1933</span><span>Tanizaki Jun'ichirō publishes <em>In Praise of Shadows</em> (<em>In'ei Raisan</em>), a short essay arguing that the Japanese aesthetic preference for dim, muted, shadowed beauty is incompatible with the bright electrical lighting of Western modernity. It becomes the single most-quoted Western-language reference on the Japanese palette.</span></li>
+    <li><span class="date">1980</span><span>The retail brand <em>Mujirushi Ryōhin</em> (Muji) is founded by Seiji Tsutsumi as a deliberate austerity counterpoint to the brand-logo consumerism of late-1970s Japan.</span></li>
+    <li><span class="date">2009 / 2013 / 2014</span><span>Three successive UNESCO Intangible Cultural Heritage inscriptions for Japanese material tradition: <em>washoku</em> (traditional cuisine, 2013), the art of <em>washi</em> papermaking (2014), and the Gion Matsuri and other festival traditions.</span></li>
+  </ul>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.1 · MUJI                                                       -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p1">
+  <div class="pal-head">
+    <span class="n">1.1</span>
+    <h2><span class="script">無印</span>Muji · The Cleanest White<a class="selflink" href="#p1">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>mujirushi</em>: no-brand, no-mark. The role slot for LIGHT.</p>
+  <p class="pal-lede">The light role of the collection is taken not from a historical pigment but from a twentieth-century brand — specifically from the particular desaturated, almost blue-shifted white that the retail chain Muji has used since its founding in 1980 as the ground colour of its packaging, its stores, and its house philosophy. It is the cleanest white in the collection because Muji's chief art director set out deliberately to make it so.</p>
+
+  <div class="pal-body">
+    <h3>The brand as aesthetic argument</h3>
+    <p>Muji — formally <em>Mujirushi Ryōhin</em>, literally "no-brand quality goods" — was founded in December 1980 as a subsidiary of the Seiyu supermarket chain under the direction of Seiji Tsutsumi, a businessman, poet, and cultural patron who was deliberately positioning the new line as an austerity counterpoint to the logo-driven consumerism of late-Showa Japan. The original Muji catalogue listed forty items, most of them household goods: a broken-rice pasta, a pair of unbleached cotton socks, a recycled-paper notebook. The chromatic register was fixed from the beginning at unbleached cream and off-white, with occasional warm brown or soft grey accents — a register that has not meaningfully changed in the four and a half decades since.</p>
+    <p>From 2001 the brand's art director has been Kenya Hara, a designer and author whose books — <em>Designing Design</em> (2007) and <em>White</em> (2009) — are the closest thing the contemporary design world has to a formal manifesto for Muji's chromatic commitments. Hara's argument, sustained across both books, is that white is not a colour but a condition: the absence of intervention, the state of being left alone. The Muji store, in Hara's framing, is a space in which a thousand years of Japanese aesthetic restraint has been translated into a retail vocabulary that can speak to the post-industrial global consumer without needing to be explained.</p>
+
+    <h3>The longer lineage</h3>
+    <p>Muji did not appear from nowhere. Its direct aesthetic ancestor is the <em>mingei</em> movement launched by Yanagi Sōetsu in the mid-1920s, which argued that the anonymous handmade objects of ordinary Japanese craftsmen — bowls, baskets, clothes, tools — possessed a beauty that was being lost to industrialisation. Yanagi's <em>The Unknown Craftsman</em> (first English edition 1972) is the theoretical source text, and the Japan Folk Crafts Museum (<em>Nihon Mingeikan</em>) in Tokyo, which he founded in 1936, is the institutional legacy.</p>
+    <p>The deeper lineage runs back to wabi-sabi itself — the Muromachi-era aesthetic of imperfection, impermanence, and incompleteness that the tea masters codified in the fifteenth and sixteenth centuries (see §1.5 MATCHA below). Muji is, in a sense, the wabi-sabi tradition translated into a mass-produced line of socks and pasta. That this translation survives at all — that a commercial brand can carry a thousand-year aesthetic discipline without immediately collapsing it into kitsch — is one of the more remarkable facts of twentieth-century Japanese material culture.</p>
+
+    <h3>Representative objects &amp; sources</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Muji flagship store, Yūrakuchō, Tokyo.</strong> The largest Muji store in the world and the reference implementation of the brand's chromatic and spatial vocabulary. <a href="https://www.muji.com/" target="_blank" rel="noopener">muji.com</a></li>
+      <li><span class="n">b</span><strong>The Japan Folk Crafts Museum (Nihon Mingeikan), Tokyo.</strong> Yanagi Sōetsu's institutional legacy. <a href="https://mingeikan.or.jp/english/" target="_blank" rel="noopener">mingeikan.or.jp</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Kenya Hara — <em>Designing Design</em></strong> (Lars Müller Publishers, 2007). The fullest statement of Muji's design philosophy from its most influential art director.</li>
+      <li><span class="n">ii</span><strong>Kenya Hara — <em>White</em></strong> (Lars Müller Publishers, 2009). Short companion volume. An extended meditation on white as condition rather than colour.</li>
+      <li><span class="n">iii</span><strong>Yanagi Sōetsu — <em>The Unknown Craftsman: A Japanese Insight into Beauty</em></strong> (Kodansha International, 1972; adapted by Bernard Leach). The founding text of the <em>mingei</em> movement.</li>
+      <li><span class="n">iv</span><strong>Jonathan M. Reynolds — <em>Allegories of Time and Space: Japanese Identity in Photography and Architecture</em></strong> (University of Hawai'i Press, 2015). Covers the relationship between mingei theory and postwar Japanese design.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.2 · KINARI                                                     -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p2">
+  <div class="pal-head">
+    <span class="n">1.2</span>
+    <h2><span class="script">生成り</span>Kinari · Unbleached<a class="selflink" href="#p2">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>kinari</em>: "as-grown," unbleached. The role slot for WARM.</p>
+  <p class="pal-lede">The warm anchor of the collection is the soft cream-ivory of unbleached natural fibre — raw silk, raw cotton, raw hemp, or the mulberry-bark paper of the Japanese washi tradition. Kinari is a canonical shijūhasshoku colour name, and it signals not a dye but an absence: the specific warm off-white that a natural fibre takes when it has been spun, woven, or pulped but never subjected to bleach or mordant.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>The specific substance that defines kinari for most modern Japanese readers is <em>washi</em> — the handmade paper that has been produced in Japan since the seventh century and that was inscribed on the UNESCO Intangible Cultural Heritage list in 2014. Washi is made principally from three plants: <em>kōzo</em> (paper mulberry), <em>gampi</em> (a wild shrub of the Thymelaeaceae family), and <em>mitsumata</em> (an ornamental relative). The pulping, beating, and sheet-forming process is traditionally done in winter, in cold mountain streams, because the cold water slows microbial growth and keeps the long fibres from breaking down. The resulting paper is strong enough to be used as a substrate for joinery, lightweight enough to be used for shoji screens, and chromatic enough — when left unbleached — to carry the entire warm end of the Japanese paper tradition.</p>
+    <p>The three main surviving traditional washi regions — Hosokawa washi (Saitama), Sekishū-banshi (Shimane), and Hon-minoshi (Gifu) — are all named in the UNESCO inscription, and all three produce paper that sits within the canonical kinari range.</p>
+
+    <h3>History</h3>
+    <p>Kinari-coloured paper is the ground of Japanese literary civilisation. The earliest surviving <em>Tale of Genji</em> manuscripts, the poetry anthologies of the Heian court, the Buddhist sutras copied at Nara, the Edo merchant ledgers, the haiku notebooks of Matsuo Bashō — all of them are written on washi that falls within the kinari range. When Hon'ami Kōetsu (1558–1637), the great Rinpa-school calligrapher, produced his famous poetry scrolls in collaboration with the painter Tawaraya Sōtatsu, the background of those scrolls was a dyed or decorated washi whose undertone is specifically kinari.</p>
+    <p>The word itself has an everyday counterpart in the textile world. The unbleached ramie and hemp used for summer kimono linings, the raw silk used for formal mounts on hanging scrolls, the cotton of traditional tabi socks — all of them are called kinari when they are left in their natural state, and the word carries an implicit approval: left alone, not interfered with, correct in its as-grown condition.</p>
+
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Washi papermaking — Sekishū-banshi, Hon-minoshi, Hosokawa washi.</strong> UNESCO Intangible Cultural Heritage, inscribed 2014. <a href="https://ich.unesco.org/en/RL/washi-craftsmanship-of-traditional-japanese-hand-made-paper-00892" target="_blank" rel="noopener">UNESCO ICH</a></li>
+      <li><span class="n">b</span><strong>The <em>Ishiyama-gire</em> fragments.</strong> Early twelfth-century anthology fragments, attributed to Fujiwara no Kintō's circle. The ground paper is the canonical Heian kinari tone. Dispersed across Japanese museum collections.</li>
+      <li><span class="n">c</span><strong>Hon'ami Kōetsu / Tawaraya Sōtatsu — <em>Deer Scroll</em> (Shika zu).</strong> Early seventeenth century. Seattle Art Museum and Atami MOA Museum hold fragments. <a href="https://art.seattleartmuseum.org/" target="_blank" rel="noopener">Seattle Art Museum</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Sukey Hughes — <em>Washi: The World of Japanese Paper</em></strong> (Kodansha International, 1978). The standard English-language introduction.</li>
+      <li><span class="n">ii</span><strong>Timothy Barrett — <em>Japanese Papermaking: Traditions, Tools, and Techniques</em></strong> (Weatherhill, 1983; reissued Floating World, 2005). The technical reference, written by the curator who brought many washi techniques into Western conservation practice.</li>
+      <li><span class="n">iii</span><strong>Nagatoshi Nishida (ed.) — <em>The Tosa Diary and the Shaping of Heian Literature</em></strong> (Columbia University Press, 2018). For the relationship between washi and the literary tradition of the Heian court.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.3 · SUMI                                                       -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p3">
+  <div class="pal-head">
+    <span class="n">1.3</span>
+    <h2><span class="script">墨</span>Sumi · Ink<a class="selflink" href="#p3">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>sumi</em>: ink, specifically the solid ink stick. The role slot for MONO.</p>
+  <p class="pal-lede">The monochrome role of the collection is the carbon-black Japanese ink stick — a compressed bar of soot and animal glue that is ground against a stone with a little water to produce the specific deep, slightly warm, slightly blue-black ink in which the entire Japanese tradition of calligraphy, ink-wash painting, haiku draft, and sutra copy has been recorded since at least the eighth century.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>Japanese sumi is made from two kinds of soot. <em>Shōen-boku</em> uses soot collected from the slow burning of red pine, producing a slightly cool, slightly blue-black ink historically preferred for calligraphy. <em>Yuen-boku</em> uses soot collected from the burning of vegetable oils — rape-seed, sesame, camellia — producing a slightly warmer, slightly brown-black ink historically preferred for painting. Both kinds of soot are mixed with an animal-derived glue (<em>nikawa</em>, made from deer or cow hides), kneaded into a dough, moulded into a small rectangular bar, and dried slowly for weeks. The drying is the step that determines the quality: a well-dried stick will release pigment cleanly and evenly for decades. A poorly dried stick will crumble.</p>
+    <p>Ink-making arrived in Japan from China around the sixth century and was systematised in Nara after the Buddhist monk Kūkai (Kōbō Daishi, 774–835) is traditionally credited with bringing improved techniques back from Tang China in the early ninth century. Nara has been the centre of Japanese sumi production ever since. The venerable firm <strong>Kobaien</strong>, founded in 1577, still makes ink by hand in Nara using recipes substantially unchanged since the Muromachi period, and a stick from their highest grade is among the most expensive single objects in the Japanese craft world.</p>
+
+    <h3>History &amp; aesthetic</h3>
+    <p>Sumi entered Japan together with Chinese writing itself — meaning that the ink is not merely the medium of Japanese writing but is coeval with the tradition. Every surviving sheet of Japanese writing from the eighth century onwards is a sumi object. The eighth-century Buddhist sutras at Tōdai-ji, the Heian-period poetry anthologies on their kinari grounds (§1.2), the Kamakura-period dry-brush landscapes of Sesshū Tōyō, the Rinpa-school calligraphy of Hon'ami Kōetsu, the haiku manuscripts of Bashō, and the twentieth-century calligraphic work of Morita Shiryū — all of them use ground sumi as their only pigment.</p>
+    <p>The crucial technical point for the palette is that sumi is not a single black. Depending on how much water is used in the grinding, it runs from a nearly solid carbon-black at the densest dilution to a pale silver-grey at the lightest — and the Japanese ink-wash tradition (<em>suiboku-ga</em>) is built precisely on the gradation between those extremes. A single brush-stroke might carry five different tones across its length, and the great ink painters are judged largely on how precisely they can control the gradation. Sesshū's <em>Haboku Landscape for Sōen</em> (1495) is the canonical demonstration.</p>
+
+    <h3>Representative objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Sesshū Tōyō — <em>Haboku (Splashed-Ink) Landscape for Sōen</em>.</strong> 1495. Tokyo National Museum. National Treasure. The defining work of Japanese ink-wash painting. <a href="https://www.tnm.jp/" target="_blank" rel="noopener">Tokyo National Museum</a></li>
+      <li><span class="n">b</span><strong>Sesshū Tōyō — <em>Long Scroll of Landscapes</em> (<em>Sansui chōkan</em>).</strong> 1486. Mōri Museum, Yamaguchi. Also a National Treasure.</li>
+      <li><span class="n">c</span><strong>Hon'ami Kōetsu — calligraphy on decorated paper,</strong> early seventeenth century. Tokyo National Museum, MOA Museum of Art (Atami), and the Cleveland Museum of Art all hold examples.</li>
+      <li><span class="n">d</span><strong>Kobaien, Nara.</strong> Founded 1577. Still produces sumi by hand. <a href="https://kobaien.jp/" target="_blank" rel="noopener">kobaien.jp</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Yujiro Nakata — <em>The Art of Japanese Calligraphy</em></strong> (Heibonsha Survey of Japanese Art, Weatherhill, 1973). The standard English-language introduction.</li>
+      <li><span class="n">ii</span><strong>John M. Rosenfield &amp; Shūjirō Shimada — <em>Traditions of Japanese Art: Selections from the Kimiko and John Powers Collection</em></strong> (Harvard Art Museums, 1970). Includes substantial coverage of the sumi tradition.</li>
+      <li><span class="n">iii</span><strong>Richard M. Barnhart &amp; Wen Fong (eds.) — <em>The Jade Studio: Masterpieces of Ming and Qing Painting and Calligraphy from the Wong Nan-p'ing Collection</em></strong> (Yale University Art Gallery, 1994). For the Chinese source tradition that Japanese sumi inherits.</li>
+      <li><span class="n">iv</span><strong>Stephen Addiss — <em>The Art of Zen: Paintings and Calligraphy by Japanese Monks, 1600–1925</em></strong> (Harry N. Abrams, 1989). The best introduction to the Zen ink-painting tradition specifically.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.4 · SAKURA                                                     -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p4">
+  <div class="pal-head">
+    <span class="n">1.4</span>
+    <h2><span class="script">桜</span>Sakura · Cherry Blossom<a class="selflink" href="#p4">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>sakura</em>: cherry blossom, specifically <em>Prunus × yedoensis</em>.</p>
+  <p class="pal-lede">Sakura is a pale pink — more specifically, a whisper of pink so faint that at mid-distance a cherry tree in full bloom reads as pure white against a grey Kyoto sky, and only resolves into its chromatic identity when a single petal lands on a dark sleeve or a wet stone. It is the single most emotionally loaded colour in the Japanese tradition, and its meaning is inseparable from its brevity: the canonical <em>Somei Yoshino</em> cultivar blooms for roughly seven to ten days each spring, and the cultural practice of <em>hanami</em> — cherry-blossom viewing — is structured around that brevity.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; cultivar</h3>
+    <p>The Japanese cherry is not a single plant but a family of more than two hundred cultivars, most of them ornamental rather than fruit-bearing. The one that dominates both the popular imagination and the actual street plantings of every Japanese city is <em>Prunus × yedoensis</em>, the Somei Yoshino, a sterile hybrid that was bred in the Somei district of Edo (modern-day Toshima in Tokyo) in the mid-nineteenth century and that has since been propagated by grafting onto every cherry-bearing hillside in the country. Because all Somei Yoshino trees are clones, they bloom in synchrony — which is why the cherry-blossom forecast (<em>sakura zensen</em>) issued annually by the Japan Meteorological Agency is so precise: a single front rolls north from Okinawa in late March and reaches Hokkaido by early May.</p>
+    <p>The petals themselves are a specific very pale pink that depends on the age of the individual flower. A newly opened Somei Yoshino blossom is almost pure white with the faintest warm undertone; over the three to four days of its life the pink deepens very slightly and then the petal falls. The canonical sakura colour in the Japanese traditional palette is taken from a blossom in the middle of this arc.</p>
+
+    <h3>The cultural weight</h3>
+    <p>Cherry-blossom viewing is documented in Japan from at least the Nara period, but it becomes a formal court practice in the Heian period, at which point it is codified in the diaries, letters, and poetry anthologies of the aristocracy. The <em>Kokin Wakashū</em> (c. 905), the first imperial poetry anthology, already treats the cherry blossom as a major subject, and the <em>Tale of Genji</em> mentions it in dozens of scenes. By the Edo period hanami has become a general popular practice: merchants, labourers, samurai, and courtesans all went out under the cherry trees together, carrying lunch boxes and sake.</p>
+    <p>The emotional register of the cherry blossom in Japanese culture is captured by the phrase <em>mono no aware</em>, which the eighteenth-century scholar Motoori Norinaga identified as the central aesthetic-emotional principle of the <em>Tale of Genji</em> and, by extension, of Japanese literary culture as a whole. The phrase is difficult to translate — "the pathos of things," "the sadness of things," "an awareness of impermanence" — but the cherry blossom is its single clearest visual emblem. The flower is beautiful because it is brief; its brevity is what makes it beautiful; and looking at it for a week each spring is one of the oldest continuous aesthetic practices in the Japanese repertoire.</p>
+    <p>This emotional register has also been used politically. During the 1930s and 1940s, Japanese militarists appropriated the cherry blossom as a symbol of the soldier who dies young for the emperor — an appropriation that Emiko Ohnuki-Tierney documents in careful detail in her 2002 book <em>Kamikaze, Cherry Blossoms, and Nationalisms</em>, and that complicates any contemporary reading of the flower. The complication is part of the material and cannot be cleanly separated from it.</p>
+
+    <h3>Representative sites</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Yoshino, Nara Prefecture.</strong> The oldest formally designated cherry-viewing site in Japan — planted since at least the seventh century with thousands of mountain cherries (<em>yamazakura</em>). UNESCO inscribed as part of the Sacred Sites and Pilgrimage Routes in the Kii Mountain Range, 2004. <a href="https://whc.unesco.org/en/list/1142/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">b</span><strong>The Philosopher's Path, Kyoto.</strong> A canal-side walk in the Higashiyama district lined with several hundred Somei Yoshino; one of the defining modern hanami sites.</li>
+      <li><span class="n">c</span><strong>Maruyama Park, Kyoto.</strong> Home of the single most famous weeping cherry tree in Japan (<em>shidarezakura</em>), replanted after the original died in the 1940s.</li>
+      <li><span class="n">d</span><strong>Hirosaki Castle, Aomori.</strong> Roughly 2,600 cherry trees planted around the castle moat in the late nineteenth century; the canonical northern hanami site, typically blooming in early May.</li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Haruo Shirane — <em>Japan and the Culture of the Four Seasons: Nature, Literature, and the Arts</em></strong> (Columbia University Press, 2012). The authoritative study of the seasonal cycle in Japanese cultural practice, with substantial cherry-blossom coverage.</li>
+      <li><span class="n">ii</span><strong>Emiko Ohnuki-Tierney — <em>Kamikaze, Cherry Blossoms, and Nationalisms: The Militarization of Aesthetics in Japanese History</em></strong> (University of Chicago Press, 2002). The essential scholarly corrective to any reading of the cherry blossom as simply beautiful.</li>
+      <li><span class="n">iii</span><strong>Donald Keene — <em>Seeds in the Heart: Japanese Literature from Earliest Times to the Late Sixteenth Century</em></strong> (Columbia University Press, 1993). The standard reference on the literary tradition in which the cherry blossom becomes a poetic convention.</li>
+      <li><span class="n">iv</span><strong>Motoori Norinaga — <em>The Poetics of Motoori Norinaga: A Hermeneutical Journey</em>,</strong> translated and with introduction by Michael F. Marra (University of Hawai'i Press, 2007). For <em>mono no aware</em> in Norinaga's own words.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.5 · MATCHA                                                     -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p5">
+  <div class="pal-head">
+    <span class="n">1.5</span>
+    <h2><span class="script">抹茶</span>Matcha · Whisked Tea<a class="selflink" href="#p5">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>matcha</em>: powdered green tea, whisked in a bowl with hot water.</p>
+  <p class="pal-lede">Matcha is a specific bright saturated green — almost the opposite of the muted browns and greys that dominate the rest of the Japanese palette — and its cultural weight comes entirely from its ritual context. For four centuries it has been the central colour of the Japanese tea ceremony (<em>chanoyu</em>), the single most elaborate aesthetic discipline the country has produced, and almost every Japanese reader encounters the colour first in the form of a specific ceremonial moment: a lacquer caddy opened, a bamboo scoop lifted, a small heap of intensely green powder tapped into a dark tea bowl, and the silence before the whisking begins.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>Matcha is made from <em>tencha</em>, a specific cultivar of Camellia sinensis whose plants are shaded for roughly three weeks before harvest. The shading forces the plant to produce more chlorophyll and more theanine (the amino acid that gives tea its savoury umami character) and less of the bitter polyphenols that characterise unshaded green tea. The shaded leaves are steamed briefly to halt fermentation, then dried, de-veined, and stone-ground into a fine powder. The grinding is done slowly — a traditional granite mill produces roughly forty grams of matcha per hour — and produces a powder fine enough to hold in suspension when whisked with hot water, which is the technical prerequisite for the ceremony's characteristic froth.</p>
+    <p>The historical centre of matcha production is Uji, a small city just south of Kyoto, where tea has been cultivated since the Kamakura period and where the finest modern matcha still comes from. The Uji producers Marukyu-Koyamaen, Ippodo, and Horii Shichimeien are the canonical sources for the highest-grade ceremonial matcha and have been family businesses for several centuries.</p>
+
+    <h3>History</h3>
+    <p>Tea arrived in Japan in the ninth century with returning Buddhist monks, but the specific whisked-matcha form of the drink arrived in 1191 with the Zen monk Eisai, who returned from Song China carrying tea seeds and a treatise — the <em>Kissa Yōjōki</em>, "Drinking Tea for Health" — that is the first Japanese work on tea. Eisai planted the first tea garden at Kōzan-ji, the temple still standing in the hills north of Kyoto. The whisked-powder preparation that Eisai brought was the standard form of tea in Song China at the time; in China it was subsequently replaced by the loose-leaf steeped preparation we now associate with Chinese tea, but in Japan the Song-dynasty form was preserved and refined for eight centuries.</p>
+    <p>The tea ceremony as a formal aesthetic discipline is codified in the sixteenth century by Sen no Rikyū (1522–1591), who served as tea master first to the warlord Oda Nobunaga and then to his successor Toyotomi Hideyoshi. Rikyū's aesthetic principle was <em>wabi-cha</em> — a form of tea practice that deliberately rejected the ostentatious Chinese-style utensils then fashionable at court in favour of rough Korean-made tea bowls, bamboo utensils, thatched tea-house architecture, and a general register of deliberate rustic imperfection. Hideyoshi, whose own taste ran more toward the ostentatious, eventually ordered Rikyū to commit ritual suicide in 1591 over a dispute whose precise content is still debated by historians, but Rikyū's aesthetic survived intact and became the basis of the three modern tea schools — Omotesenke, Urasenke, and Mushakōjisenke — that still trace their lineage directly back to him through his descendants.</p>
+
+    <h3>The canonical quote</h3>
+    <p>The single most-quoted Western-language characterisation of the tea ceremony comes from Okakura Kakuzō's <em>The Book of Tea</em>, written in English and published in Boston in 1906 as an attempt to explain the Japanese aesthetic to an American audience in the wake of the Russo-Japanese War. Okakura argued that the tea ceremony was neither entertainment nor recreation but a complete aesthetic discipline that he called <em>Teaism</em>, and he defined it in a sentence that has been in continuous circulation in English-language writing on Japan for well over a century.</p>
+    <div class="quote">
+      Teaism is a cult founded on the adoration of the beautiful.
+      <cite>Okakura Kakuzō, <em>The Book of Tea</em>, 1906. Public domain.</cite>
+    </div>
+
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Kōzan-ji, Kyoto.</strong> The temple where Eisai planted the first tea in Japan in 1191. Part of the Historic Monuments of Ancient Kyoto UNESCO inscription, 1994. <a href="https://whc.unesco.org/en/list/688/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">b</span><strong>The Tai-an tea room, Myōki-an, Ōyamazaki.</strong> Attributed to Sen no Rikyū himself, c. 1582. A two-mat tea room, the smallest formal tea space in Japanese architecture. National Treasure.</li>
+      <li><span class="n">c</span><strong>The Kizaemon Ido tea bowl,</strong> held at Kohō-an within Daitoku-ji, Kyoto. A Korean-made rice bowl from the sixteenth century that became the canonical <em>wabi</em> tea bowl under the Japanese tea masters — Yanagi Sōetsu devoted a famous essay to it.</li>
+      <li><span class="n">d</span><strong>Uji tea fields.</strong> The historic centre of Japanese matcha production. <a href="https://en.wikipedia.org/wiki/Uji" target="_blank" rel="noopener">Wikipedia</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Okakura Kakuzō — <em>The Book of Tea</em></strong> (1906). Public domain. Multiple editions. <a href="https://en.wikisource.org/wiki/The_Book_of_Tea" target="_blank" rel="noopener">Wikisource</a></li>
+      <li><span class="n">ii</span><strong>Sen Sōshitsu XV — <em>The Japanese Way of Tea: From Its Origins in China to Sen Rikyū</em></strong> (University of Hawai'i Press, 1998). Written by the fifteenth-generation grand master of the Urasenke school. The definitive insider history.</li>
+      <li><span class="n">iii</span><strong>Herbert Plutschow — <em>Rediscovering Rikyū and the Beginnings of the Japanese Tea Ceremony</em></strong> (Global Oriental, 2003). The best scholarly account of Rikyū's life and the circumstances of his death.</li>
+      <li><span class="n">iv</span><strong>Morgan Pitelka (ed.) — <em>Japanese Tea Culture: Art, History and Practice</em></strong> (RoutledgeCurzon, 2003). A collection of academic essays covering the full historical arc.</li>
+      <li><span class="n">v</span><strong>Yanagi Sōetsu — <em>The Unknown Craftsman</em></strong> (1972). The essay on the Kizaemon Ido tea bowl is the single most famous piece of wabi-cha criticism in the twentieth century.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.6 · KON                                                        -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p6">
+  <div class="pal-head">
+    <span class="n">1.6</span>
+    <h2><span class="script">紺</span>Kon · Deep Indigo<a class="selflink" href="#p6">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>kon</em>: deep indigo, specifically the darkest shade in the traditional Japanese indigo range.</p>
+  <p class="pal-lede">Kon is the near-black deep indigo of the Edo workman's coat, the noren curtain that hangs at the entrance of a traditional shop, the sashiko-stitched farm jacket, and the short-sleeved summer yukata. It is the single most visually dominant colour in the everyday material culture of pre-modern Japan — so dominant that the late-nineteenth-century visitor Lafcadio Hearn repeatedly described Japan as a country whose prevailing colour, seen from any village street, was blue.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>Japanese indigo (<em>ai</em>) is produced from <em>Polygonum tinctorium</em>, a buckwheat relative native to East Asia that is distinct from the <em>Indigofera tinctoria</em> cultivated in India, Africa, and the Caribbean. The two plants produce chemically identical indigo dye but through slightly different agricultural and fermentation paths. The Japanese process ferments the harvested <em>ai</em> leaves for roughly one hundred days into a dark composted mass called <em>sukumo</em>, which is then mixed with wood-ash lye, wheat bran, and sake to build a live fermentation vat. The vat is tended like a sourdough — fed, warmed, and stirred daily — and produces dye continuously for months. The cloth is dipped into the vat, pulled out oxidising to green in the air, then to blue, and dipped again; each dip deepens the colour, and the deepest shade — <em>kon</em> — requires twenty or more dippings.</p>
+    <p>The historical centre of Japanese indigo production is Tokushima Prefecture on the island of Shikoku, where the crop was cultivated on the fertile floodplains of the Yoshino River from at least the fifteenth century onwards. Awa-ai, the indigo of the old Awa Province (modern Tokushima), became famous throughout Japan in the Edo period as the highest-grade source, and a small number of traditional sukumo producers in Tokushima are still working today with unbroken family lineages going back to the early nineteenth century.</p>
+
+    <h3>History &amp; social use</h3>
+    <p>Indigo's dominance in Edo-period everyday life is partly aesthetic and partly regulatory. The Tokugawa sumptuary laws that restricted the merchant and artisan classes to muted colours specifically permitted indigo — it was considered a sufficiently humble dye — while restricting the reds, purples, and bright yellows reserved for the samurai and aristocratic classes. The result was that an entire class of people, comprising the great majority of the Japanese urban and rural population, dressed in indigo as a matter of legal compulsion as well as cultural preference.</p>
+    <p>Three specific Edo-period uses carry the colour into the modern palette. First, <em>sashiko</em>: the running-stitch reinforcement technique used to strengthen farm clothing and fishermen's coats, traditionally stitched in white cotton thread on a deep indigo ground. Second, <em>noren</em>: the split cloth curtain hung at the entrance of a shop or restaurant, typically dyed with the shop's crest in white on a kon ground. Third, <em>happi</em>: the short straight-sleeved festival coat, usually worn with the shop's or the temple's mon crest on the back in white against kon. All three traditions are still alive in modern Japan, and all three are the principal reasons that a visitor to any older Japanese neighbourhood still sees the colour everywhere.</p>
+    <p>Lafcadio Hearn, the Irish-Greek writer who moved to Japan in 1890 and spent the last fourteen years of his life there, remarked in his travel essays that the single most visually striking feature of the Japanese country was the ubiquity of the indigo work-coat — he saw it, he wrote, on every farmer in every field and every porter in every station, to the point that the landscape of working Japan was effectively blue. Hearn's essays are public domain and remain among the most vivid Western descriptions of Meiji-era everyday colour.</p>
+
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Awa Indigo Traditional Craftsmen's Hall, Tokushima.</strong> The working preservation site for Awa sukumo production. <a href="https://en.wikipedia.org/wiki/Awa_Province_(Tokushima)" target="_blank" rel="noopener">Wikipedia on Awa</a></li>
+      <li><span class="n">b</span><strong>Sashiko-stitched fireman's coats (hikeshi-banten).</strong> Edo period, nineteenth century. The Tokyo Fire Museum, the Tokyo National Museum, and the V&amp;A in London all hold examples. <a href="https://www.vam.ac.uk/collections/fashion" target="_blank" rel="noopener">V&amp;A collection</a></li>
+      <li><span class="n">c</span><strong>Rural Hokkaidō farm workwear in the collection of the Amuse Museum, Asakusa, Tokyo.</strong> The most comprehensive collection of Edo and Meiji-era indigo workwear anywhere, assembled by the folklorist Chūzaburō Tanaka.</li>
+      <li><span class="n">d</span><strong>BUAISOU indigo studio, Tokushima.</strong> A contemporary cooperative producing indigo using traditional sukumo fermentation and working with international designers. <a href="https://buaisou-i.com/" target="_blank" rel="noopener">buaisou-i.com</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Jenny Balfour-Paul — <em>Indigo: Egyptian Mummies to Blue Jeans</em></strong> (Bibliothèque §0.8). The chapter on Japanese aizome is the standard English-language introduction.</li>
+      <li><span class="n">ii</span><strong>Susan Briscoe — <em>The Ultimate Sashiko Sourcebook</em></strong> (David &amp; Charles, 2004). The accessible reference on sashiko patterns and technique.</li>
+      <li><span class="n">iii</span><strong>Lafcadio Hearn — <em>Glimpses of Unfamiliar Japan</em></strong> (1894) and <em>Japan: An Attempt at Interpretation</em> (1904). Both public domain; both contain extensive descriptions of Meiji-era working-class indigo.</li>
+      <li><span class="n">iv</span><strong>Chūzaburō Tanaka &amp; Yoshiko I. Wada — <em>Boro: Rags and Tatters from the Far North of Japan</em></strong> (Amuse Museum Books, 2008). The catalogue of the Amuse Museum's boro (patched indigo workwear) collection.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.7 · KUCHIBA                                                    -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p7">
+  <div class="pal-head">
+    <span class="n">1.7</span>
+    <h2><span class="script">朽葉</span>Kuchiba · Decayed Leaf<a class="selflink" href="#p7">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>kuchiba</em>: decayed leaf, rotted leaf. A canonical shijūhasshoku colour name.</p>
+  <p class="pal-lede">Kuchiba is a specific warm brown, slightly dulled, slightly orange-shifted — the colour of a fallen ginkgo leaf that has lain for several days on wet temple stone in late November, after the bright yellow of its first fall has begun to fade toward its final dry rust. It is one of the canonical <em>shijūhasshoku</em> colour names, and it signals the end of the autumn colour cycle in the Japanese traditional palette: no longer the vivid <em>kōyō</em> (autumn-leaf) reds and golds of the viewing season, but the deeper, duller, more contemplative brown that comes when the leaf has finished its performance.</p>
+
+  <div class="pal-body">
+    <h3>The colour within the tradition</h3>
+    <p>The Japanese traditional colour vocabulary — particularly in its Heian and Edo codifications — is organised around the seasons with an almost mathematical precision. Each season has its canonical colours; each month of each season has its sub-palette; each flower, fruit, and weather phenomenon has a colour name associated with it. Kuchiba sits near the end of autumn, after the peak of <em>momijigari</em> (autumn-leaf viewing, the autumnal counterpart to spring hanami) but before the pure whites of winter. It is a colour of transition and decline — of acknowledging that the red maples have passed their peak and that the bright yellows of the ginkgo have begun to darken.</p>
+    <p>The shijūhasshoku system — literally "the forty-eight teas and the hundred mouses" — is a late-Edo extension of the older Heian court colour tradition. The Edo merchant class, legally restricted from wearing bright colours under the shogunate's sumptuary regulations (see §1.6 KON), turned the restriction into a competitive aesthetic: if the only colours permitted were browns and greys, they would invent as many browns and greys as possible and assign them elaborate literary names. The result is a palette of at least 148 distinct colour names in the historical record, each carrying a specific reference — to a plant, a season, a literary allusion, or a dyer's workshop. Kuchiba is one of the older names in the set, attested in Heian court sources and carried forward into the Edo shijūhasshoku intact.</p>
+
+    <h3>Representative sites</h3>
+    <p>The two canonical sites for the specific experience of kuchiba are the Kyoto temples where ginkgo and maple are combined with moss and stone, and where the late-November viewing period is the most intense. Tōfuku-ji, a Rinzai Zen temple at the southern edge of the Higashiyama district, has been the single most famous autumn-leaf viewing site in Japan since the fifteenth century and draws the largest crowds of the Kyoto autumn. Eikan-dō, further north in the same district, is the other canonical destination. In both temples, the kuchiba tone appears underfoot on the stone pavements and moss beds, not overhead in the trees.</p>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Tōfuku-ji, Kyoto.</strong> Rinzai Zen. The late-November maple and ginkgo leaves are the canonical Japanese autumn image. Part of the Historic Monuments of Ancient Kyoto UNESCO inscription, 1994. <a href="https://whc.unesco.org/en/list/688/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">b</span><strong>Eikan-dō Zenrin-ji, Kyoto.</strong> The second canonical autumn temple.</li>
+      <li><span class="n">c</span><strong>The Tsurezuregusa of Yoshida Kenkō,</strong> c. 1330–1332. The Muromachi-era miscellany contains several of the most influential passages in Japanese literature on the beauty of autumn decay; Donald Keene's English translation is the standard.</li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Hideko Jinbo — <em>Nihon no dentō shoku</em> (<em>Traditional Colors of Japan</em>)</strong>, multiple editions. The standard Japanese reference work on the shijūhasshoku.</li>
+      <li><span class="n">ii</span><strong>Haruo Shirane — <em>Japan and the Culture of the Four Seasons</em></strong> (see §1.4). Covers the seasonal-colour system in its Heian and Edo formulations.</li>
+      <li><span class="n">iii</span><strong>Donald Keene (trans.) — <em>Essays in Idleness: The Tsurezuregusa of Kenkō</em></strong> (Columbia University Press, 1967; reissued 1998). The Muromachi miscellany whose passages on the beauty of things in decline underwrite the whole kuchiba aesthetic.</li>
+      <li><span class="n">iv</span><strong>Sadao Hibi — <em>The Colors of Japan</em></strong> (Kodansha International, 2000). A photographic survey of traditional Japanese colour names, with samples.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.8 · TATAMI                                                     -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p8">
+  <div class="pal-head">
+    <span class="n">1.8</span>
+    <h2><span class="script">畳</span>Tatami · Rush Mat<a class="selflink" href="#p8">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>tatami</em>: the traditional rush floor mat.</p>
+  <p class="pal-lede">Tatami is a pale yellow-green fading slowly to straw-gold — the specific surface colour of the woven soft-rush matting that has been the standard floor covering of Japanese domestic architecture since at least the Muromachi period. A fresh tatami mat, newly laid, carries a distinct faint green-gold that is among the most characteristic interior colours in any traditional Japanese space; the colour deepens and warms gradually over several years into a pale wheat-brown before the mat is replaced.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; construction</h3>
+    <p>A traditional tatami mat is built in three layers. The base is a thick compressed core of rice straw (<em>tatami-doko</em>), roughly five centimetres thick and heavy enough that one mat requires two people to carry. Over this is laid a woven surface of <em>igusa</em> (soft rush, <em>Juncus effusus</em>), held together in a tight over-under weave that produces the characteristic grain of the finished mat. The edge is bound with a fabric border (<em>heri</em>) which in classical interiors carried family crests and which in modern tatami is usually a plain dark cloth.</p>
+    <p>Igusa cultivation is labour-intensive and has declined sharply in Japan since the 1970s as cheaper Chinese imports and synthetic substitutes have taken the mass market. Kumamoto Prefecture, on the island of Kyushu, remains the principal domestic producer, and the handful of traditional makers who still harvest, dry, and weave igusa by hand are among the most specialised remaining Japanese craftsmen.</p>
+    <p>The chromatic life of a tatami mat follows a predictable curve. In the first weeks after installation the surface is a vivid, almost fluorescent green-yellow with a strong herbal scent. Within six months the green has softened into a paler yellow-gold. Within three years the surface has become a warm straw colour. By five years the mat is visibly worn and the family will typically replace it. A traditional household would re-cover the mats (replacing only the <em>igusa</em> surface while retaining the straw core) every five to seven years as part of the seasonal domestic cycle.</p>
+
+    <h3>Architectural role</h3>
+    <p>The tatami mat is not only a floor covering but the basic dimensional module of Japanese traditional architecture. Rooms are measured in tatami: a four-and-a-half-mat room (<em>yojōhan</em>, literally "four-and-a-half mats") is a small intimate space and is the canonical size of a traditional tea room. A six-mat room is the standard size of a middle-class domestic living room. An eight-mat room is a larger formal space. The mat itself has standardised dimensions that vary slightly by region — the Kyoto standard is 955 × 1910 mm, the Tokyo standard slightly smaller at 880 × 1760 mm — but the ratio is always 1:2, so that mats can be combined into rectangular rooms without leaving gaps. The entire planning module of traditional Japanese houses is organised around this ratio.</p>
+    <p>The Katsura Detached Palace in Kyoto, built between 1615 and 1662 for the Hachijō princely family, is the canonical expression of tatami-module architecture at its highest sophistication. The palace's principal rooms, their dimensions, their proportions, and their chromatic relationships to the surrounding garden are all derived from the mat as the fundamental unit. The twentieth-century architect Bruno Taut called Katsura, on first seeing it in 1933, the most beautiful building in the world — and the statement has been cited so often since that it has become almost a cliché, but the building continues to earn it.</p>
+
+    <h3>Representative sites</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Katsura Imperial Villa (Katsura Rikyū), Kyoto.</strong> 1615–1662. Not UNESCO-inscribed but widely held to be the finest surviving example of traditional Japanese residential architecture. Accessible by application to the Imperial Household Agency. <a href="https://sankan.kunaicho.go.jp/english/guide/katsura.html" target="_blank" rel="noopener">Imperial Household Agency</a></li>
+      <li><span class="n">b</span><strong>Shugaku-in Imperial Villa, Kyoto.</strong> 1655–1659. The companion piece to Katsura, built for the retired emperor Go-Mizunoo. Also accessible by application. <a href="https://sankan.kunaicho.go.jp/english/guide/shugakuin.html" target="_blank" rel="noopener">Imperial Household Agency</a></li>
+      <li><span class="n">c</span><strong>Tai-an tea room, Myōki-an, Ōyamazaki.</strong> Attributed to Sen no Rikyū. A two-mat space; the smallest formal tea room in Japan.</li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Bruno Taut — <em>Houses and People of Japan</em></strong> (Sanseidō, 1937). Taut's extended essay on Katsura is the single most influential Western reading of traditional Japanese residential architecture.</li>
+      <li><span class="n">ii</span><strong>Arata Isozaki, Kenzō Tange &amp; Yasuhiro Ishimoto — <em>Katsura: Imperial Villa</em></strong> (Electa, 2005). The authoritative monograph on Katsura with Ishimoto's canonical photography.</li>
+      <li><span class="n">iii</span><strong>Heinrich Engel — <em>The Japanese House: A Tradition for Contemporary Architecture</em></strong> (Tuttle, 1964). The standard English-language reference on the tatami module and its architectural consequences.</li>
+      <li><span class="n">iv</span><strong>Kiyoshi Seike — <em>The Art of Japanese Joinery</em></strong> (Weatherhill, 1977). Companion to Engel for the wood-joinery techniques that support the tatami-module system.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.9 · BENI                                                       -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p9">
+  <div class="pal-head">
+    <span class="n">1.9</span>
+    <h2><span class="script">紅</span>Beni · Safflower Red<a class="selflink" href="#p9">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>beni</em>: red, specifically the luminous safflower-derived red used historically as cosmetic pigment.</p>
+  <p class="pal-lede">Beni is a specific luminous red — slightly cool, slightly coral, with a distinctive almost-iridescent surface quality that shifts toward green at certain angles — produced by the laborious fermentation and distillation of the flowers of the safflower plant, <em>Carthamus tinctorius</em>. It was the most expensive dye used in pre-modern Japan, worth several times its weight in gold at its peak, and it was reserved almost entirely for cosmetic use: the lip of the geisha, the cheek of the courtesan, the ceremonial makeup of the Heian court and of the modern kabuki stage.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>Safflower is a thistle-like annual native to western Asia whose florets contain two distinct pigments: a yellow (carthamin) that dissolves readily in water, and a red (carthamine) that dissolves only in alkali. The Japanese extraction process, refined over centuries, exploits this difference: the yellow is washed out of the harvested petals first and discarded, leaving behind a concentrated red residue that is then pressed into small cakes, dried, and ground. The yield is minuscule — roughly one kilogram of finished beni pigment from one hundred kilograms of fresh safflower flowers — which is the reason for the historical price.</p>
+    <p>The traditional centre of Japanese safflower cultivation is the Mogami River valley in Yamagata Prefecture, where the crop was grown from at least the sixteenth century for shipment down the Mogami and across the Sea of Japan to Kyoto and Osaka. The specific colour produced by Yamagata safflower — the <em>Mogami beni</em> — was considered the finest in Japan and commanded the highest prices. A small number of traditional producers in Yamagata still grow safflower and produce beni using the traditional method, though the scale is now a few kilograms per year rather than the historical tonnage.</p>
+    <p>A curious optical property of concentrated beni pigment is that at very high concentration — as when it is painted thickly on a small surface like a lip — it develops a surface iridescence that shifts toward green when viewed obliquely. This effect, called <em>sasairo-beni</em> (bamboo-leaf beni), was considered the highest expression of the pigment and the standard by which geisha lip makeup was judged. A properly applied <em>sasairo-beni</em> lip reads red at direct viewing but shows a green shimmer at the edge.</p>
+
+    <h3>History &amp; use</h3>
+    <p>Beni was used in three main contexts. First, as cosmetic pigment for lip, cheek, and occasionally eye makeup — the dominant use throughout the Edo period and into the Meiji. Second, as textile dye for the linings of kimono and for undergarments, where the colour was valued specifically because it would not be seen publicly and therefore carried a particular intimacy; the Japanese aesthetic concept of the concealed luxury is strongly associated with beni-dyed silk linings. Third, as pigment in the ukiyo-e woodblock print tradition, where a specific form of the pigment (<em>beni-e</em>) was used in early eighteenth-century prints before being displaced by cheaper synthetic reds in the mid-nineteenth century.</p>
+    <p>The Isehan cosmetic company, a Tokyo-based firm founded in 1825, is the single surviving producer of traditional Japanese beni cosmetic. Their small shop in Minami-Aoyama, which opened in 2006 and houses the Beni Museum, is the only place in the world where one can see the traditional pigment being made, sold, and applied in its historical form.</p>
+
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Beni Museum (Benisa Iseha), Minami-Aoyama, Tokyo.</strong> Founded 2006 by the Isehan cosmetic company (est. 1825). The only surviving traditional beni producer. <a href="https://www.isehanhonten.co.jp/museum/en/" target="_blank" rel="noopener">Isehan Honten</a></li>
+      <li><span class="n">b</span><strong>Yamagata safflower fields, Mogami River valley.</strong> The historical centre of Japanese safflower cultivation.</li>
+      <li><span class="n">c</span><strong>Early ukiyo-e <em>beni-e</em> prints.</strong> Masanobu Okumura and Toyonobu Ishikawa, early eighteenth century. The Metropolitan Museum of Art, the Museum of Fine Arts Boston, and the Freer Gallery all hold major collections. <a href="https://www.metmuseum.org/art/collection/search?department=6&amp;q=beni-e" target="_blank" rel="noopener">Met search</a></li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Liza Dalby — <em>Kimono: Fashioning Culture</em></strong> (Yale University Press, 1993; reissued Vintage, 2001). The best English-language cultural history of Japanese textile colour, with substantial beni coverage.</li>
+      <li><span class="n">ii</span><strong>Monica Bethe — "Color: Dyes and Pigments,"</strong> in Amanda Mayer Stinchecum, <em>Kosode: 16th-19th Century Textiles from the Nomura Collection</em> (Japan Society / Kodansha, 1984). The scholarly reference on Japanese traditional dye chemistry.</li>
+      <li><span class="n">iii</span><strong>Helen Benton Minnich &amp; Shōjirō Nomura — <em>Japanese Costume and the Makers of Its Elegant Tradition</em></strong> (Tuttle, 1963). Covers the geisha makeup tradition in detail.</li>
+      <li><span class="n">iv</span><strong>Sadao Hibi — <em>The Colors of Japan</em></strong> (Kodansha International, 2000). Includes a section specifically on beni.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 1.10 · URUSHI — THE KEYSTONE                                     -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p10">
+  <div class="pal-head">
+    <span class="n">1.10</span>
+    <h2><span class="script">漆</span>Urushi · Lacquer<a class="selflink" href="#p10">§</a></h2>
+  </div>
+  <p class="pal-meaning">Japanese <em>urushi</em>: lacquer, specifically the cured sap of <em>Toxicodendron vernicifluum</em>. The role slot for DARK, and the keystone of the chapter.</p>
+  <p class="pal-lede">Urushi is the keystone of Japanese material culture. The deep, almost-black, slightly warm red-brown of cured lacquer is the surface that coats the finest Japanese objects of every period — the tea caddies of the Muromachi tea masters, the armour of the Sengoku warlords, the writing boxes of the Heian court, the repaired ceramics of the kintsugi tradition, and the export wares that so impressed seventeenth-century Europe that they gave the English language the verb "to japan." It is the single Japanese craft that has most clearly travelled outwards and reshaped the material expectations of other cultures, and its technical mastery is among the most demanding in the entire global craft tradition.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; chemistry</h3>
+    <p>Urushi is the refined sap of <em>Toxicodendron vernicifluum</em>, the lacquer tree, a relative of poison ivy native to East Asia and cultivated in Japan since at least the Jōmon period — radiocarbon-dated lacquered combs and vessels from Jōmon sites in Hokkaidō push the tradition back to roughly 7,000 BCE, making it one of the oldest continuous craft technologies in the world. The active chemical component is <em>urushiol</em>, a phenolic compound that polymerises in the presence of humidity and a specific laccase enzyme to form an extraordinarily hard, water-resistant, heat-resistant, acid-resistant surface. Urushiol is also a potent contact allergen that produces severe dermatitis in most non-habituated humans, which is the principal reason that the craft of lacquer application has always been confined to a small professional class who develop tolerance through gradual controlled exposure.</p>
+    <p>The sap is collected by making shallow horizontal cuts in the bark of a mature tree (at least ten years old) and catching the slow-flowing grey-white liquid that weeps out over several hours. A single tree yields roughly one hundred and fifty to two hundred grams of raw sap per year, and the collection effectively destroys the tree — after five years of tapping the tree is cut down. The raw sap is then filtered, heated, stirred, and homogenised into a usable lacquer, at which point it can be pigmented with vermillion (for the classic red-on-black colour scheme), with iron oxide (for the dark brown-black called <em>rō-iro</em>), or with gold and silver powder (for the decorative techniques of <em>maki-e</em>).</p>
+    <p>The finished lacquer coating on a fine object is built up in many thin layers — twenty to forty is typical for a mid-grade piece, and the finest Wajima lacquerware can carry more than a hundred layers. Each layer is applied, dried in a controlled humidity chamber for one to several days, and then polished smooth with charcoal and water before the next layer is added. A single high-quality lacquer bowl can take a year to complete, and the process cannot be accelerated: the polymerisation chemistry requires specific temperature and humidity and simply refuses to cure outside a narrow range.</p>
+
+    <h3>The two great regional traditions</h3>
+    <p>Two regional centres dominate the Japanese lacquer tradition. <strong>Wajima-nuri</strong>, produced in the city of Wajima on the Noto Peninsula of Ishikawa Prefecture, has been in continuous production since at least the fourteenth century and is widely considered the finest everyday lacquerware in Japan. Wajima's specific contribution is an undercoat technique that incorporates finely powdered diatomaceous earth (<em>jinoko</em>) from local deposits; the powder gives the undercoat an unusual hardness that allows Wajima pieces to survive daily use for generations. A Wajima soup bowl inherited from a grandparent is a common feature of older Japanese households.</p>
+    <p><strong>Kyō-shikki</strong>, produced in Kyoto, carries the courtly and ceremonial end of the tradition. Kyoto lacquer is less built for daily use and more for display — tea ceremony implements, shrine fittings, imperial gift objects. The technique overlaps with Wajima in most respects, but the Kyoto tradition places more emphasis on the decorative <em>maki-e</em> (sprinkled-picture) technique in which gold and silver powder are fixed into the lacquer surface to produce the distinctive dark-ground-with-gold-highlights aesthetic of the finest Japanese decorative objects.</p>
+    <p>The single most famous <em>maki-e</em> artist in the modern tradition is Shōzan Matsuda (1896–1986), a Living National Treasure whose work is held in the Tokyo National Museum and the Museum of Modern Art, Ishikawa Prefecture. His successor as the defining modern master is Kōdō Ōba (b. 1943), also a Living National Treasure and still working at the time of writing.</p>
+
+    <h3>Kintsugi: the repair as philosophy</h3>
+    <p>The most widely known single use of urushi in modern discourse is not in the original construction of a lacquered object but in its repair. <em>Kintsugi</em> — literally "golden joinery" — is the Muromachi-period technique of repairing broken ceramics (and occasionally other materials) by filling the breaks with urushi lacquer mixed with powdered gold, so that the repair is deliberately visible as a network of gold veins running through the ceramic body. The earliest documented use of kintsugi is traditionally dated to the late fifteenth century and attributed to the shogun Ashikaga Yoshimasa, who — so the story goes — sent a broken Chinese tea bowl to China for repair, received it back with ugly metal staples, and commissioned Japanese craftsmen to develop a more beautiful alternative. Whether the story is historically accurate is debated; the technique itself is certainly attested from the Muromachi period onwards.</p>
+    <p>Kintsugi has, over the past two decades, become one of the most widely cited Japanese aesthetic concepts in English-language popular writing — often framed as a philosophy of embracing imperfection, of making visible the damage rather than concealing it, of understanding objects as having histories. The framing is not wrong, but it is somewhat thinner than the tradition itself, which is rooted specifically in the wabi-cha tea aesthetic and in a very particular Japanese attitude toward the value of objects that have survived and been repaired.</p>
+
+    <h3>The global diffusion</h3>
+    <p>Japanese lacquer reached Europe in quantity during the seventeenth and eighteenth centuries through the Dutch East India Company (VOC) trade, which operated from the artificial island of Dejima in Nagasaki harbour after Japan's 1639 closure to other foreign contact. The Dutch exported Japanese lacquered chests, cabinets, writing boxes, and tea caddies to Amsterdam, where they were distributed across European courts and became the most fashionable luxury objects of the period. Marie Antoinette owned a celebrated collection of fifty Japanese lacquer pieces, now in the Louvre. Louis XIV commissioned Japanese lacquer panels for the Trianon. Augustus the Strong of Saxony assembled the largest European lacquer collection of the period, now in the Porzellansammlung in Dresden.</p>
+    <p>The European demand was so great that it produced an entire category of imitation — what the English eventually called <em>japanning</em>: a European attempt to simulate Japanese lacquer using shellac, bitumen, and varnish on wood. The word entered English in the 1680s and gave us, eventually, the verb "to japan" (meaning to apply a hard black finish to metal or wood), and the adjective "japanned" (describing any surface so treated). The technique never quite matched true urushi — the chemistry is different, the durability is lower, and the depth of the finish never reaches the same register — but the European obsession with Japanese lacquer shaped the decorative arts of the seventeenth and eighteenth centuries as thoroughly as the Chinese obsession with porcelain shaped the same period further south.</p>
+    <p>The sum is this: a tree native to East Asia, tapped by hand, produces a sap so distinctive in its cured form that Europe spent two centuries trying to imitate it and eventually borrowed the name of the country where it was perfected to describe the entire category of dark hard lacquered surfaces. Urushi is, in a literal etymological sense, Japan.</p>
+
+    <div class="quote">
+      We find beauty not in the thing itself but in the patterns of shadows, the light and the darkness, that one thing against another creates.
+      <cite>Attributed to Tanizaki Jun'ichirō, <em>In Praise of Shadows</em> (1933). Paraphrase of a central passage on Japanese lacquerware.</cite>
+    </div>
+
+    <h3>Representative objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Jōmon-period lacquered comb, Kakinoshima B site, Hokkaidō.</strong> c. 7,000 BCE. Among the earliest surviving lacquered objects in the world. Hokkaidō Museum. <a href="https://jomon-japan.jp/en/" target="_blank" rel="noopener">Jōmon Japan</a></li>
+      <li><span class="n">b</span><strong>The Tamamushi Shrine, Hōryū-ji, Nara.</strong> Seventh century. One of the oldest surviving Japanese lacquered objects and a National Treasure. The black lacquer ground is decorated with iridescent jewel-beetle wings (<em>tamamushi</em>). <a href="https://en.wikipedia.org/wiki/Tamamushi_Shrine" target="_blank" rel="noopener">Wikipedia</a></li>
+      <li><span class="n">c</span><strong>Hon'ami Kōetsu — <em>Writing Box with Pontoon Bridge</em> (<em>Funabashi makie suzuribako</em>).</strong> Early seventeenth century. Tokyo National Museum. National Treasure. The single most famous Japanese lacquer object in any public collection. <a href="https://www.tnm.jp/" target="_blank" rel="noopener">Tokyo National Museum</a></li>
+      <li><span class="n">d</span><strong>The Mazarin Chest.</strong> c. 1640. Victoria &amp; Albert Museum, London. A Japanese export lacquer chest commissioned through the VOC trade, named for a seventeenth-century French owner, now recognised as one of the finest surviving export lacquers. <a href="https://collections.vam.ac.uk/item/O8846/the-mazarin-chest-chest-unknown/" target="_blank" rel="noopener">V&amp;A catalogue</a></li>
+      <li><span class="n">e</span><strong>Marie Antoinette's lacquer collection.</strong> Musée du Louvre, Paris. Fifty Japanese lacquer objects acquired by the queen, now held as a named sub-collection. <a href="https://www.louvre.fr/en" target="_blank" rel="noopener">Louvre</a></li>
+      <li><span class="n">f</span><strong>The Dresden Porzellansammlung lacquer holdings.</strong> Assembled by Augustus the Strong of Saxony in the early eighteenth century. <a href="https://porzellansammlung.skd.museum/en/" target="_blank" rel="noopener">Porzellansammlung</a></li>
+      <li><span class="n">g</span><strong>Wajima Lacquer Museum, Ishikawa Prefecture.</strong> The working reference collection of Wajima-nuri. <a href="https://www.city.wajima.lg.jp/" target="_blank" rel="noopener">Wajima City</a></li>
+      <li><span class="n">h</span><strong>Surviving kintsugi-repaired tea bowls</strong> in the collections of Daitoku-ji (Kyoto), the Nezu Museum (Tokyo), and the Freer Gallery (Washington DC). The Freer's <em>Bakōhan</em> tea bowl is the most famous early example, repaired with large staples rather than kintsugi but in the same tradition of conspicuous repair.</li>
+    </ul>
+
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Beatrix von Ragué — <em>A History of Japanese Lacquerwork</em></strong> (University of Toronto Press, 1976; translated from the 1967 German edition). The standard English-language scholarly history.</li>
+      <li><span class="n">ii</span><strong>Ann Yonemura — <em>Japanese Lacquer</em></strong> (Freer Gallery of Art, Smithsonian, 1979). The Freer's catalogue of one of the finest Japanese lacquer collections outside Japan.</li>
+      <li><span class="n">iii</span><strong>Oliver Impey &amp; Christiaan Jörg — <em>Japanese Export Lacquer 1580–1850</em></strong> (Hotei Publishing, 2005). The definitive study of the VOC-trade lacquer that reshaped European decorative arts.</li>
+      <li><span class="n">iv</span><strong>Julia Hutt &amp; Joe Earle — <em>The Mazarin Chest</em></strong> (V&amp;A Publications, 2010). The conservation and historical study of the most famous single export lacquer object.</li>
+      <li><span class="n">v</span><strong>Tanizaki Jun'ichirō — <em>In Praise of Shadows</em></strong> (1933). English translation by Thomas J. Harper and Edward G. Seidensticker, Leete's Island Books, 1977. The single most quoted Western-language meditation on the Japanese aesthetic relationship to dim light, dark surfaces, and lacquer specifically. Note: this work is still under copyright and direct quotation is constrained.</li>
+      <li><span class="n">vi</span><strong>Christy Bartlett — <em>Flickwerk: The Aesthetics of Mended Japanese Ceramics</em></strong> (Museum für Lackkunst, Münster, 2008). The scholarly catalogue on kintsugi, correcting many of the looser claims in popular writing.</li>
+      <li><span class="n">vii</span><strong>Yanagi Sōetsu — <em>The Unknown Craftsman</em></strong> (see §1.1). Includes substantial sections on the wabi aesthetic and its relationship to lacquered tea utensils.</li>
+      <li><span class="n">viii</span><strong>Toshiko M. McCallum — <em>Containing Beauty: Japanese Bamboo Flower Baskets</em></strong> (University of California Los Angeles, 1988). Adjacent but relevant — the bamboo-lacquer craft axis of the tea tradition.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- FURTHER READING                                                  -->
+<!-- ================================================================ -->
+<section class="reading-section" id="reading">
+  <h2>Further reading for the Japan chapter</h2>
+  <ol>
+    <li><span class="n">i</span><strong>Tanizaki Jun'ichirō — <em>In Praise of Shadows</em></strong> (1933). English translation by Thomas J. Harper and Edward G. Seidensticker, Leete's Island Books, 1977. Forty pages. The single indispensable Western-language reference on the Japanese aesthetic preference for dim, muted, shadowed beauty.</li>
+    <li><span class="n">ii</span><strong>Okakura Kakuzō — <em>The Book of Tea</em></strong> (1906). Public domain. The foundational Western-language introduction to Japanese aesthetics. <a href="https://en.wikisource.org/wiki/The_Book_of_Tea" target="_blank" rel="noopener">Wikisource</a></li>
+    <li><span class="n">iii</span><strong>Donald Keene — <em>Seeds in the Heart: Japanese Literature from Earliest Times to the Late Sixteenth Century</em></strong> (Columbia University Press, 1993). The foundational survey of classical Japanese literature, from the <em>Man'yōshū</em> through the Muromachi period.</li>
+    <li><span class="n">iv</span><strong>Donald Keene — <em>World Within Walls: Japanese Literature of the Pre-Modern Era, 1600–1867</em></strong> (Henry Holt, 1976). The companion volume, covering the Edo period.</li>
+    <li><span class="n">v</span><strong>Haruo Shirane — <em>Japan and the Culture of the Four Seasons: Nature, Literature, and the Arts</em></strong> (Columbia University Press, 2012). The authoritative study of seasonality as organising principle of Japanese cultural practice.</li>
+    <li><span class="n">vi</span><strong>Yanagi Sōetsu — <em>The Unknown Craftsman: A Japanese Insight into Beauty</em></strong> (Kodansha International, 1972). The founding text of the <em>mingei</em> movement and the twentieth-century philosophical backbone of the entire Japanese craft revival.</li>
+    <li><span class="n">vii</span><strong>Leonard Koren — <em>Wabi-Sabi for Artists, Designers, Poets &amp; Philosophers</em></strong> (Stone Bridge Press, 1994). The short accessible introduction to wabi-sabi that every Western design student reads first.</li>
+    <li><span class="n">viii</span><strong>Kenya Hara — <em>Designing Design</em></strong> (Lars Müller, 2007) and <em>White</em> (Lars Müller, 2009). The twentieth-century philosophical manifesto for Muji's design discipline.</li>
+    <li><span class="n">ix</span><strong>Penelope Mason — <em>History of Japanese Art</em></strong> (Harry N. Abrams, 1993; second edition with Donald Dinwiddie, Pearson, 2004). The standard one-volume English-language survey.</li>
+    <li><span class="n">x</span><strong>Liza Dalby — <em>Kimono: Fashioning Culture</em></strong> (Yale, 1993). The best English-language cultural history of Japanese textile and colour practice.</li>
+    <li><span class="n">xi</span><strong>Jenny Balfour-Paul — <em>Indigo: Egyptian Mummies to Blue Jeans</em></strong> (Bibliothèque §0.8). The Japanese chapters cover aizome in depth.</li>
+    <li><span class="n">xii</span><strong>Sadao Hibi — <em>The Colors of Japan</em></strong> (Kodansha International, 2000). A photographic survey of traditional Japanese colour names, with samples and cultural commentary.</li>
+    <li><span class="n">xiii</span><strong>Sei Shōnagon — <em>The Pillow Book</em></strong>, translated by Meredith McKinney (Penguin Classics, 2006). The standard modern translation. Heian court colour sensibility in the primary source.</li>
+    <li><span class="n">xiv</span><strong>Murasaki Shikibu — <em>The Tale of Genji</em></strong>, translated by Royall Tyler (Penguin Classics, 2001). The fullest and most readable modern English translation of the foundational Japanese novel.</li>
+    <li><span class="n">xv</span><strong>Lafcadio Hearn — <em>Glimpses of Unfamiliar Japan</em></strong> (1894) and <em>Japan: An Attempt at Interpretation</em> (1904). Public domain. The best late-nineteenth-century Western first-person descriptions of everyday Japanese colour and material life.</li>
+  </ol>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon">
+  Rangrez · Bibliothèque · <a href="bibliotheque.html">Back to the index</a>
+</footer>
+
+<div class="mobile-picker" id="mobilePicker" aria-hidden="true">
+  <button class="mobile-picker-close" id="mobilePickerClose" aria-label="Close">×</button>
+  <div class="mobile-picker-inner">
+    <h3>§ Opening</h3>
+    <ol>
+      <li><a href="#preface"><span class="n">§</span>Preface</a></li>
+      <li><a href="#timeline"><span class="n">§</span>Timeline</a></li>
+    </ol>
+    <h3>§ Palettes</h3>
+    <ol>
+      <li><a href="#p1"><span class="n">1.1</span>Muji · Cleanest White</a></li>
+      <li><a href="#p2"><span class="n">1.2</span>Kinari · Unbleached</a></li>
+      <li><a href="#p3"><span class="n">1.3</span>Sumi · Ink</a></li>
+      <li><a href="#p4"><span class="n">1.4</span>Sakura · Cherry Blossom</a></li>
+      <li><a href="#p5"><span class="n">1.5</span>Matcha · Whisked Tea</a></li>
+      <li><a href="#p6"><span class="n">1.6</span>Kon · Deep Indigo</a></li>
+      <li><a href="#p7"><span class="n">1.7</span>Kuchiba · Decayed Leaf</a></li>
+      <li><a href="#p8"><span class="n">1.8</span>Tatami · Rush Mat</a></li>
+      <li><a href="#p9"><span class="n">1.9</span>Beni · Safflower Red</a></li>
+      <li><a href="#p10"><span class="n">1.10</span>Urushi · Lacquer</a></li>
+    </ol>
+    <h3>§ Apparatus</h3>
+    <ol>
+      <li><a href="#reading"><span class="n">§</span>Further Reading</a></li>
+    </ol>
+  </div>
+</div>
+
+<script>
+  // Dark mode
+  const themeBtn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('rangrez-biblio-theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('rangrez-biblio-theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // Deep-link copy on § click
+  document.querySelectorAll('.selflink').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const hash = a.getAttribute('href');
+      navigator.clipboard?.writeText(hash);
+      history.replaceState(null, '', hash);
+      a.textContent = '✓';
+      setTimeout(() => { a.textContent = '§'; }, 900);
+    });
+  });
+
+  // Mobile picker
+  const jumpBtn = document.getElementById('mobileJumpBtn');
+  const picker = document.getElementById('mobilePicker');
+  const pickerClose = document.getElementById('mobilePickerClose');
+
+  function openPicker() {
+    picker.classList.add('open');
+    picker.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePicker() {
+    picker.classList.remove('open');
+    picker.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  jumpBtn.addEventListener('click', openPicker);
+  pickerClose.addEventListener('click', closePicker);
+  picker.querySelectorAll('a').forEach(a => a.addEventListener('click', closePicker));
+  picker.addEventListener('click', e => { if (e.target === picker) closePicker(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && picker.classList.contains('open')) closePicker();
+  });
+</script>
+
+</body>
+</html>

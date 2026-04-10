@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rangrez · Bibliothèque · The Russia Chapter</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --fg: #1c1815;
+    --muted: #6b6b68;
+    --line: #e5e5e2;
+    --card-bg: #ffffff;
+    --accent: #8a6a3d;
+    --num: #b8b3a8;
+    --keystone: #1a3a7c;
+  }
+  body.dark {
+    --bg: #14110e;
+    --fg: #ede8dc;
+    --muted: #8a8680;
+    --line: #2e2a24;
+    --card-bg: #1e1a16;
+    --accent: #c9a36a;
+    --num: #5a564e;
+    --keystone: #5a7db8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  html { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  body.dark { scrollbar-color: var(--line) transparent; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; border: 2px solid var(--bg); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  aside.toc, .mobile-picker { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
+  body {
+    margin: 0;
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+    transition: background .2s, color .2s;
+  }
+  a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+  /* HEADER */
+  header.masthead {
+    padding: 56px 40px 36px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  header.masthead .crumb {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  header.masthead .crumb a { color: var(--muted); text-decoration: none; }
+  header.masthead .crumb a:hover { color: var(--fg); }
+  header.masthead h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header.masthead .sub {
+    margin: 0;
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 15px;
+    font-style: italic;
+    font-family: ui-serif, Georgia, serif;
+  }
+  .theme-btn {
+    position: absolute;
+    top: 56px;
+    right: 40px;
+    background: none;
+    border: 1px solid var(--line);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--muted);
+    font-family: inherit;
+    line-height: 1;
+    padding: 0;
+    transition: color .15s, border-color .15s;
+  }
+  .theme-btn:hover { color: var(--fg); border-color: var(--fg); }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 32px 20px 32px 40px;
+    border-right: 1px solid var(--line);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+  }
+  aside.toc h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 18px 0 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  aside.toc h3:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  aside.toc ol { list-style: none; padding: 0; margin: 0; }
+  aside.toc li { margin: 2px 0; display: flex; gap: 8px; }
+  aside.toc .n { color: var(--num); font-variant-numeric: tabular-nums; flex-shrink: 0; min-width: 28px; }
+  aside.toc a { text-decoration: none; color: var(--muted); line-height: 1.4; }
+  aside.toc a:hover { color: var(--fg); }
+
+  main { padding: 48px 56px 120px; min-width: 0; max-width: 820px; }
+
+  /* PREFACE */
+  section.preface, section.timeline, section.reading-section {
+    margin: 0 0 72px;
+    scroll-margin-top: 80px;
+  }
+  section.preface h2, section.timeline h2, section.reading-section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  section.preface p {
+    font-size: 17px;
+    line-height: 1.72;
+    margin: 0 0 20px;
+    max-width: 640px;
+  }
+  section.preface p.drop::first-letter {
+    font-size: 54px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.88;
+    margin: 6px 10px 0 0;
+    color: var(--accent);
+    font-family: ui-serif, Georgia, serif;
+  }
+
+  /* TIMELINE */
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 640px;
+  }
+  .timeline-list li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+  }
+  .timeline-list li:last-child { border-bottom: 1px dotted var(--line); }
+  .timeline-list .date {
+    color: var(--muted);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding-top: 1px;
+  }
+
+  /* PALETTE CHAPTERS */
+  section.palette-chapter {
+    margin: 88px 0;
+    padding-top: 40px;
+    border-top: 2px solid var(--fg);
+    scroll-margin-top: 80px;
+  }
+  section.palette-chapter:first-of-type { margin-top: 32px; }
+
+  .pal-head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin: 0 0 8px;
+    flex-wrap: wrap;
+  }
+  .pal-head .n {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .pal-head h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .pal-head h2 .script {
+    color: var(--muted);
+    font-weight: 400;
+    margin-right: 10px;
+  }
+  .pal-meaning {
+    margin: 0 0 24px;
+    padding-left: 72px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+  .pal-lede {
+    padding-left: 72px;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 36px;
+    max-width: 640px;
+  }
+
+  .pal-body { padding-left: 72px; max-width: 700px; }
+  .pal-body > h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 36px 0 12px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  .pal-body p { font-size: 15px; line-height: 1.7; margin: 0 0 16px; }
+  .pal-body .quote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 22px;
+    margin: 20px 0 20px 4px;
+    font-style: italic;
+    color: var(--fg);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .pal-body .quote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .pal-body ul.objects, .pal-body ol.sources {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+  .pal-body ul.objects li, .pal-body ol.sources li {
+    padding: 10px 0 10px 28px;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+    line-height: 1.55;
+    position: relative;
+  }
+  .pal-body ul.objects li:last-child, .pal-body ol.sources li:last-child {
+    border-bottom: 1px dotted var(--line);
+  }
+  .pal-body ul.objects li .n, .pal-body ol.sources li .n {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    font-size: 10px;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Qinghua gets the keystone accent — same cobalt as Persia's Lajvard,
+     because they are the same material lineage */
+  #p4 { border-top-color: var(--keystone); }
+  #p4 .pal-head .n { color: var(--keystone); }
+  #p4 .pal-body .quote { border-left-color: var(--keystone); }
+
+  /* READING SECTION */
+  section.reading-section ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 700px;
+  }
+  section.reading-section ol li {
+    padding: 14px 0 14px 36px;
+    border-top: 1px dotted var(--line);
+    font-size: 14px;
+    line-height: 1.55;
+    position: relative;
+  }
+  section.reading-section ol li:last-child { border-bottom: 1px dotted var(--line); }
+  section.reading-section ol li .n {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-size: 11px;
+    color: var(--num);
+    font-variant-numeric: tabular-nums;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  /* SELF-LINK */
+  .selflink {
+    color: var(--num);
+    font-size: 11px;
+    text-decoration: none;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  section.palette-chapter:hover .pal-head .selflink { opacity: 1; }
+
+  footer.colophon {
+    margin: 120px 40px 60px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  footer.colophon a { color: var(--muted); text-decoration: none; }
+  footer.colophon a:hover { color: var(--fg); }
+
+  /* MOBILE NAV (hidden by default) */
+  .mobile-nav { display: none; }
+  .mobile-picker { display: none; }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.5; }
+    header.masthead { padding: 0 0 16pt; border-bottom: 1pt solid #000; }
+    header.masthead h1 { font-size: 22pt; }
+    .theme-btn, aside.toc, .selflink, footer.colophon, .mobile-nav { display: none !important; }
+    .layout { display: block; max-width: none; }
+    main { padding: 16pt 0 0; max-width: none; }
+    section.palette-chapter { page-break-before: always; border-top: 1pt solid #000; padding-top: 14pt; }
+    section.palette-chapter:first-of-type { page-break-before: auto; }
+    section.preface, section.timeline, section.reading-section { page-break-inside: avoid; }
+    .pal-body { padding-left: 0; }
+    .pal-meaning, .pal-lede { padding-left: 0; }
+    .pal-head .n { font-size: 26pt; color: #888; }
+    a { color: #000; text-decoration: none; }
+    a[href^="http"]::after {
+      content: " ⟨" attr(href) "⟩";
+      font-size: 8pt;
+      color: #555;
+      word-break: break-all;
+      font-family: ui-monospace, monospace;
+    }
+    a[href^="#"]::after { content: ""; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    html { scroll-padding-top: 72px; }
+    .layout { display: block; }
+    aside.toc { display: none; }
+
+    header.masthead { padding: 32px 20px 24px; }
+    header.masthead h1 { font-size: 26px; }
+    header.masthead .sub { font-size: 14px; }
+    .theme-btn { top: 28px; right: 20px; }
+
+    .mobile-nav {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 16px;
+    }
+    .mobile-jump-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 11px 16px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--fg);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-jump-btn:active { opacity: 0.7; }
+    .mj-chev { color: var(--muted); font-size: 11px; }
+
+    .mobile-picker.open {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 200;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-picker-inner {
+      padding: 64px 24px 80px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .mobile-picker h3 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 28px 0 8px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    .mobile-picker h3:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .mobile-picker ol { list-style: none; padding: 0; margin: 0; }
+    .mobile-picker a {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 15px 4px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--line);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-picker a:active { opacity: 0.6; }
+    .mobile-picker .n {
+      color: var(--num);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      min-width: 36px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .mobile-picker-close {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--fg);
+      cursor: pointer;
+      z-index: 201;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    main { padding: 32px 20px 80px; max-width: none; }
+    section.preface p { font-size: 16px; }
+    section.palette-chapter { margin: 60px 0; padding-top: 30px; }
+    .pal-head { gap: 14px; }
+    .pal-head .n { font-size: 36px; }
+    .pal-head h2 { font-size: 22px; }
+    .pal-meaning { padding-left: 0; margin-bottom: 18px; }
+    .pal-lede { padding-left: 0; font-size: 16px; }
+    .pal-body { padding-left: 0; }
+    .pal-body p { font-size: 14px; }
+    .pal-body .quote { font-size: 14px; padding-left: 18px; }
+    .pal-body ul.objects li, .pal-body ol.sources li { font-size: 13px; padding-left: 26px; }
+    .selflink { opacity: 0.4; padding: 4px; }
+    .timeline-list li { grid-template-columns: 90px 1fr; font-size: 13px; gap: 14px; }
+    .timeline-list .date { font-size: 11px; }
+    footer.colophon { margin: 60px 20px 40px; font-size: 10px; }
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { padding: 24px 16px 18px; }
+    header.masthead h1 { font-size: 23px; }
+    .theme-btn { top: 22px; right: 16px; width: 32px; height: 32px; }
+    main { padding: 24px 16px 64px; }
+    .mobile-nav { padding: 8px 14px; }
+    .mobile-picker-inner { padding: 60px 18px 72px; }
+    .pal-head .n { font-size: 30px; }
+    .pal-head h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="crumb"><a href="bibliotheque.html">← Bibliothèque</a> · Chapter</p>
+  <h1>The Russia Chapter</h1>
+  <p class="sub">A long-form reading of Collection §14 — ten palettes from Vladimir's Christianisation of Rus' to the Soviet era, with a folk blue-and-white ceramic at its centre that connects, by a long downstream chain, to the same Persian cobalt that runs through the keystones of the Persia, China, and Italy chapters.</p>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+</header>
+
+<div class="mobile-nav">
+  <button class="mobile-jump-btn" id="mobileJumpBtn">
+    <span class="mj-label">Jump to section</span>
+    <span class="mj-chev">▾</span>
+  </button>
+</div>
+
+<div class="layout">
+
+<aside class="toc">
+  <h3>§ Opening</h3>
+  <ol>
+    <li><span class="n">§</span><a href="#preface">Preface</a></li>
+    <li><span class="n">§</span><a href="#timeline">Timeline</a></li>
+  </ol>
+  <h3>§ Palettes</h3>
+  <ol>
+    <li><span class="n">14.1</span><a href="#p1">Sneg · Snow</a></li>
+    <li><span class="n">14.2</span><a href="#p2">Lyon · Linen</a></li>
+    <li><span class="n">14.3</span><a href="#p3">Peterburg · Petersburg Pastel</a></li>
+    <li><span class="n">14.4</span><a href="#p4">Gzhel · Cobalt Folk Ceramic</a></li>
+    <li><span class="n">14.5</span><a href="#p5">Khokhloma · Red &amp; Gold Lacquerware</a></li>
+    <li><span class="n">14.6</span><a href="#p6">Beryoza · Silver Birch</a></li>
+    <li><span class="n">14.7</span><a href="#p7">Ikona · Russian Icon</a></li>
+    <li><span class="n">14.8</span><a href="#p8">Tayga · Boreal Forest</a></li>
+    <li><span class="n">14.9</span><a href="#p9">Sobor · Saint Basil's Cathedral</a></li>
+    <li><span class="n">14.10</span><a href="#p10">Noch' · Russian Night</a></li>
+  </ol>
+  <h3>§ Apparatus</h3>
+  <ol>
+    <li><span class="n">§</span><a href="#reading">Further Reading</a></li>
+  </ol>
+</aside>
+
+<main>
+
+<!-- ================================================================ -->
+<!-- PREFACE                                                          -->
+<!-- ================================================================ -->
+<section class="preface" id="preface">
+  <h2>Preface</h2>
+    <p class="drop">Russia is, by reasonable measure, the chromatic outlier of Europe. The territory of the Russian state — running from the Baltic to the Pacific, across eleven time zones and seven climate bands, through tundra, taiga, mixed forest, steppe, semi-desert, and high mountain — is the largest single political space on the planet, and the visual culture that has developed across it carries the marks of an environment that no other European nation has had to contend with at the same scale. Snow is here a constitutional fact rather than a seasonal incident: from late October until early April, the working palette of every Russian city north of the fifty-fifth parallel is dominated by white above, dark grey below, and the specific blue-violet of low winter sunlight on snow. The summer palette is shorter, hotter, and chromatically denser, but the country's deep visual identity belongs to the winter, and the canonical Russian images — the snowbound village, the birch grove in deep frost, the gilded onion domes against a leaden sky — are essentially all winter compositions.</p>
+  <p>Onto this environmental substrate three layered traditions stack. The first is the deep Orthodox Christian heritage that arrived from Byzantium in 988, when Vladimir of Kiev was baptised at Chersonesus and ordered the mass conversion of his subjects: the iconographic tradition that follows over the next thousand years — Theophanes the Greek in the late fourteenth century, Andrei Rublev in the early fifteenth, Dionisius at the end of the fifteenth, and a continuous tradition of monastery and parish painters thereafter — produces what is, by any reasonable measure, the most sustained body of religious art in the Christian world after the Italian peninsula itself. The second tradition is the imperial-court layer added by Peter the Great after his return from western Europe in 1698: the founding of Saint Petersburg in 1703, the importation of Italian and French architects, the building of the Winter Palace and the Catherine Palace and the great series of pastel neoclassical facades that gave the new capital its specific yellow-and-white, green-and-white, and blue-and-white chromatic identity. The third tradition is the folk-craft layer that has run continuously underneath both the religious and the imperial registers — the painted lacquerware of Khokhloma, the blue-and-white ceramic of Gzhel, the lace and embroidery of Vologda and Yelets, the wooden architecture of the Russian north — and that supplied the visual vocabulary on which the late-nineteenth-century Russian national-revival movement and (later) the early-Soviet Constructivist designers built their work.</p>
+  <p>The ten palettes that follow walk through these layers. Three role slots hold the deepest anchors — snow for LIGHT, peasant linen for WARM, the pastel facades of Petersburg for MONO — and seven override slots carry the canonical Russian materials: the blue-and-white ceramic of Gzhel (which is the keystone of the chapter and the fourth successive blue keystone in the Bibliothèque after Persia, China, and Italy), the red-and-gold lacquerware of Khokhloma, the silver birch that is the country's national tree, the icon tradition of Rublev and his successors, the dark green of the boreal taiga forest, the riotous polychrome of Saint Basil's Cathedral on Red Square, and the closing dark slot of the Russian winter night. The chapter sits geographically between the Mughal-Persian world of the India North chapter to its south and the Scandinavian and Baltic chromatic traditions to its west, and it carries the specific argument that Russia's apparent visual isolation is in fact deeply networked: the cobalt blue of Gzhel ceramic, the most distinctively Russian of all the country's folk crafts, descends through Delftware, through Chinese qinghua porcelain, through the Persian cobalt trade, to the same single mountain valley in the Hindu Kush from which all four blue keystones in this Bibliothèque originally arrived.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- TIMELINE                                                         -->
+<!-- ================================================================ -->
+<section class="timeline" id="timeline">
+  <h2>A Chinese chronology</h2>
+  <ul class="timeline-list">
+        <li><span class="date">988 CE</span><span>Vladimir of Kiev is baptised at Chersonesus in the Crimea and orders the mass conversion of Kievan Rus' to Orthodox Christianity. The Byzantine icon-painting tradition begins to enter the Russian lands within a generation.</span></li>
+    <li><span class="date">c. 1100</span><span>The earliest surviving Russian icons are produced at Kiev and Novgorod by painters working in the Byzantine technique on locally prepared wooden panels. The "Vladimir Mother of God" — a Constantinople-made icon brought to Vladimir-Suzdal around 1131 — becomes the most venerated single icon in the entire later Russian tradition.</span></li>
+    <li><span class="date">1240 CE</span><span>Mongol forces under Batu Khan sack Kiev. The Mongol period (the "Tatar yoke") will last for two and a half centuries; the Russian principalities pay tribute to the Golden Horde and develop in relative cultural isolation from the western European mainstream.</span></li>
+    <li><span class="date">1380 CE</span><span>The Battle of Kulikovo. Dmitry Donskoy's forces defeat the Mongol Mamai, marking the beginning of the political consolidation of the Russian lands around Moscow.</span></li>
+    <li><span class="date">c. 1410</span><span>Andrei Rublev paints the <em>Trinity</em> icon for the Trinity-Sergius Lavra at Sergiev Posad. The work is the single most celebrated piece of Russian medieval art and the canonical reference for the entire later Russian icon tradition.</span></li>
+    <li><span class="date">1453 CE</span><span>Constantinople falls to Mehmed II. The Russian intellectual tradition will from this date onwards refer to Moscow as "the Third Rome" — the inheritor of the Byzantine Christian project and its Orthodox theological lineage.</span></li>
+    <li><span class="date">1547 CE</span><span>Ivan IV ("the Terrible") is crowned the first Tsar of all Rus'. The Russian state begins its long expansion eastward across the Eurasian landmass.</span></li>
+    <li><span class="date">1555–1561</span><span>The Cathedral of the Intercession on the Moat — known to all later generations as Saint Basil's Cathedral — is built on Red Square in Moscow on the orders of Ivan the Terrible to commemorate the conquest of Kazan. The architects (traditionally named as Postnik and Barma) produce the riotously polychromatic onion-dome structure that becomes the single most recognisable Russian building in the world.</span></li>
+    <li><span class="date">c. 1640s</span><span>Folk ceramic production is documented at Gzhel, a cluster of villages roughly sixty kilometres south-east of Moscow. The early Gzhel ware is functional earthenware with simple slip decoration; the cobalt blue-and-white style for which the region will become famous develops only in the eighteenth and nineteenth centuries.</span></li>
+    <li><span class="date">1697–1698</span><span>Peter the Great undertakes the Grand Embassy to western Europe — visiting the Dutch Republic, England, and the German states — and brings back the technical knowledge, the personnel, and the aesthetic vocabulary on which he will reorganise the Russian state. He sees Delftware in production at Delft and orders specimens for Russia.</span></li>
+    <li><span class="date">1703 CE</span><span>Peter founds Saint Petersburg on the marshland at the mouth of the Neva River, on territory recently conquered from Sweden. The new capital will be built over the following century by foreign architects (Domenico Trezzini, Bartolomeo Rastrelli, Giacomo Quarenghi, Carlo Rossi) on a European urban model and will give Russia its first fully European city.</span></li>
+    <li><span class="date">1744 CE</span><span>Dmitry Vinogradov, a Russian chemist trained in Germany, succeeds in producing the first hard-paste porcelain in Russia at the Imperial Porcelain Factory in Saint Petersburg. The achievement comes thirty-six years after Böttger's at Meissen and roughly four centuries after the Chinese original; Russia is the third European country (after Saxony and France) to develop hard-paste porcelain independently.</span></li>
+    <li><span class="date">c. 1800</span><span>The Gzhel cobalt blue-and-white style emerges in its mature form, drawing on European porcelain models that had been arriving in Russia through Saint Petersburg over the previous century and adapting them to local clay, local kilns, and local folk-pictorial conventions. The style will become, over the nineteenth century, one of the canonical Russian folk-craft signatures.</span></li>
+    <li><span class="date">1812 CE</span><span>Napoleon's Grande Armée enters Moscow on 14 September. The city burns over the following four days; the French army retreats in October across snow-covered country and is destroyed by hunger, cold, and Cossack raids. The 1812 campaign becomes the single most important event in the nineteenth-century Russian national imagination and the subject of <em>War and Peace</em>.</span></li>
+    <li><span class="date">1861 CE</span><span>Tsar Alexander II issues the Emancipation Manifesto, abolishing serfdom across the Russian Empire. The reform reshapes Russian rural society and creates the conditions for the late-nineteenth-century cultural explosion that produces Tolstoy, Dostoevsky, Chekhov, Tchaikovsky, Mendeleev, and the great Russian realist landscape painting tradition.</span></li>
+    <li><span class="date">1898 CE</span><span>The Tretyakov Gallery in Moscow — assembled over the previous four decades by the merchant collector Pavel Tretyakov — is bequeathed to the city. It becomes, and remains, the single most important collection of Russian art in the world, holding the Rublev <em>Trinity</em>, Levitan's landscapes, Repin's history paintings, and the principal works of every major nineteenth-century Russian painter.</span></li>
+    <li><span class="date">1917 CE</span><span>The February and October Revolutions. The Romanov dynasty falls; the Provisional Government collapses; the Bolsheviks seize power. The Russian Empire becomes the Soviet Union in 1922 and remains so until 1991.</span></li>
+    <li><span class="date">1929 CE</span><span>Stalin consolidates power. The Soviet anti-religious campaign destroys or repurposes thousands of churches and monasteries; many surviving icons are removed to state museums (the Tretyakov Gallery and the Russian Museum) where they are catalogued and preserved as art objects rather than venerated as religious objects. The catalogue work done in this period is what makes the modern study of the Russian icon tradition possible.</span></li>
+    <li><span class="date">1990 CE</span><span>The Moscow Kremlin and Red Square — including Saint Basil's Cathedral — are inscribed on the UNESCO World Heritage list. The historic centre of Saint Petersburg follows in the same year. The two inscriptions cover the principal architectural sites of imperial and pre-imperial Russia.</span></li>
+    <li><span class="date">1991 CE</span><span>The Soviet Union is dissolved. Russia re-enters the international art market as a sovereign state; the major museums (the Tretyakov, the Russian Museum, the Hermitage) reopen their pre-Soviet and religious collections to free public access; and the folk-craft traditions covered in this chapter — Gzhel, Khokhloma, Pavlovsky Posad shawls, Vologda lace — re-emerge as licensed export industries.</span></li>
+  </ul>
+</section>
+
+<!-- ================================================================ -->
+<!-- PALETTE CHAPTERS                                                 -->
+<!-- ================================================================ -->
+<!-- ================================================================ -->
+<!-- 14.1 · SNEG                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p1">
+  <div class="pal-head">
+    <span class="n">14.1</span>
+    <h2><span class="script">снег</span>Sneg · Snow<a class="selflink" href="#p1">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>snyeg</em>: snow. The role slot for LIGHT.</p>
+  <p class="pal-lede">The light role of the collection is the specific blue-shifted white of Russian snow under low winter sunlight — not the bright neutral white of midday alpine snow, but the slightly cool, slightly violet, slightly lavender white that snow takes on across the Russian plains in late afternoon between November and March, when the sun barely clears the horizon and the long shadows of birch trees stretch across the open field. Snow is the single most constitutive element of the Russian visual world, and the chromatic identity of the country is, in large part, the chromatic identity of snow at different depths and different angles of light.</p>
+
+  <div class="pal-body">
+    <h3>The chromatic specifics of Russian snow</h3>
+    <p>Snow is not, optically, white. A fresh snowfall under direct overhead sun reflects roughly ninety per cent of the visible spectrum and reads as a near-perfect neutral white to the human eye. But Russian winter sun does not arrive overhead. At Moscow's latitude (roughly fifty-six degrees north) the December sun never rises more than eleven degrees above the horizon, and the morning and afternoon angles are even lower. The result is that snow in Russia is illuminated, for most of the daylight hours of winter, by light that has travelled through a long oblique path of atmosphere — light from which the longer red wavelengths have been preferentially scattered out — and the snow surface reflects this filtered, blue-shifted light back to the viewer.</p>
+    <p>The chromatic effect is reinforced by the fact that the deeper layers of snow (where the light penetrates a few millimetres before being scattered back to the surface) selectively absorb red wavelengths more strongly than blue, producing the specific blue cast that anyone who has photographed snow in winter sun has had to compensate for. A Russian winter landscape painted with photographic accuracy will use a palette of blues and violets and greys for the snow surfaces, with white reserved only for the specific areas of direct specular reflection. The mid-nineteenth-century Russian realist landscape tradition — Alexei Savrasov, Ivan Shishkin, Isaac Levitan — developed an entire chromatic vocabulary for the rendering of this winter blue-white that is one of the more distinctive contributions of Russian painting to the European visual tradition.</p>
+    <h3>Snow in the literary imagination</h3>
+    <p>Russian literature returns to snow constantly, and the snow passages are among the most quoted in the entire tradition. Pushkin's <em>Eugene Onegin</em> opens its winter chapter with one of the most loved single quatrains in Russian poetry; Tolstoy's <em>War and Peace</em> uses the snow of the 1812 retreat as a structural element of the novel's final volumes; Boris Pasternak's <em>Doctor Zhivago</em> (1957) is built around a series of winter scenes whose specific chromatic register is one of the book's defining literary achievements. The famous opening of Pushkin's short lyric <em>Winter Morning</em> (1829) — "Frost and sun; a wondrous day!" — has been memorised by every Russian schoolchild for nearly two centuries.</p>
+    <div class="quote">
+      Frost and sun; a wondrous day!
+      <cite>Alexander Pushkin, <em>Winter Morning</em> (1829), opening line. Public domain in multiple translations; the literal English here is the standard schoolroom version.</cite>
+    </div>
+    <h3>Representative sites &amp; references</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Russian winter landscape generally.</strong> Not a single site but the principal subject matter of the Russian realist landscape tradition. The collection at the Tretyakov Gallery in Moscow holds the canonical examples. <a href="https://www.tretyakovgallery.ru/en/" target="_blank" rel="noopener">Tretyakov Gallery</a></li>
+      <li><span class="n">b</span><strong>Isaac Levitan, <em>March</em></strong> (1895). Tretyakov Gallery, Moscow. The single most reproduced Russian late-winter landscape; the snow registers as a soft warm white against pale blue shadow.</li>
+      <li><span class="n">c</span><strong>Alexei Savrasov, <em>The Rooks Have Returned</em></strong> (1871). Tretyakov Gallery, Moscow. The painting that, by general critical agreement, founded the Russian realist landscape tradition. The snow is treated with photographic chromatic specificity.</li>
+      <li><span class="n">d</span><strong>Vasily Surikov, <em>Boyarynya Morozova</em></strong> (1887). Tretyakov Gallery, Moscow. The most famous Russian historical painting that uses snow as a structural element; the noblewoman is being dragged through Moscow on a sledge across hard-packed winter snow.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Orlando Figes — <em>Natasha's Dance: A Cultural History of Russia</em></strong> (Allen Lane, 2002). The single best one-volume cultural history of Russia in English; the chapter on the Russian landscape tradition covers the chromatic vocabulary of snow at substantial length.</li>
+      <li><span class="n">ii</span><strong>Rosalind P. Blakesley — <em>The Russian Canvas: Painting in Imperial Russia, 1757–1881</em></strong> (Yale University Press, 2016). The standard modern English-language survey of the imperial-era Russian painting tradition.</li>
+      <li><span class="n">iii</span><strong>Alexander Pushkin — <em>Selected Poems</em></strong>, multiple editions. The Penguin Classics edition translated by D. M. Thomas (1982) and the Anthony Briggs translation (Pushkin Press, 2010) are both serviceable; older nineteenth-century English translations are public domain and freely available.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.2 · LYON                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p2">
+  <div class="pal-head">
+    <span class="n">14.2</span>
+    <h2><span class="script">лён</span>Lyon · Linen<a class="selflink" href="#p2">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>lyon</em>: flax, linen. The role slot for WARM.</p>
+  <p class="pal-lede">The warm anchor of the collection is the soft cream-ivory of unbleached Russian linen — the cloth that has been spun and woven from flax in the Russian villages of the north and west for at least a thousand years and that, in its undyed and undecorated form, is one of the canonical materials of pre-modern Russian domestic life. Russian linen is closer to ivory than to white, slightly warmer than European linen of the same period, and carries a specific texture and hand-feel that has made it a target of folk-craft preservation efforts since the late nineteenth century.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p>Flax (<em>Linum usitatissimum</em>) has been cultivated in the Russian forest-and-river belt since the early medieval period and was the dominant fibre crop of the northern and western Russian provinces — Pskov, Novgorod, Tver, Vologda, Yaroslavl, Kostroma — through the entire period of imperial Russia and the Soviet Union. The crop is unusually well suited to the cool, damp summers of the Russian north-west, where wheat and barley produce poor yields but flax flourishes. The plant is harvested by uprooting (rather than cutting) to preserve the full length of the fibres, then retted in stagnant water to break down the plant matter around the bast fibres, then beaten, scutched, and combed to separate the long usable fibres from the shorter tow. The processed fibres are then spun by hand and woven on a domestic loom into the cloth that has clothed Russian peasants for a millennium.</p>
+    <p>The chromatic register of unbleached Russian linen is a soft warm cream, slightly more yellow than the equivalent French or Belgian linens of the same period because of differences in the local water chemistry used in retting. Bleached linen, achieved by extended sun-and-water exposure across multiple summer cycles, eventually approaches a true white but never reaches the cool blue-white of modern industrial bleached cotton — the material identity of the cloth always remains warm. The Russian peasant woman's dowry, in the traditional pre-Revolutionary practice, included a substantial quantity of hand-woven linen prepared over the years before her marriage, and the surviving examples in the major Russian ethnographic collections are some of the finest pre-modern domestic textiles in any European tradition.</p>
+    <h3>Embroidered linen and the folk-decorative tradition</h3>
+    <p>The cream linen ground is the substrate of one of the most distinctive Russian folk-decorative traditions: the embroidered ritual towel (<em>rushnyk</em> in some regional usages, <em>polotentse</em> in standard Russian), a long narrow cloth worked in red and (occasionally) black thread in geometric and figurative patterns and used in wedding ceremonies, in funeral rites, in the welcoming of honoured guests with bread and salt, and in the decoration of household icons. The patterns are dense, symmetrical, and follow regional conventions that ethnographers have catalogued in detail since the late nineteenth century — the Vologda style, the Pskov style, the Northern Dvina style, and so on. A traditional Russian peasant household might own dozens of these embroidered towels, accumulated across generations and used on specific ritual occasions throughout the year.</p>
+    <p>The folk-revival movement of the late nineteenth century, sponsored by such figures as Princess Maria Tenisheva at her Talashkino estate near Smolensk and by Savva Mamontov at his Abramtsevo estate near Moscow, made the deliberate preservation and restoration of these embroidered linen traditions one of its central projects. The Talashkino and Abramtsevo workshops trained village women in the older patterns and produced exhibition-grade textiles for the international art-and-craft market; many of the finest surviving pieces in modern museum collections originated in these workshops between 1890 and 1917.</p>
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Russian Ethnographic Museum, Saint Petersburg.</strong> Holds the largest single collection of pre-Revolutionary Russian peasant textiles, including thousands of embroidered linen towels from across the empire. <a href="https://ethnomuseum.ru/en" target="_blank" rel="noopener">Russian Ethnographic Museum</a></li>
+      <li><span class="n">b</span><strong>The State Historical Museum, Moscow.</strong> The Red Square museum holds the major Moscow-based collection of folk textiles. <a href="https://shm.ru/en/" target="_blank" rel="noopener">State Historical Museum</a></li>
+      <li><span class="n">c</span><strong>The Talashkino estate, near Smolensk.</strong> Princess Tenisheva's late-nineteenth-century folk-craft revival workshop. The estate is now a museum; the surviving Tenisheva collection is at the Smolensk Museum.</li>
+      <li><span class="n">d</span><strong>Vologda linen.</strong> The historic centre of Russian flax cultivation; the Vologda regional museum and the Vologda lace museum hold the best in-situ collections.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Mary B. Kelly — <em>Goddess Embroideries of Eastern Europe</em></strong> (Studio Books, 1989; revised 1996). The accessible English-language introduction to the embroidered ritual textiles of Russia and Ukraine.</li>
+      <li><span class="n">ii</span><strong>Susan Conner Lacovara &amp; Lyndel King — <em>Russian Folk Art</em></strong> (University of Minnesota, 1990). General catalogue of Russian folk decorative traditions.</li>
+      <li><span class="n">iii</span><strong>Wendy R. Salmond — <em>Arts and Crafts in Late Imperial Russia: Reviving the Kustar Art Industries, 1870–1917</em></strong> (Cambridge University Press, 1996). The scholarly study of the Talashkino and Abramtsevo workshops and their efforts to preserve the folk-craft traditions.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.3 · PETERBURG                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p3">
+  <div class="pal-head">
+    <span class="n">14.3</span>
+    <h2><span class="script">Петербург</span>Peterburg · Petersburg Pastel<a class="selflink" href="#p3">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>Peterburg</em>: Saint Petersburg. The role slot for MONO — specifically the city's pastel neoclassical facade palette.</p>
+  <p class="pal-lede">The monochrome role of the collection is the specific pastel neoclassical facade palette of the historic centre of Saint Petersburg — the soft yellows, greens, blues, and ochres against white architectural trim that Peter the Great's foreign architects established in the early eighteenth century and that the city's municipal authorities have preserved through three subsequent centuries by ordinance. The Petersburg palette is the most chromatically self-conscious urban intervention in any European city after Bath and Jaipur, and its specific tones are still the visible signature of the Russian imperial project at architectural scale.</p>
+
+  <div class="pal-body">
+    <h3>The founding of Saint Petersburg</h3>
+    <p>Peter the Great founded Saint Petersburg in May 1703 on a marshy delta where the Neva River meets the Gulf of Finland — territory recently captured from Sweden in the Great Northern War — with the explicit intention of creating a Russian capital that would face Europe rather than the Asian interior. The site was unsuitable for human settlement by every conventional measure: the ground was waterlogged, the winters were brutal, the river flooded regularly, and the building of the city required the conscription of tens of thousands of peasant labourers, of whom a substantial fraction died from accident, disease, and exposure. The phrase "the city built on bones" enters Russian popular usage in the eighteenth century and remains current today.</p>
+    <p>Peter recruited foreign architects from the start. The first wave came from Italy, France, and the German-speaking lands, and the early imperial buildings were executed in a Russified northern Baroque vocabulary that was specifically chosen to distinguish the new capital visually from Moscow's older Byzantine-Russian style. Domenico Trezzini, a Swiss-Italian, designed the Peter and Paul Fortress and its cathedral. Bartolomeo Rastrelli, the son of an Italian sculptor, became the leading court architect under Empress Elizabeth (Peter's daughter) and produced the Winter Palace, the Catherine Palace at Tsarskoye Selo, and the Smolny Convent — three of the defining Petersburg buildings. Giacomo Quarenghi and Vincenzo Brenna followed in the next generation under Catherine II, working in a more austere neoclassical style.</p>
+    <h3>The pastel palette</h3>
+    <p>The specific facade palette of Saint Petersburg's imperial buildings was established in the second half of the eighteenth century and codified by municipal ordinance in the early nineteenth. The recipe is consistent across the major buildings: a saturated pastel base colour — yellow ochre, pale green, soft blue, terracotta-pink, or cream — with all architectural details (columns, pilasters, window surrounds, cornices, balustrades) picked out in white. The contrast is precise and high; from across the Neva or from across the Palace Square, the white architectural trim of any major Petersburg building reads as a clean diagram of its structural and ornamental logic against a coloured ground.</p>
+    <p>The four canonical examples and their colours are the Winter Palace (a specific saturated mineral green that Rastrelli established in the 1750s and that the modern Hermitage has preserved by repeated repainting in the original recipe), the Catherine Palace at Tsarskoye Selo (a slightly cooler, more turquoise blue-green also from Rastrelli), the Yusupov Palace on the Moika (a warm yellow ochre), and the Stroganov Palace on Nevsky Prospekt (a pale rose-pink). The municipal authority of Saint Petersburg still maintains an approved palette for buildings within the historic centre, and substantial alterations to the facade colour of any listed building require formal approval. The ordinance has held, with minor revisions, since the early nineteenth century, and the chromatic identity of the city has remained substantially stable across the imperial, Soviet, and post-Soviet periods.</p>
+    <h3>Representative buildings</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Winter Palace (now the State Hermitage Museum).</strong> Bartolomeo Rastrelli, 1754–1762. The single defining building of Saint Petersburg and the principal residence of the Russian emperors from Catherine II until 1917. The mineral-green facade is the canonical Petersburg colour. Part of the Saint Petersburg historic centre UNESCO inscription. <a href="https://www.hermitagemuseum.org/" target="_blank" rel="noopener">State Hermitage</a></li>
+      <li><span class="n">b</span><strong>The Catherine Palace, Tsarskoye Selo (Pushkin).</strong> Rastrelli, 1752–1756. The summer residence of the Russian imperial family. Famously rebuilt after near-total destruction in the Second World War; the reconstruction colour-matched the surviving Rastrelli specifications. <a href="https://tzar.ru/en/" target="_blank" rel="noopener">Tsarskoye Selo State Museum</a></li>
+      <li><span class="n">c</span><strong>The Smolny Cathedral and Convent, Saint Petersburg.</strong> Rastrelli, 1748–1764. The most architecturally extreme of Rastrelli's Petersburg buildings; the bright turquoise-blue facade against white trim is one of the city's most distinctive single chromatic statements.</li>
+      <li><span class="n">d</span><strong>The Stroganov Palace, Nevsky Prospekt.</strong> Rastrelli, 1753–1754. Now a branch of the Russian Museum. The pale rose-pink facade is the canonical Petersburg pink.</li>
+      <li><span class="n">e</span><strong>The Historic Centre of Saint Petersburg and Related Groups of Monuments.</strong> UNESCO World Heritage, 1990. Covers the entire imperial-era city centre and the surrounding palace complexes. <a href="https://whc.unesco.org/en/list/540/" target="_blank" rel="noopener">UNESCO</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Solomon Volkov — <em>St Petersburg: A Cultural History</em></strong> (Free Press, 1995). The accessible English-language cultural history of the city, written by the Russian-American musicologist.</li>
+      <li><span class="n">ii</span><strong>W. Bruce Lincoln — <em>Sunlight at Midnight: St Petersburg and the Rise of Modern Russia</em></strong> (Basic Books, 2000). The standard modern English-language history of the city's first three centuries.</li>
+      <li><span class="n">iii</span><strong>Dmitry Shvidkovsky — <em>Russian Architecture and the West</em></strong> (Yale University Press, 2007). The scholarly survey of the architectural relationship between Russia and Western Europe from the seventeenth century onwards, with substantial coverage of the Saint Petersburg foundation period.</li>
+      <li><span class="n">iv</span><strong>James H. Bater — <em>St Petersburg: Industrialization and Change</em></strong> (Edward Arnold, 1976). The classic urban-history study of the imperial city.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.4 · GZHEL  KEYSTONE                 -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p4">
+  <div class="pal-head">
+    <span class="n">14.4</span>
+    <h2><span class="script">Гжель</span>Gzhel · Cobalt Folk Ceramic<a class="selflink" href="#p4">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>Gzhel</em>: a cluster of villages south-east of Moscow. The keystone of the chapter and the fourth successive blue keystone in the Bibliothèque.</p>
+  <p class="pal-lede">Gzhel is the keystone of the Russia chapter, and it completes a four-chapter chain of blue keystones whose accent colours are deliberately identical because the underlying material lineage is the same. The cobalt blue-and-white folk ceramic produced in the Gzhel region of villages roughly sixty kilometres south-east of Moscow is, in its eighteenth- and nineteenth-century mature form, a downstream descendant of European Delftware — which is itself a downstream descendant of Chinese Ming-period blue-and-white porcelain (China chapter §2.7 QINGHUA) — which is itself a downstream descendant of the Persian cobalt trade (Persia chapter §10.7 LAJVARD). Russia is the westernmost European terminus of a single chromatic supply chain that begins in a mountain valley in north-eastern Afghanistan and that the Bibliothèque has now followed across four chapters, four cultures, and seven centuries.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; technique</h3>
+    <p>Gzhel ceramic is made from local white-firing clay deposits in the Ramensky district of Moscow Oblast — a band of high-quality kaolin and ball clay that has been worked since at least the late mediaeval period and that produces, when fired in a reduction kiln at moderate-to-high temperatures, a cream-white to nearly pure white ceramic body. The decoration is executed in cobalt oxide pigment applied directly to the unfired or biscuit-fired body, then covered with a transparent feldspathic glaze and re-fired. The cobalt fuses into the glaze during firing and produces a deep, slightly violet-inflected blue under the clear glassy surface — the same chemistry that produces the qinghua porcelain decoration of the China chapter and the Delftware blue-and-white of the Dutch tradition, though the specific clay body and the specific glaze recipe are Russian.</p>
+    <p>The chromatic range of mature Gzhel work is narrower than its Chinese or Dutch ancestors. Where Yuan and Ming Jingdezhen painters used multiple shades of blue across a single piece (achieved by varying the cobalt concentration in the pigment), and where Delft potters of the seventeenth century mastered detailed pictorial scenes in high-relief brushwork, the Gzhel painters developed a more relaxed and decorative style: broad fluid brushstrokes in a single saturated cobalt blue against the white ground, organised into stylised floral and figurative motifs that are distinctly Russian rather than Chinese or Dutch in their visual logic. The brushwork relies on a specific technique called <em>mazok s tenyu</em> ("stroke with shadow") in which a single loaded brush carries the cobalt pigment from saturated dark on one edge to a transparent wash on the other, producing the gradient effect on a single stroke that is the visual signature of mature Gzhel work.</p>
+    <h3>The historical chain</h3>
+    <p>The Gzhel ceramic tradition begins as a functional earthenware industry in the late mediaeval period. The earliest documented references to Gzhel pottery occur in fourteenth-century Russian state records, where the villages are mentioned as suppliers of kitchen earthenware to the Moscow court. For four centuries this is essentially what Gzhel produces: undecorated or simply slip-decorated functional earthenware for everyday domestic use, distributed through the local Russian markets and not closely related to the more sophisticated ceramic traditions of either eastern Asia or western Europe.</p>
+    <p>The transformation begins in the early eighteenth century with Peter the Great's reorganisation of the Russian state and his importation of European craft and design models. Peter's Grand Embassy of 1697–1698 took him to the Dutch Republic at the height of the Delftware industry's mature period; he visited the Delft factories, observed the production process, and brought specimens back to Russia. Over the following half-century, European blue-and-white ceramic — Dutch Delft, German Meissen (after Böttger's hard-paste breakthrough in 1708), French Saint-Cloud — entered the Russian aristocratic market in substantial quantities through the Saint Petersburg port. The Russian elite developed a taste for European porcelain, and the Russian Imperial Porcelain Factory was founded in Saint Petersburg in 1744 specifically to produce hard-paste porcelain on the European model under the direction of the Russian chemist Dmitry Vinogradov.</p>
+    <p>The Gzhel folk industry, watching the new aesthetic from below, gradually adopted the blue-and-white visual vocabulary over the second half of the eighteenth century and across the whole of the nineteenth. The transition was uneven: early Gzhel attempts at blue-and-white in the 1770s and 1780s used local cobalt of variable quality, the kilns produced inconsistent results, and the decorative idiom shifted across decades as the village painters experimented with different combinations of European model and local convention. By the early nineteenth century, however, the mature style had stabilised, and the Gzhel workshops were producing the cobalt-blue-on-white wares — bowls, jugs, plates, teapots, figurines — that are now the canonical visible signature of the Russian folk-ceramic tradition. The visual genealogy of the mature Gzhel style runs: Persian cobalt → Jingdezhen kilns → Delft → Saint Petersburg imports → Gzhel village workshops. Every link in the chain is documented and uncontroversial.</p>
+    <h3>The Soviet revival</h3>
+    <p>The Gzhel industry collapsed in the years immediately after the 1917 Revolution and the subsequent civil war. The traditional workshops, which had been organised as small private enterprises in the late imperial period, were closed or nationalised; the master painters dispersed; and the production of Gzhel ware essentially ceased for two decades. The revival began in the 1940s and 1950s under Soviet folk-craft preservation policy: the Soviet authorities, recognising Gzhel as a canonical Russian folk tradition worth preserving, established the Gzhel Production Association (Tovarishchestvo Gzhel) and recruited surviving older painters to train a new generation. The principal figure in the revival was the artist and ceramicist <strong>Nataliya Bessarabova</strong> (1895–1981), who studied the surviving nineteenth-century Gzhel pieces in museum collections, reconstructed the brush techniques and the cobalt recipes, and trained the post-war generation of Gzhel painters in what she had identified as the canonical mid-nineteenth-century style.</p>
+    <p>The modern Gzhel industry — still operating in the same village cluster, still using local clay and cobalt, still painting in the same blue-and-white style — is a direct descendant of Bessarabova's reconstruction. The modern pieces are sold across Russia and exported internationally, and a Gzhel teapot or vase is one of the canonical Russian souvenirs that any visitor to Moscow brings home. The continuity is not literal — the village industry has been broken and re-founded twice, in 1917 and again partially in 1991 — but the visual identity has remained stable through both transitions, which is itself a measure of how strongly the eighteenth-and-nineteenth-century model had imprinted itself on the local craft tradition.</p>
+    <h3>Representative objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Gzhel village cluster, Ramensky district, Moscow Oblast.</strong> The historic and continuing centre of the production. The Gzhel Porcelain Factory (formerly Tovarishchestvo Gzhel) is open for visits. <a href="https://en.wikipedia.org/wiki/Gzhel" target="_blank" rel="noopener">Wikipedia</a></li>
+      <li><span class="n">b</span><strong>The State Historical Museum, Moscow.</strong> Holds the largest single museum collection of historical Gzhel ceramics, including substantial groups of late-eighteenth and nineteenth-century pieces. <a href="https://shm.ru/en/" target="_blank" rel="noopener">State Historical Museum</a></li>
+      <li><span class="n">c</span><strong>The All-Russian Museum of Decorative, Applied and Folk Arts, Moscow.</strong> The principal Russian museum of folk decorative crafts, with substantial Gzhel holdings. <a href="https://en.vmdpni.ru/" target="_blank" rel="noopener">All-Russian Decorative Arts Museum</a></li>
+      <li><span class="n">d</span><strong>Delftware in the Rijksmuseum, Amsterdam.</strong> Included here as the upstream Dutch reference. <a href="https://www.rijksmuseum.nl/" target="_blank" rel="noopener">Rijksmuseum</a></li>
+      <li><span class="n">e</span><strong>The Topkapı Chinese porcelain collection, Istanbul.</strong> Included here as the upstream Chinese reference; the Yuan and early Ming blue-and-white pieces in this collection are the chromatic and technical ancestors of every European and Russian downstream blue-and-white tradition. See China chapter §2.7. <a href="https://muze.gen.tr/muze-detay/topkapi" target="_blank" rel="noopener">Topkapı Palace Museum</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Alison Hilton — <em>Russian Folk Art</em></strong> (Indiana University Press, 1995). The standard English-language survey of the Russian folk-decorative traditions, including a substantial chapter on Gzhel ceramic and on the related Khokhloma lacquerware (§14.5).</li>
+      <li><span class="n">ii</span><strong>Robert Finlay — <em>The Pilgrim Art: Cultures of Porcelain in World History</em></strong> (University of California Press, 2010). The essential modern scholarly study of the global diffusion of blue-and-white porcelain. The Russian section is brief but the framework explains the chromatic chain in detail. See also China chapter §2.7.</li>
+      <li><span class="n">iii</span><strong>Anne Odom — <em>Russian Imperial Porcelain at Hillwood</em></strong> (Hillwood Museum, 1999). The scholarly catalogue of the Hillwood collection in Washington, DC, which holds one of the largest groups of Russian imperial porcelain outside Russia and includes substantial coverage of the eighteenth-century European-influenced ceramic tradition that shaped Gzhel from above.</li>
+      <li><span class="n">iv</span><strong>Wendy R. Salmond — <em>Arts and Crafts in Late Imperial Russia: Reviving the Kustar Art Industries, 1870–1917</em></strong> (Cambridge University Press, 1996). For the late-nineteenth-century revival movement that re-organised the Russian folk crafts (Gzhel among them) into the form they took in the early twentieth century.</li>
+      <li><span class="n">v</span><strong>John Carswell — <em>Blue &amp; White: Chinese Porcelain Around the World</em></strong> (British Museum Press, 2000). For the broader Chinese-to-European-to-Russian diffusion story; the Russian links are mentioned but the framework is essential context.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.5 · KHOKHLOMA                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p5">
+  <div class="pal-head">
+    <span class="n">14.5</span>
+    <h2><span class="script">Хохлома</span>Khokhloma · Red &amp; Gold Lacquerware<a class="selflink" href="#p5">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>Khokhloma</em>: a village in Nizhny Novgorod Oblast where the painted-wood tradition emerged.</p>
+  <p class="pal-lede">Khokhloma is the red, gold, and black painted-wood folk tradition of the villages around Khokhloma and Semyonov in the Nizhny Novgorod region, roughly four hundred kilometres east of Moscow. The visual signature is unmistakable: bowls, spoons, plates, cups, and decorative pieces painted in a dense floral pattern of bright vermilion red on a metallic gold ground (or, in the inverse colour scheme, gold and black on red), with the gold produced not by gilding but by a clever oil-and-tin technique that converts a silver-grey base coat into a warm gold finish during the final baking stage.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; the trick of the gold</h3>
+    <p>Khokhloma ware is built on a base of soft Russian wood — typically lime, birch, or aspen — turned or carved into the desired shape and primed with a layer of clay-and-linseed-oil mixture that fills the wood grain and produces a smooth working surface. The clay layer is sanded down, coated with several layers of linseed oil, and then dusted with very fine aluminium powder (historically tin powder, before the modern industrial substitution). The aluminium dust adheres to the still-tacky oil and produces a uniform silver-grey metallic surface.</p>
+    <p>The decoration is then painted directly onto the silver surface in oil-based pigments — vermilion red, lampblack, and a few additional accent colours — in the dense floral and figurative patterns that are the visual signature of the tradition. The painted pieces are then varnished with several coats of a specific linseed-oil-based varnish and baked in an oven at a moderate temperature (around 100–120°C) for several hours. The heat causes the linseed-oil varnish to oxidise and yellow, and the silver-grey aluminium underlayer, viewed through the now-amber varnish, takes on the appearance of warm reflective gold. The trick is the central technical innovation of the Khokhloma tradition, and it allows the workshops to produce gold-ground decorative ware at a small fraction of the cost of true gilded objects.</p>
+    <p>The chromatic effect of a finished Khokhloma piece is in the same red-and-gold-on-black visual family as Chinese Han-period lacquerware (China chapter §2.10 QIQI) and as the red-and-gold tradition of Indian and Central Asian textile painting, though the specific Khokhloma technique is independent of either. The visual logic is shared across many cultures — red and gold against a dark ground is one of the most universally recognised "festive" or "luxurious" colour combinations in the global vocabulary — but the Khokhloma execution is distinctive, and the local pictorial idiom (the rowan berries, the curling vines, the stylised cockerels and the firebirds) is unmistakably Russian.</p>
+    <h3>Origins and revival</h3>
+    <p>The origins of Khokhloma are debated. The traditional account places the founding of the technique in the seventeenth century at the village of Khokhloma in the Nizhny Novgorod region, where Old Believer (raskolnik) refugees from the religious schism of 1666–1667 are said to have settled and to have brought icon-painting techniques with them from Moscow that they then adapted to wooden domestic ware. The story is partially corroborated by the documentary record — Old Believer settlements in the region are well attested, and the use of icon-painter techniques on secular objects is plausible — but the specific link between the religious refugees and the development of the painted-wood industry is not as well documented as the popular account suggests, and modern scholars treat it cautiously.</p>
+    <p>What is documented is that by the early nineteenth century the Khokhloma villages were producing painted wooden ware in commercial quantities for the regional Russian markets, and that by the second half of the century the trade had grown to a substantial industry employing thousands of village painters. The 1917 Revolution and the subsequent collapse of the Russian peasant economy nearly destroyed the trade; the Soviet folk-craft revival of the 1930s and (more substantially) the 1950s and 1960s re-organised the surviving workshops into state-sponsored craft cooperatives — the Khokhloma Painting (<em>Khokhlomskaya Rospis</em>) factory at Semyonov and the Khokhloma Artist (<em>Khudozhnik Khokhlomy</em>) factory at Koverninsky — and stabilised the production at its modern form, which has continued substantially unchanged through the post-Soviet period.</p>
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>The Khokhloma Painting factory, Semyonov, Nizhny Novgorod Oblast.</strong> The principal continuing producer; visits and factory tours available. <a href="https://en.wikipedia.org/wiki/Khokhloma" target="_blank" rel="noopener">Wikipedia</a></li>
+      <li><span class="n">b</span><strong>The Museum of Khokhloma Painting, Semyonov.</strong> Holds the principal historical collection of nineteenth- and twentieth-century Khokhloma ware.</li>
+      <li><span class="n">c</span><strong>The State Historical Museum, Moscow.</strong> Substantial Khokhloma holdings as part of its Russian folk-decorative collections.</li>
+      <li><span class="n">d</span><strong>The All-Russian Museum of Decorative, Applied and Folk Arts, Moscow.</strong> The principal national museum of Russian folk decorative arts. <a href="https://en.vmdpni.ru/" target="_blank" rel="noopener">All-Russian Decorative Arts Museum</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Alison Hilton — <em>Russian Folk Art</em></strong> (Indiana University Press, 1995). The Khokhloma chapter is the standard English-language scholarly treatment.</li>
+      <li><span class="n">ii</span><strong>Wendy R. Salmond — <em>Arts and Crafts in Late Imperial Russia</em></strong> (Cambridge University Press, 1996). Covers Khokhloma's place in the late-nineteenth-century kustar industries and in the early Soviet revival.</li>
+      <li><span class="n">iii</span><strong>Susan Conner Lacovara &amp; Lyndel King — <em>Russian Folk Art</em></strong> (University of Minnesota, 1990). The accessible photographic survey.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.6 · BERYOZA                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p6">
+  <div class="pal-head">
+    <span class="n">14.6</span>
+    <h2><span class="script">берёза</span>Beryoza · Silver Birch<a class="selflink" href="#p6">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>beryóza</em>: silver birch, <em>Betula pendula</em>. The Russian national tree.</p>
+  <p class="pal-lede">Beryoza is the chromatic identity of the Russian silver birch — the slender white-and-black-streaked tree that dominates the mixed forests of European Russia from the Baltic to the Urals and that is, by general agreement, the single most emblematic non-architectural visual element of the Russian landscape. A birch grove (<em>berezovaya roshcha</em>) seen against late-autumn sky or under early snow is the canonical Russian rural image, and the specific chromatic register — pale silvery-white bark scored by thin black horizontal markings, against either dark forest behind or pale snow ahead — is one of the most studied subjects in nineteenth-century Russian landscape painting.</p>
+
+  <div class="pal-body">
+    <h3>Material</h3>
+    <p><em>Betula pendula</em>, the silver birch, is one of the most widely distributed deciduous trees in the temperate northern hemisphere and is native to most of Europe, including the entire forested portion of European Russia. The tree's distinctive bark is the chromatic feature: a smooth, slightly papery, almost luminous white outer layer marked with thin horizontal black lines (the lenticels through which the trunk respires), with progressively older bark at the base of the trunk darkening to grey and developing rough fissured texture. The wood inside is pale, fine-grained, and relatively soft — historically used for fuel, for charcoal, for furniture, and (most distinctively in the Russian context) for bark sheets that served as a writing material in mediaeval Novgorod long before paper was generally available.</p>
+    <p>The paper-like outer bark of the birch — <em>beresta</em> in Russian — was used in mediaeval Novgorod as a substrate for letters, contracts, school exercises, and short messages. More than a thousand birch-bark documents have been excavated from the waterlogged soil of mediaeval Novgorod since the first finds in 1951, and they constitute the single most important corpus of everyday-life writing from any mediaeval European city. The birch-bark documents have transformed the historical understanding of mediaeval Russian literacy, urban administration, and family life, and they remain one of the most distinctive Russian contributions to the global archaeology of the written word.</p>
+    <h3>The birch in Russian art and literature</h3>
+    <p>The birch is the canonical subject of the Russian realist landscape tradition. Isaac Levitan's <em>Birch Grove</em> (1885–1889), held at the Tretyakov Gallery in Moscow, is the most reproduced single Russian landscape painting of the nineteenth century and the standard reference for the chromatic vocabulary of the silver birch under summer light. Ivan Shishkin's birch and pine compositions, also at the Tretyakov, are the more austere counterpart from the same generation. Sergei Yesenin's birch poems of the 1910s and 1920s — <em>Belaya beryoza</em> ("White Birch") of 1913 is the most famous — fix the tree in the literary imagination as the emblem of the rural Russian homeland, and the Yesenin tradition has remained the principal vehicle through which the birch's chromatic identity is transmitted across generations of Russian readers.</p>
+    <p>The post-Soviet period has if anything intensified the cultural weight of the birch. The Russian national symbolism that has consolidated since 1991 leans heavily on rural-landscape imagery in which the birch is the dominant visual element, and the birch grove has become a recognisable element of contemporary Russian commercial and political iconography in a way that may have outrun the chromatic specificity of the historical material. The image is now so widely circulated that the underlying tree has become almost an abstraction, but the actual birch — the slender white trunk, the small triangular leaves, the characteristic flicker of leaves in summer wind — is still the single most recognisable plant in any Russian forest.</p>
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Isaac Levitan, <em>Birch Grove</em></strong> (1885–1889). Tretyakov Gallery, Moscow. The canonical Russian landscape painting of the silver birch. <a href="https://www.tretyakovgallery.ru/en/" target="_blank" rel="noopener">Tretyakov Gallery</a></li>
+      <li><span class="n">b</span><strong>Arkhip Kuindzhi, <em>Birch Grove</em></strong> (1879). Tretyakov Gallery, Moscow. The slightly earlier Kuindzhi composition with characteristic strong contrast between the lit white trunks and the dark forest behind.</li>
+      <li><span class="n">c</span><strong>The Novgorod birch-bark documents.</strong> Veliky Novgorod, eleventh through fifteenth centuries. Held at the Novgorod Historical Museum, the State Historical Museum in Moscow, and the Russian Academy of Sciences. The single most important corpus of mediaeval Russian everyday writing. <a href="https://en.wikipedia.org/wiki/Birch_bark_manuscript" target="_blank" rel="noopener">Wikipedia</a></li>
+      <li><span class="n">d</span><strong>The Russian forest generally.</strong> The mixed taiga-and-broadleaf belt of European Russia is the working environment of the birch; the Valdai Hills, the Vladimir region, and the upper Volga basin are the canonical settings for the literary and pictorial tradition.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Christopher Ely — <em>This Meager Nature: Landscape and National Identity in Imperial Russia</em></strong> (Northern Illinois University Press, 2002). The scholarly study of how the Russian landscape — and the birch in particular — became a vehicle for national-cultural identity in the nineteenth century.</li>
+      <li><span class="n">ii</span><strong>Rosalind P. Blakesley — <em>The Russian Canvas: Painting in Imperial Russia, 1757–1881</em></strong> (Yale, 2016). The standard survey of imperial-era Russian painting, including the Levitan and Kuindzhi material.</li>
+      <li><span class="n">iii</span><strong>Sergei Yesenin — <em>Selected Poetry</em>,</strong> multiple translations. The Geoffrey Thurley translation (Carcanet, 1973) and the more recent Anthony Briggs translation are both serviceable English versions of the canonical Russian birch poems.</li>
+      <li><span class="n">iv</span><strong>Valentin Yanin — <em>Berestyanaya Pochta Stoletiy</em> (<em>The Birch-Bark Mail of the Centuries</em>)</strong> (Pedagogika, 1979; multiple Russian editions). The standard scholarly account of the Novgorod birch-bark documents by the archaeologist who led the excavations.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.7 · IKONA                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p7">
+  <div class="pal-head">
+    <span class="n">14.7</span>
+    <h2><span class="script">икона</span>Ikona · Russian Icon<a class="selflink" href="#p7">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>ikóna</em>: icon, from Greek <em>eikōn</em>, image.</p>
+  <p class="pal-lede">Ikona is the chromatic register of the Russian Orthodox icon-painting tradition — a thousand-year continuous practice descended directly from the Byzantine icon tradition that arrived with Vladimir's Christianisation of Rus' in 988 and that produced, between roughly 1100 and 1700, the largest and most sustained body of religious painting in the Christian world after the Italian peninsula. The specific Russian icon palette — earth ochres, vermilion red, malachite green, ultramarine, and gold leaf — is one of the most distinctive in the entire Christian visual tradition, and the great Russian icon painters (Theophanes the Greek, Andrei Rublev, Dionisius) are among the most important artists in the global history of religious painting.</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; technique</h3>
+    <p>A traditional Russian icon is painted in egg tempera on a wooden panel — typically lime, birch, or pine — that has been prepared with multiple layers of gesso (a chalk-and-glue ground) sanded smooth, then coated with a layer of linen or canvas, then re-gessoed and re-sanded. The drawing is laid in with thin lines of dilute earth pigment, and the painting is built up in successive layers of egg-tempera pigment, working systematically from the darkest tones outward to the lightest highlights. Gold leaf is applied to the background and to the haloes of the holy figures over a red-brown bole layer that provides both an adhesive and a warm undertone. The completed icon is sealed with a varnish (traditionally a linseed-oil-based <em>olifa</em>) that protects the paint surface and gradually darkens to a warm amber tone over the centuries — which is one of the reasons that conservation studies of unrestored Russian icons are so important to understanding their original chromatic appearance.</p>
+    <p>The pigment palette of the classical Russian icon tradition is restricted by both convention and material availability. The standard pigments are: yellow ochre and red ochre (both iron-oxide earths, locally available); cinnabar (mercury sulfide, the same vermilion that appears in the China chapter at §2.8 ZHUSHA, traded into Russia from Central Asian sources); malachite green (a copper carbonate, also Central Asian); azurite blue (another copper mineral, used as the cheaper substitute for ultramarine); ultramarine (the same Badakhshan lapis that the Persia and Italy keystones discuss, though used more sparingly in the Russian tradition than in the Italian because of the longer transport distance and higher cost); lampblack; and lead white. Gold leaf is applied separately and is structurally distinct from the painted layers.</p>
+    <h3>Andrei Rublev and the canonical period</h3>
+    <p>Russian icon painting reaches its first peak in the late fourteenth and early fifteenth centuries with the work of <strong>Theophanes the Greek</strong> (active in Russia c. 1370–1410) and <strong>Andrei Rublev</strong> (c. 1360–1430). Theophanes was a Constantinople-trained painter who emigrated to Russia in the 1370s and worked principally in Novgorod and Moscow; his frescoes at the Church of the Transfiguration in Novgorod (1378) are the principal surviving example of his Russian work and represent the high Byzantine technique applied to Russian conditions. Rublev was his pupil — by tradition, though the documentary evidence is thin — and produced, in the early fifteenth century, the work that subsequent generations have treated as the canonical reference for the entire later Russian icon tradition: the <em>Trinity</em> icon (Old Testament Trinity / Hospitality of Abraham), painted around 1410 for the Trinity-Sergius Lavra at Sergiev Posad.</p>
+    <p>Rublev's <em>Trinity</em> is, by general critical agreement, the single most important Russian medieval painting. The composition shows three angels seated at a table, drawn from the Genesis account of the visit of three strangers to Abraham at Mamre (Genesis 18) and read in the Christian theological tradition as a typological prefiguration of the Trinity. The chromatic register is built around three principal colours — a deep ultramarine blue, a soft moss green, and a warm orange-gold — distributed across the three angelic figures in a circular composition that is visually one of the most balanced of all medieval European images. The icon was held at the Trinity-Sergius Lavra until 1929, when it was transferred to the Tretyakov Gallery in Moscow as part of the Soviet anti-religious campaign; it has remained at the Tretyakov for most of the subsequent century, though there have been periodic episodes of relocation, restoration controversy, and (most recently, in 2023) ongoing public debate about the conditions of its preservation.</p>
+    <p>The classical Russian icon tradition continues through the work of <strong>Dionisius</strong> (c. 1440 – c. 1502) and his school, who produced the great fresco programmes at the Ferapontov Monastery in the Russian north (now UNESCO-inscribed for those frescoes specifically), and through a continuous line of monastery and parish painters who carried the tradition forward through the seventeenth, eighteenth, and nineteenth centuries. The technique was disrupted but not destroyed by Peter the Great's westernising reforms — most westernised painters worked in oil and on canvas in the European manner, but the icon-painting tradition survived in parallel — and was severely disrupted by the Soviet anti-religious campaigns of the 1920s and 1930s, which closed thousands of churches and monasteries and forced the surviving icon painters underground or into secular work. The tradition has revived since 1991 and is currently practised by a small number of monastery and parish workshops in working continuity with the historical lineage.</p>
+    <h3>Representative objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Andrei Rublev, <em>Trinity</em> (Old Testament Trinity)</strong>. c. 1410. Tretyakov Gallery, Moscow. The single most important Russian medieval painting. <a href="https://www.tretyakovgallery.ru/en/" target="_blank" rel="noopener">Tretyakov Gallery</a></li>
+      <li><span class="n">b</span><strong>The Vladimir Mother of God (Vladimirskaya Bogomater)</strong>. Constantinople, early twelfth century. Brought to Vladimir-Suzdal c. 1131; venerated as the most sacred single icon in the Russian tradition. Now at the Tretyakov Gallery, with periodic transfers to the Church of Saint Nicholas in Tolmachi (the Tretyakov's adjoining church) for liturgical use.</li>
+      <li><span class="n">c</span><strong>Theophanes the Greek, frescoes at the Church of the Transfiguration, Veliky Novgorod.</strong> 1378. The principal surviving Russian work of the Byzantine-trained painter who shaped the Russian icon tradition at its formative moment.</li>
+      <li><span class="n">d</span><strong>Dionisius, frescoes at the Ferapontov Monastery</strong>, Vologda Oblast. 1502. UNESCO World Heritage 2000 (specifically for the frescoes). The high point of the Russian fresco tradition. <a href="https://whc.unesco.org/en/list/982/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">e</span><strong>The Tretyakov Gallery icon collection, Moscow.</strong> The largest and most important single collection of Russian icons in the world; assembled in the Soviet period through the transfer of religious objects from closed churches and monasteries.</li>
+      <li><span class="n">f</span><strong>The State Russian Museum, Saint Petersburg.</strong> The second great Russian icon collection, holding many of the Saint Petersburg-region pieces. <a href="https://rusmuseum.ru/eng/" target="_blank" rel="noopener">State Russian Museum</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Leonid Ouspensky &amp; Vladimir Lossky — <em>The Meaning of Icons</em></strong> (Saint Vladimir's Seminary Press, 1952; English translation 1982). The standard theological-art-historical account, written by two Russian Orthodox theologians in the émigré tradition. Essential reading for the iconographic conventions.</li>
+      <li><span class="n">ii</span><strong>Konrad Onasch &amp; Annemarie Schnieper — <em>Icons: The Fascination and the Reality</em></strong> (Riverside Book Company, 1997). The accessible English-language survey, with excellent colour reproductions.</li>
+      <li><span class="n">iii</span><strong>Engelina Smirnova — <em>Moscow Icons of the 14th–17th Centuries</em></strong> (Aurora Art Publishers, 1989). The Soviet-era scholarly catalogue of the Moscow school, still standard.</li>
+      <li><span class="n">iv</span><strong>Robin Cormack — <em>Byzantine Art</em></strong> (Oxford University Press, 2000). For the Byzantine background and the relationship between the Constantinople and the Russian icon traditions.</li>
+      <li><span class="n">v</span><strong>Andrew Spira — <em>The Avant-Garde Icon: Russian Avant-Garde Art and the Icon Painting Tradition</em></strong> (Lund Humphries, 2008). For the unexpected and important relationship between the icon tradition and the early-twentieth-century Russian avant-garde (Malevich, Goncharova, Larionov).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.8 · TAYGA                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p8">
+  <div class="pal-head">
+    <span class="n">14.8</span>
+    <h2><span class="script">тайга</span>Tayga · Boreal Forest<a class="selflink" href="#p8">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>tayga</em>, from Turkic <em>tayga</em>: dense northern forest.</p>
+  <p class="pal-lede">Tayga is the chromatic register of the Russian boreal forest — the coniferous belt of pine, spruce, fir, and larch that runs across the northern third of the country from Karelia in the west to the Pacific coast of Kamchatka in the east, covering roughly five and a half million square kilometres and constituting the single largest contiguous forest in the world. The taiga's specific dark green-grey-blue, against either pale snow in winter or low northern sky in summer, is the canonical chromatic environment of the Russian north and the subject of the second great strand of nineteenth-century Russian landscape painting after the birch (§14.6 BERYOZA).</p>
+
+  <div class="pal-body">
+    <h3>Material &amp; geography</h3>
+    <p>The Russian taiga is the largest single ecosystem on the planet by area and contains roughly twenty per cent of the world's tree cover. The dominant species across most of the belt are Norway spruce (<em>Picea abies</em>) in the west, Siberian spruce (<em>Picea obovata</em>) and Siberian pine (<em>Pinus sibirica</em>) further east, and Siberian larch (<em>Larix sibirica</em>) and Dahurian larch (<em>Larix gmelinii</em>) in the eastern Siberian and Far Eastern regions. The conifers are interspersed with deciduous birch (§14.6) and aspen, particularly along river valleys and in disturbed areas, and the resulting mixed-forest mosaic gives the taiga its characteristic chromatic complexity: dark green-blue conifer masses against pale-white birch trunks against the rust-orange of autumn larch needles, all under low northern light.</p>
+    <p>The chromatic specifics of the conifer foliage are worth noting precisely. Spruce needles are a deep blue-green that reads almost black at distance and against winter snow; pine needles are a slightly warmer, slightly more yellow-green; larch needles, which are deciduous and turn a brilliant rust-orange in autumn before falling, contribute the only major seasonal colour change to the otherwise constant taiga palette. The combined effect is a dark dense forest mass that, viewed from elevation in summer, reads as a continuous deep green-grey carpet across hundreds of kilometres, and that, viewed in winter under snow, registers as alternating dark conifer crowns and brilliant white snow with very little chromatic variation between.</p>
+    <h3>The taiga in Russian painting</h3>
+    <p>The single most influential Russian painter of the taiga is <strong>Ivan Shishkin</strong> (1832–1898), whose detailed forest interiors and landscape compositions of the 1860s, 1870s, and 1880s established the visual conventions through which the Russian boreal forest is read in the European pictorial tradition. Shishkin's <em>Morning in a Pine Forest</em> (1889), held at the Tretyakov Gallery in Moscow, is the most reproduced of his works and one of the most widely recognised single Russian paintings — though, by an irony of Russian art history, the bear cubs that occupy the centre of the composition were painted not by Shishkin but by his colleague Konstantin Savitsky, whose contribution was painted over and uncredited for nearly a century. Shishkin's other major taiga compositions — <em>Rye</em> (1878), <em>The Countess Mordvinova's Forest</em> (1891), and the late <em>Mast Pine Forest in Vyatka Province</em> (1872) — are similarly central to the Russian landscape canon.</p>
+    <p>The Shishkin tradition belongs to the Peredvizhniki ("Wanderers") movement of the late nineteenth century, the loose association of Russian realist painters who broke away from the Imperial Academy of Arts in 1870 and dedicated themselves to depicting the Russian land, the Russian people, and the social conditions of the Russian peasantry. The movement's chromatic vocabulary is one of the great achievements of nineteenth-century European art, and the taiga compositions are among its most ambitious large-scale projects. The Tretyakov Gallery, founded by Pavel Tretyakov in the 1850s and 1860s as a deliberate institutional support for this movement, is the principal repository of Peredvizhniki painting and remains the canonical viewing context for the entire tradition.</p>
+    <h3>Representative sites &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Ivan Shishkin, <em>Morning in a Pine Forest</em></strong> (1889). Tretyakov Gallery, Moscow. The single most reproduced Russian taiga painting. <a href="https://www.tretyakovgallery.ru/en/" target="_blank" rel="noopener">Tretyakov Gallery</a></li>
+      <li><span class="n">b</span><strong>Ivan Shishkin, <em>Rye</em></strong> (1878). Tretyakov Gallery, Moscow. The standard composition of Russian agricultural land at the edge of the forest belt.</li>
+      <li><span class="n">c</span><strong>Ivan Shishkin, <em>The Countess Mordvinova's Forest</em></strong> (1891). Tretyakov Gallery, Moscow. One of the great late Shishkin forest interiors.</li>
+      <li><span class="n">d</span><strong>The Komi Virgin Forests.</strong> Republic of Komi, north-eastern European Russia. UNESCO World Heritage 1995 — the largest single tract of virgin boreal forest in Europe and the most accessible reference site for the working taiga ecosystem. <a href="https://whc.unesco.org/en/list/719/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">e</span><strong>The Central Sikhote-Alin.</strong> Far East Russia. UNESCO World Heritage 2001. The eastern terminus of the Russian taiga belt where it meets the Pacific. <a href="https://whc.unesco.org/en/list/766/" target="_blank" rel="noopener">UNESCO</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Christopher Ely — <em>This Meager Nature: Landscape and National Identity in Imperial Russia</em></strong> (Northern Illinois University Press, 2002). The cultural-history study of how Russian landscape painting (Shishkin's taiga compositions among them) shaped Russian national identity in the nineteenth century.</li>
+      <li><span class="n">ii</span><strong>Rosalind P. Blakesley &amp; Susan E. Reid (eds.) — <em>Russian Art and the West: A Century of Dialogue in Painting, Architecture, and the Decorative Arts</em></strong> (Northern Illinois University Press, 2007). For the broader scholarly framework on Russian realist landscape and its European context.</li>
+      <li><span class="n">iii</span><strong>David R. Foster &amp; David A. Orwig — "Preemptive and Salvage Harvesting of New England Forests,"</strong> in <em>Conservation Biology</em>, multiple papers. Not Russian, but useful comparative ecology of the boreal forest belt.</li>
+      <li><span class="n">iv</span><strong>Fiona Hill &amp; Clifford G. Gaddy — <em>The Siberian Curse: How Communist Planners Left Russia Out in the Cold</em></strong> (Brookings Institution, 2003). For the political-economic dimensions of Soviet-era Siberian taiga settlement and exploitation, which give important context to the modern condition of the forest.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.9 · SOBOR                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p9">
+  <div class="pal-head">
+    <span class="n">14.9</span>
+    <h2><span class="script">собор</span>Sobor · Saint Basil's Cathedral<a class="selflink" href="#p9">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>sobor</em>: cathedral. Specifically the Cathedral of the Intercession on the Moat in Moscow.</p>
+  <p class="pal-lede">Sobor is the riotous polychromy of Saint Basil's Cathedral — formally the Cathedral of the Intercession of the Most Holy Theotokos on the Moat (<em>Sobor Pokrova Presvyatoy Bogoroditsy na Rvu</em>) — built on Red Square in Moscow between 1555 and 1561 by order of Ivan the Terrible to commemorate the Russian conquest of the Khanate of Kazan. The building is the single most chromatically extreme surviving structure in the Russian architectural tradition, and its painted onion domes — green, red, blue, yellow, white, with each one carrying a different pattern — make it the most photographed building in the country and one of the most recognisable single architectural objects on the planet.</p>
+
+  <div class="pal-body">
+    <h3>Construction &amp; the legend of the architects</h3>
+    <p>Saint Basil's was commissioned by Tsar Ivan IV ("the Terrible") in 1555 to commemorate his conquest of the Tatar khanates of Kazan and Astrakhan in 1552 and 1556, victories that effectively completed the Russian state's absorption of the Volga river system and opened the eastward expansion across Siberia. The architects are traditionally named in the chronicles as Postnik Yakovlev and Barma — possibly two men, possibly one man with a nickname, the historical record is uncertain — and the construction was completed in six years between 1555 and 1561. The building is structurally a cluster of nine separate chapels (a central chapel surrounded by eight smaller chapels) connected by a low gallery, each chapel topped by its own onion dome and each dedicated to a saint or feast on whose day a key event of the Kazan campaign had occurred.</p>
+    <p>A persistent legend, attested in Russian folklore from at least the seventeenth century, claims that Ivan ordered the architects blinded after the building's completion so that they could never produce another structure of comparable beauty for any other patron. The story is almost certainly false — Postnik Yakovlev is documented as continuing to work as an architect on later commissions, including buildings at Kazan itself, and the chronicle evidence does not support the blinding claim — but the legend has remained current in Russian popular memory and is one of the standard anecdotes told to visitors at the cathedral.</p>
+    <h3>The painted domes</h3>
+    <p>The most striking thing about Saint Basil's, and the reason it occupies the §14.9 slot in this chapter, is the riotous polychrome decoration of the onion domes. The eight peripheral domes are each painted in a different colour scheme — bands and chevrons of green, red, blue, yellow, and white in patterns that have no two domes alike — and the central dome carries gold leaf with red ribs. Looking at the cathedral from the south side of Red Square, the eye reads the building as a single bright bouquet of mismatched but coherent colour, and the chromatic effect is unlike anything else in the European architectural tradition: there is no Baroque, no Rococo, no Art Nouveau facade in any European city that achieves the same combination of saturated polychrome density at the same architectural scale.</p>
+    <p>It should be noted that the current colour scheme is not original. The original sixteenth-century cathedral was built in red brick with white limestone trim, and the domes were originally a more restrained gold-and-green. The riotous polychromy that the modern visitor sees was applied in stages between the late seventeenth and the early nineteenth centuries, and the current colour distribution was substantially fixed by the restoration campaigns of the 1860s and 1900s. The cathedral has therefore had three or four chromatic identities across its four-and-a-half-century history, and the iconic version is the most recent one. The information is sometimes a disappointment to first-time visitors who expected to see the original Ivan-the-Terrible scheme, but the modern colour distribution is itself now historic — over a century and a half old, with substantial conservation literature attached to it — and the cathedral is one of the rare cases of a historic building whose retroactive polychrome additions have become more famous than the original structure.</p>
+    <h3>Representative sources &amp; sites</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Saint Basil's Cathedral (Cathedral of the Intercession on the Moat), Red Square, Moscow.</strong> 1555–1561. Part of the Moscow Kremlin and Red Square UNESCO inscription, 1990. Now operated as a branch of the State Historical Museum and open for visits. <a href="https://whc.unesco.org/en/list/545/" target="_blank" rel="noopener">UNESCO</a></li>
+      <li><span class="n">b</span><strong>The Moscow Kremlin and Red Square ensemble.</strong> The same UNESCO inscription covers the Kremlin walls and towers, the Cathedral of the Dormition, the Cathedral of the Annunciation, the Cathedral of the Archangel Michael, the Ivan the Great Bell Tower, the Faceted Palace, and the Lenin Mausoleum, in addition to Saint Basil's. <a href="https://kreml.ru/en-Us/" target="_blank" rel="noopener">Moscow Kremlin Museums</a></li>
+      <li><span class="n">c</span><strong>The Tsaritsyno reconstruction, Moscow.</strong> Catherine the Great's late-eighteenth-century estate, partially built and abandoned, then restored in the early twenty-first century. The Vasily Bazhenov original design draws on the Saint Basil's polychrome vocabulary at architectural scale. <a href="https://tsaritsyno-museum.ru/en/" target="_blank" rel="noopener">Tsaritsyno Museum-Reserve</a></li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>William Craft Brumfield — <em>A History of Russian Architecture</em></strong> (Cambridge University Press, 1993; reissued University of Washington Press, 2004). The single most authoritative English-language scholarly history of Russian architecture; the chapter on Saint Basil's is the standard reference.</li>
+      <li><span class="n">ii</span><strong>William Craft Brumfield — <em>Landmarks of Russian Architecture: A Photographic Survey</em></strong> (Routledge, 1997). The companion photographic volume.</li>
+      <li><span class="n">iii</span><strong>Dmitry Shvidkovsky — <em>Russian Architecture and the West</em></strong> (Yale University Press, 2007). The scholarly study of the architectural relationships between Russia and Western Europe across the imperial period; covers Saint Basil's in the broader context of pre-Petrine Russian architecture.</li>
+      <li><span class="n">iv</span><strong>Catherine Cooke — <em>Russian Avant-Garde Theories of Art, Architecture and the City</em></strong> (Academy Editions, 1995). For the unexpected influence of Saint Basil's polychrome vocabulary on the early-twentieth-century Russian avant-garde and on Constructivist colour theory.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- 14.10 · NOCH'                           -->
+<!-- ================================================================ -->
+<section class="palette-chapter" id="p10">
+  <div class="pal-head">
+    <span class="n">14.10</span>
+    <h2><span class="script">ночь</span>Noch' · Russian Night<a class="selflink" href="#p10">§</a></h2>
+  </div>
+  <p class="pal-meaning">Russian <em>noch'</em>: night. The role slot for DARK.</p>
+  <p class="pal-lede">The dark role of the collection is the specific deep blue-violet of the Russian winter night — the colour of the snowbound countryside under a moonless January sky, of the unlit streets of any provincial Russian town away from the central squares, of the long pre-dawn hours when the temperature reaches its minimum and the silence is absolute. Russian night is a chromatic register that the literary and visual traditions of the country have attended to with unusual care, and the closing slot of the chapter belongs to the specific dark blue that the Russian winter and the Russian literary imagination have together produced.</p>
+
+  <div class="pal-body">
+    <h3>The chromatic specifics of Russian night</h3>
+    <p>Russian winter night is unusually dark by any European standard. Most of the country lies above the fifty-fifth parallel; the winter night is long (sixteen to nineteen hours of darkness in mid-December at Moscow's latitude); the rural and small-town settlements are widely separated and produce minimal ambient light pollution; and the snow cover means that whatever moonlight reaches the surface is reflected back into the lower atmosphere, producing an unusual brightness above the snow line and a corresponding darkness in the sky overhead. The chromatic register is a specific deep navy or blue-violet — not the warm orange-tinged urban night of any major European capital, and not the absolute black of a moonless night in a tropical forest, but a particular cool, even, slightly luminous blue-violet that the Russian visual tradition has identified as a thing in its own right.</p>
+    <p>The summer counterpart is the Russian "white night" (<em>belaya noch</em>) — the period in late June around the summer solstice when, at the high latitudes of Saint Petersburg and points north, the sun does not fully set and the entire night sky retains a pale luminous twilight glow. The Saint Petersburg White Nights season is celebrated as a cultural festival; the chromatic experience of standing on the Palace Embankment at midnight in late June is one of the canonical seasonal experiences of the city, and the writers who have most closely engaged with Saint Petersburg as a chromatic object — Pushkin in <em>The Bronze Horseman</em>, Dostoevsky in <em>White Nights</em> (1848), Joseph Brodsky in his late prose — have all returned to the white-night experience as a defining moment of the city's identity. The white nights and the dark winter nights are the two chromatic poles of the Russian year, and the dark slot of this chapter belongs to the deeper of the two.</p>
+    <h3>Russian night in literature and film</h3>
+    <p>The Russian literary imagination of the night is dense and specific. Pushkin's narrative poems and short lyrics frequently use night as a structural setting; Tolstoy's <em>War and Peace</em> contains the famous Andrei Bolkonsky moment under the night sky at Austerlitz, where the wounded prince looks up and sees the sky in a way he has never seen it before; Dostoevsky's <em>White Nights</em> is structured entirely around the four white-night encounters of its protagonist with a mysterious young woman; Pasternak's <em>Doctor Zhivago</em> contains some of the most carefully observed winter-night chromatic passages in twentieth-century Russian prose; Joseph Brodsky's late essays on Saint Petersburg and on Venice (the latter discussed in the Italy chapter §13.10) are the modern counterpart.</p>
+    <p>The visual tradition of Russian night is anchored in the work of <strong>Arkhip Kuindzhi</strong> (1842–1910), a member of the Peredvizhniki movement whose night and twilight compositions of the 1870s and 1880s — particularly <em>Night on the Dnieper</em> (1880) and the related Crimean and Ukrainian night scenes — are the canonical Russian night paintings of the imperial period. The modern visual reference is the cinema of <strong>Andrei Tarkovsky</strong>, particularly the long night sequences in <em>Mirror</em> (1975), <em>Stalker</em> (1979), and <em>Nostalgia</em> (1983), which use the specific blue-violet of the Russian winter night as a structural compositional element across long takes that the cinematographer Vadim Yusov and his colleagues lit with a precision matched by very few other film traditions.</p>
+    <h3>Representative sources &amp; objects</h3>
+    <ul class="objects">
+      <li><span class="n">a</span><strong>Arkhip Kuindzhi, <em>Night on the Dnieper</em></strong> (1880). State Russian Museum, Saint Petersburg. The single most famous Russian night painting; the moonlight on the river is treated with optical-experimental precision.</li>
+      <li><span class="n">b</span><strong>Andrei Tarkovsky, <em>Mirror</em> (Zerkalo)</strong>, 1975. The principal cinematic reference for the modern Russian night palette.</li>
+      <li><span class="n">c</span><strong>Pushkin, <em>The Bronze Horseman</em></strong> (<em>Mednyy Vsadnik</em>, 1833). Public domain in multiple English translations. The night-flood passages are the canonical Saint Petersburg night text.</li>
+      <li><span class="n">d</span><strong>Fyodor Dostoevsky, <em>White Nights</em></strong> (<em>Belyye nochi</em>, 1848). Public domain. The short novella that fixes the Saint Petersburg white night in the Russian literary imagination.</li>
+      <li><span class="n">e</span><strong>The Saint Petersburg White Nights season.</strong> Late May through mid-July annually. The cultural-festival branding has been formalised since the early Soviet period.</li>
+    </ul>
+    <h3>Sources</h3>
+    <ol class="sources">
+      <li><span class="n">i</span><strong>Solomon Volkov — <em>St Petersburg: A Cultural History</em></strong> (Free Press, 1995). The white-night material is woven through the book; the literary and musical responses to the city's specific chromatic seasons are a recurring subject.</li>
+      <li><span class="n">ii</span><strong>Robert Bird — <em>Andrei Tarkovsky: Elements of Cinema</em></strong> (Reaktion Books, 2008). The standard English-language scholarly study of the Tarkovsky films and their visual language.</li>
+      <li><span class="n">iii</span><strong>Joseph Brodsky — <em>Watermark</em></strong> (Farrar, Straus &amp; Giroux, 1992). Brodsky's Venetian essay; included here as the comparative reference for the Russian-émigré night-chromatic tradition. See also Italy chapter §13.10.</li>
+      <li><span class="n">iv</span><strong>Orlando Figes — <em>Natasha's Dance</em></strong> (Allen Lane, 2002). The Russian literary tradition of the night is woven through several chapters.</li>
+    </ol>
+  </div>
+</section>
+
+
+
+<!-- ================================================================ -->
+<!-- FURTHER READING                                                  -->
+<!-- ================================================================ -->
+<section class="reading-section" id="reading">
+  <h2>Further reading for the China chapter</h2>
+  <ol>
+        <li><span class="n">i</span><strong>Orlando Figes — <em>Natasha's Dance: A Cultural History of Russia</em></strong> (Allen Lane, 2002). The single best one-volume cultural history of Russia in English. If one book can be read, this is it.</li>
+    <li><span class="n">ii</span><strong>Leonid Ouspensky &amp; Vladimir Lossky — <em>The Meaning of Icons</em></strong> (Saint Vladimir's Seminary Press, 1952; English translation 1982). The standard theological-art-historical account of the Russian icon tradition.</li>
+    <li><span class="n">iii</span><strong>William Craft Brumfield — <em>A History of Russian Architecture</em></strong> (Cambridge University Press, 1993; reissued University of Washington Press, 2004). The authoritative English-language history of Russian architecture across all periods.</li>
+    <li><span class="n">iv</span><strong>Rosalind P. Blakesley — <em>The Russian Canvas: Painting in Imperial Russia, 1757–1881</em></strong> (Yale University Press, 2016). The standard modern survey of imperial-era Russian painting.</li>
+    <li><span class="n">v</span><strong>Alison Hilton — <em>Russian Folk Art</em></strong> (Indiana University Press, 1995). The standard English-language survey of the folk-decorative traditions including Gzhel and Khokhloma.</li>
+    <li><span class="n">vi</span><strong>Wendy R. Salmond — <em>Arts and Crafts in Late Imperial Russia: Reviving the Kustar Art Industries, 1870–1917</em></strong> (Cambridge University Press, 1996). The scholarly study of the late-imperial folk-craft revival movement (Talashkino, Abramtsevo) that re-organised most of the traditions covered in this chapter into their modern form.</li>
+    <li><span class="n">vii</span><strong>Solomon Volkov — <em>St Petersburg: A Cultural History</em></strong> (Free Press, 1995). The accessible cultural history of the imperial capital.</li>
+    <li><span class="n">viii</span><strong>W. Bruce Lincoln — <em>Sunlight at Midnight: St Petersburg and the Rise of Modern Russia</em></strong> (Basic Books, 2000). The standard modern history of Saint Petersburg's first three centuries.</li>
+    <li><span class="n">ix</span><strong>Dmitry Shvidkovsky — <em>Russian Architecture and the West</em></strong> (Yale University Press, 2007). The scholarly study of architectural exchange between Russia and Western Europe.</li>
+    <li><span class="n">x</span><strong>Christopher Ely — <em>This Meager Nature: Landscape and National Identity in Imperial Russia</em></strong> (Northern Illinois University Press, 2002). The cultural-history study of how Russian landscape painting shaped national identity in the nineteenth century.</li>
+    <li><span class="n">xi</span><strong>Robert Bird — <em>Andrei Tarkovsky: Elements of Cinema</em></strong> (Reaktion Books, 2008). The standard English-language scholarly study of the Tarkovsky films.</li>
+    <li><span class="n">xii</span><strong>Robert Finlay — <em>The Pilgrim Art: Cultures of Porcelain in World History</em></strong> (University of California Press, 2010). Essential context for the §14.4 GZHEL keystone — the global porcelain diffusion story that connects the Russian folk ceramic to its Chinese, Persian, and Dutch ancestors.</li>
+    <li><span class="n">xiii</span><strong>Sergei Yesenin — <em>Selected Poetry</em>,</strong> multiple translations. The canonical Russian poet of the rural landscape and the silver birch.</li>
+    <li><span class="n">xiv</span><strong>Boris Pasternak — <em>Doctor Zhivago</em></strong> (1957; English translation 1958). The single most chromatically attentive twentieth-century Russian novel; the winter passages are essential reading for the §14.1 SNEG and §14.10 NOCH' material.</li>
+    <li><span class="n">xv</span><strong>Andrew Spira — <em>The Avant-Garde Icon: Russian Avant-Garde Art and the Icon Painting Tradition</em></strong> (Lund Humphries, 2008). For the unexpected and important relationship between the icon tradition and the early-twentieth-century Russian avant-garde.</li>
+  </ol>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon">
+  Rangrez · Bibliothèque · <a href="bibliotheque.html">Back to the index</a>
+</footer>
+
+<div class="mobile-picker" id="mobilePicker" aria-hidden="true">
+  <button class="mobile-picker-close" id="mobilePickerClose" aria-label="Close">×</button>
+  <div class="mobile-picker-inner">
+    <h3>§ Opening</h3>
+    <ol>
+      <li><a href="#preface"><span class="n">§</span>Preface</a></li>
+      <li><a href="#timeline"><span class="n">§</span>Timeline</a></li>
+    </ol>
+    <h3>§ Palettes</h3>
+    <ol>
+            <li><a href="#p1"><span class="n">14.1</span>Sneg · Snow</a></li>
+      <li><a href="#p2"><span class="n">14.2</span>Lyon · Linen</a></li>
+      <li><a href="#p3"><span class="n">14.3</span>Peterburg · Petersburg Pastel</a></li>
+      <li><a href="#p4"><span class="n">14.4</span>Gzhel · Cobalt Folk Ceramic</a></li>
+      <li><a href="#p5"><span class="n">14.5</span>Khokhloma · Red &amp; Gold Lacquerware</a></li>
+      <li><a href="#p6"><span class="n">14.6</span>Beryoza · Silver Birch</a></li>
+      <li><a href="#p7"><span class="n">14.7</span>Ikona · Russian Icon</a></li>
+      <li><a href="#p8"><span class="n">14.8</span>Tayga · Boreal Forest</a></li>
+      <li><a href="#p9"><span class="n">14.9</span>Sobor · Saint Basil's Cathedral</a></li>
+      <li><a href="#p10"><span class="n">14.10</span>Noch' · Russian Night</a></li>
+    </ol>
+    <h3>§ Apparatus</h3>
+    <ol>
+      <li><a href="#reading"><span class="n">§</span>Further Reading</a></li>
+    </ol>
+  </div>
+</div>
+
+<script>
+  // Dark mode
+  const themeBtn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('rangrez-biblio-theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('rangrez-biblio-theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  // Deep-link copy on § click
+  document.querySelectorAll('.selflink').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const hash = a.getAttribute('href');
+      navigator.clipboard?.writeText(hash);
+      history.replaceState(null, '', hash);
+      a.textContent = '✓';
+      setTimeout(() => { a.textContent = '§'; }, 900);
+    });
+  });
+
+  // Mobile picker
+  const jumpBtn = document.getElementById('mobileJumpBtn');
+  const picker = document.getElementById('mobilePicker');
+  const pickerClose = document.getElementById('mobilePickerClose');
+
+  function openPicker() {
+    picker.classList.add('open');
+    picker.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePicker() {
+    picker.classList.remove('open');
+    picker.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  jumpBtn.addEventListener('click', openPicker);
+  pickerClose.addEventListener('click', closePicker);
+  picker.querySelectorAll('a').forEach(a => a.addEventListener('click', closePicker));
+  picker.addEventListener('click', e => { if (e.target === picker) closePicker(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && picker.classList.contains('open')) closePicker();
+  });
+</script>
+
+</body>
+</html>
