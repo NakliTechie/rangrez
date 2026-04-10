@@ -171,6 +171,8 @@
     .mobile-icon-btn { background:none; border:1px solid var(--line); width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:14px; font-weight:700; color:var(--muted); font-family:inherit; line-height:1; padding:0; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
     .mobile-icon-btn:active { color:var(--fg); border-color:var(--fg); }
     .section-row { display:flex; gap:8px; margin-bottom:10px; align-items:stretch; }
+    .section-nav-btn { display:flex; align-items:center; justify-content:center; width:40px; flex-shrink:0; background:none; border:1px solid var(--line); border-radius:8px; font-family:inherit; font-size:22px; font-weight:400; color:var(--muted); cursor:pointer; padding:0; line-height:1; transition:color .15s, border-color .15s; }
+    .section-nav-btn:active { color:var(--fg); border-color:var(--fg); }
     .section-picker-btn { display:flex; align-items:center; justify-content:space-between; flex:1; background:none; border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-family:inherit; font-size:13px; font-weight:700; color:var(--fg); cursor:pointer; letter-spacing:0.3px; min-width:0; }
     .section-picker-btn > span:first-child { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .section-picker-btn .chevron { color:var(--muted); font-size:10px; flex-shrink:0; margin-left:8px; }
@@ -218,10 +220,15 @@
     .reader-nav-btn:active { background:var(--line); }
 
     /* ============ MOBILE DARSHAN MODE ============ */
+    /* Restore natural page scrolling — the global viewport lock at line 159 exists for the
+       single-palette card reader. Darshan is a grid, scroll it like a normal page. */
+    html.darshan-mode, html.darshan-mode body, html:has(body.darshan), html:has(body.darshan) body { 
+      height:auto !important; overflow:auto !important; overscroll-behavior:auto; 
+    }
     body.darshan .reader-palette-wrap,
     body.darshan .reader-story,
     body.darshan .reader-nav { display:none !important; }
-    body.darshan .mobile-reader { height:auto; min-height:calc(100dvh - 108px); overflow-y:auto; -webkit-overflow-scrolling:touch; padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px)); }
+    body.darshan .mobile-reader { height:auto; min-height:0; overflow:visible; padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px)); }
     body.darshan .darshan-mobile-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; padding:14px; }
     body.darshan .darshan-mobile-grid .card { border-radius:8px; overflow:hidden; border:1px solid var(--line); background:var(--card-bg); }
     body.dark.darshan .darshan-mobile-grid .card { box-shadow:var(--frame-shadow); border-color:transparent; }
@@ -1538,10 +1545,12 @@
     </div>
   </div>
   <div class="section-row">
+    <button class="section-nav-btn" id="section-prev-btn" aria-label="Previous collection">‹</button>
     <button class="section-picker-btn" id="section-picker-btn">
       <span id="section-picker-label">JAPAN 日本</span>
       <span class="chevron">▾</span>
     </button>
+    <button class="section-nav-btn" id="section-next-btn" aria-label="Next collection">›</button>
   </div>
   <button class="preface-btn hidden" id="mobile-preface-btn" aria-label="About this collection">
     <span id="mobile-preface-subtitle"></span>
@@ -3300,6 +3309,7 @@ function getLayoutMode() {
 function applyLayout(mode) {
   document.body.classList.toggle("inspector", mode === "inspector");
   document.body.classList.toggle("darshan", mode === "darshan");
+  document.documentElement.classList.toggle("darshan-mode", mode === "darshan");
   const icon = LAYOUT_ICONS[mode] || "▦";
   const title = LAYOUT_TITLES[mode] || "Cycle view mode";
   const desktopBtn = document.getElementById("layout-btn");
@@ -3320,7 +3330,10 @@ function toggleLayout() {
 try {
   const savedLayout = localStorage.getItem(LAYOUT_KEY);
   if (savedLayout === "inspector") document.body.classList.add("inspector");
-  else if (savedLayout === "darshan") document.body.classList.add("darshan");
+  else if (savedLayout === "darshan") {
+    document.body.classList.add("darshan");
+    document.documentElement.classList.add("darshan-mode");
+  }
 } catch(e) {}
 // Initialize button icon to match current state
 (function initLayoutButton() {
@@ -3550,6 +3563,30 @@ function openSectionPicker() { renderSectionPicker(); sectionPickerOverlay.class
 function closeSectionPicker() { sectionPickerOverlay.classList.remove("show"); }
 sectionPickerBtn.addEventListener("click", openSectionPicker);
 pickerClose.addEventListener("click", closeSectionPicker);
+
+// Build a flat ordered list of all section keys for prev/next cycling
+function getFlatSectionKeys() {
+  const keys = [];
+  groups.forEach(group => {
+    group.entries.forEach(e => {
+      if (palettes[e.key]) keys.push(e.key);
+    });
+  });
+  return keys;
+}
+function cycleSection(delta) {
+  const keys = getFlatSectionKeys();
+  if (keys.length === 0) return;
+  const currentIdx = keys.indexOf(mobileCurrentSection);
+  const nextIdx = (currentIdx + delta + keys.length) % keys.length;
+  mobileCurrentSection = keys[nextIdx];
+  mobileCurrentIndex = 0;
+  renderMobileReader();
+}
+const _sectionPrevBtn = document.getElementById("section-prev-btn");
+const _sectionNextBtn = document.getElementById("section-next-btn");
+if (_sectionPrevBtn) _sectionPrevBtn.addEventListener("click", () => cycleSection(-1));
+if (_sectionNextBtn) _sectionNextBtn.addEventListener("click", () => cycleSection(1));
 
 // Mobile search
 function renderMobileSearchResults(query) {
