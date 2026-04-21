@@ -5,6 +5,7 @@
 !LICENSE
 !LICENSE-content
 !.gitignore
+!palettes.json
 
 # wrangler files
 .wrangler
